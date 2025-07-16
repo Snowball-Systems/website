@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowball Systems</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="/key-features">Key Features</a>
+                <a href="/product-overview">Product Overview</a>
+                <a href="/target-audience">Target Audience</a>
+                <a href="https://app.snowballsystems.com" style="font-weight: bold; color: #76d7c4;">Try the Demo</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <article class="page">
+  <h2>Product Overview</h2>
+  <div class="page-content">
+    <h1 id="clarion-product-overview">Clarion Product Overview</h1>
+
+<p><strong>Clarion</strong> is an intelligent infrastructure management platform developed by <strong>Snowball Systems</strong>. It serves as a “digital twin” for complex physical systems, primarily targeting water and wastewater utilities.</p>
+
+<p>The core of Clarion is a powerful knowledge graph that unifies an organization’s scattered data sources into a single, queryable model. This includes:</p>
+
+<ul>
+  <li><strong>Unstructured Documents:</strong> Technical manuals, operational reports, meeting minutes, proposals (.pdf, .txt, etc.).</li>
+  <li><strong>Geospatial Data:</strong> Asset locations and network topology from GIS systems.</li>
+  <li><strong>Operational Models:</strong> Hydraulic simulation models like EPANET.</li>
+</ul>
+
+<p>By integrating these disparate sources, Clarion provides a holistic, real-time view of infrastructure assets and operations. Users can interact with this complex dataset using natural language, asking questions and receiving context-aware answers grounded in their own data. This is powered by an advanced Retrieval-Augmented Generation (RAG) AI agent.</p>
+
+<p>The platform is not just for data exploration; it’s an active management tool. It features integrated modules for asset management, project management (with Kanban, Gantt, and list views), and hydraulic network simulation, allowing teams to plan, execute, and monitor their work within the same environment where their data lives.</p>
+
+<p>Clarion is designed to break down data silos, enhance institutional knowledge, and empower operators and managers to make faster, more informed decisions.</p>
+
+  </div>
+</article> 
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Snowball Systems. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.main-nav');
+            
+            toggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html> 

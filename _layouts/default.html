@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="{{ site.title }} logo"></a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="/key-features">Key Features</a>
+                <a href="/product-overview">Product Overview</a>
+                <a href="/target-audience">Target Audience</a>
+                <a href="https://app.snowballsystems.com" style="font-weight: bold; color: #76d7c4;">Try the Demo</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.main-nav');
+            
+            toggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html> 

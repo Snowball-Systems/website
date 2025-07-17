@@ -1,5 +1,7 @@
 # Knowledge Graph Animation Vision
 
+> **📋 DOCUMENT STATUS**: This is a **future vision document** outlining potential enhancements to the current orbital animation. It does not reflect the current implementation. For current styling documentation, see `homepage-styling-guide.md` and `responsive-scaling-guide.md`.
+
 ## Overview
 This document outlines the vision for transforming the current orbital "brain" animation into a true knowledge graph that better represents how Clarion interconnects utility operations. This shift moves from a hub-and-spoke model to a network model that shows semantic relationships and operational workflows.
 

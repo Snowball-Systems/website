@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
 <body>
     <main>
-        <!-- Hero Section - Full Screen Intelligence Hub -->
-<section class="intelligence-hub-hero">
-    <!-- Integrated Header -->
-    <header class="hero-header">
+        <!-- Hero Section with Clarion Logo Centerpiece -->
+<section class="intelligence-hub-hero" style="min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+    <!-- Background with depth/mystique -->
+    <div class="hero-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%); z-index: 1;">
+        <div class="floating-particles" style="position: absolute; width: 100%; height: 100%; opacity: 0.3;">
+            <!-- Animated particles for depth -->
+        </div>
+        <div class="grid-overlay" style="position: absolute; width: 100%; height: 100%; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 50px 50px; opacity: 0.2;"></div>
+    </div>
+
+    <!-- Compact Header -->
+    <header class="hero-header" style="padding: 1rem 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative; z-index: 10;">
         <div class="logo">
             <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
         </div>
@@ -28,152 +37,274 @@
         </nav>
     </header>
     
-    <div class="hero-background">
-        <div class="floating-particles"></div>
-        <div class="grid-overlay"></div>
-    </div>
-    
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1 class="hero-headline">
-                <span class="gradient-text">Clarion Is the Brain of Your Utility.</span>
-            </h1>
-            <div class="hero-subtitle">
-                <span class="subtitle-prefix">More Than</span>
-                <span class="rotating-text" id="rotatingText">Asset Management</span>
-            </div>
-            <p class="hero-tagline">
-                Where utility data becomes actionable intelligence.
-            </p>
-            <div class="hero-cta">
-                <a href="https://app.snowballsystems.com" class="primary-cta">Try the Demo</a>
-            </div>
+    <!-- Clarion Logo Centerpiece -->
+    <div class="clarion-hero-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 5; padding: 4rem; min-height: 100vh;">
+        <!-- Main Clarion Logo -->
+        <div class="clarion-logo-container" style="text-align: center; margin-bottom: 2rem;">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 381.35 253.92">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: url(#radial-gradient-3);
+          }
+
+          .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+            stroke: #2c5f94;
+          }
+
+          .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-8 {
+            stroke-width: 1.5px;
+          }
+
+          .cls-9 {
+            font-family: NirmalaText-Semilight, 'Nirmala Text';
+            font-size: 101.85px;
+            font-weight: 300;
+          }
+
+          .cls-2 {
+            fill: url(#radial-gradient-8);
+          }
+
+          .cls-3 {
+            fill: url(#radial-gradient-6);
+          }
+
+          .cls-10 {
+            stroke: url(#linear-gradient-4);
+          }
+
+          .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20 {
+            fill: none;
+            stroke-width: 2.5px;
+          }
+
+          .cls-11 {
+            stroke: url(#linear-gradient-7);
+          }
+
+          .cls-12 {
+            stroke: url(#linear-gradient-6);
+          }
+
+          .cls-13 {
+            stroke: url(#linear-gradient-2);
+          }
+
+          .cls-14 {
+            stroke: url(#linear-gradient-10);
+          }
+
+          .cls-21 {
+            font-family: Bahnschrift, Bahnschrift;
+            font-size: 21px;
+            font-variation-settings: 'wght' 400, 'wdth' 100;
+          }
+
+          .cls-15 {
+            stroke: url(#linear-gradient-8);
+          }
+
+          .cls-16 {
+            stroke: url(#linear-gradient-5);
+          }
+
+          .cls-4 {
+            fill: url(#radial-gradient-2);
+          }
+
+          .cls-5 {
+            fill: url(#radial-gradient-4);
+          }
+
+          .cls-6 {
+            fill: url(#radial-gradient);
+          }
+
+          .cls-17 {
+            stroke: url(#linear-gradient-11);
+          }
+
+          .cls-22 {
+            letter-spacing: -.01em;
+          }
+
+          .cls-18 {
+            stroke: url(#linear-gradient);
+          }
+
+          .cls-7 {
+            fill: url(#radial-gradient-7);
+            stroke-width: 2px;
+          }
+
+          .cls-8 {
+            fill: url(#radial-gradient-5);
+          }
+
+          .cls-19 {
+            stroke: url(#linear-gradient-3);
+          }
+
+          .cls-20 {
+            stroke: url(#linear-gradient-9);
+          }
+        </style>
+        <linearGradient id="linear-gradient" x1="-457" y1="584.92" x2="-438.56" y2="566.47" gradientTransform="translate(82333.8 556.25) scale(183.13 -.69)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x1="-448.3" y1="600.7" x2="-446.55" y2="598.95" gradientTransform="translate(53845.86 33053.33) scale(120 -55)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-3" x1="-447.64" y1="600.43" x2="-446.58" y2="599.37" gradientTransform="translate(53965.86 33108.33) scale(120 -55)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-4" x1="-446.89" y1="603.39" x2="-445.11" y2="601.61" gradientTransform="translate(40321.44 57290) scale(90 -95)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-5" x1="-448.17" y1="598.87" x2="-447.07" y2="597.77" gradientTransform="translate(58484 26994.17) scale(130 -45)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-6" x1="-448.09" y1="603.35" x2="-447.04" y2="602.3" gradientTransform="translate(62862.14 57385) scale(140 -95)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-7" x1="-446.1" y1="589" x2="-444.85" y2="587.75" gradientTransform="translate(34965.98 -13524.47) scale(78.19 23.06)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-8" x1="-442.83" y1="588.13" x2="-440.74" y2="586.04" gradientTransform="translate(22248.88 11771.25) scale(50 -20)" xlink:href="#linear-gradient"/>
+        <linearGradient id="linear-gradient-9" x1="-403.79" y1="603.36" x2="-402.77" y2="602.34" gradientTransform="translate(-17527.07 61880.24) rotate(-180) scale(44.33 102.5)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-10" x1="-455.18" y1="576.91" x2="-441.64" y2="563.37" gradientTransform="translate(90148.98 -302.65) scale(200.54 .81)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-11" x1="-437.27" y1="597.82" x2="-436.07" y2="596.61" gradientTransform="translate(13182.6 23909.58) scale(30 -40)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
+        </linearGradient>
+        <radialGradient id="radial-gradient" cx="-430.03" cy="588.67" fx="-430.03" fy="588.67" r=".5" gradientTransform="translate(8654.47 11801.25) scale(20 -20)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-2" cx="-423.55" cy="587.09" fx="-423.55" fy="587.09" r=".5" gradientTransform="translate(7991.84 10698.42) scale(18 -18)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-3" cx="-428.54" cy="589.51" fx="-428.54" fy="589.51" r=".5" gradientTransform="translate(9717.09 13144.08) scale(22 -22)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-4" cx="-423.46" cy="583.13" fx="-423.46" fy="583.13" r=".5" gradientTransform="translate(6879.21 9335.58) scale(16 -16)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-5" cx="-419.14" cy="580.69" fx="-419.14" fy="580.69" r=".5" gradientTransform="translate(6196.58 8172.75) scale(14 -14)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-6" cx="-419.2" cy="590.4" fx="-419.2" fy="590.4" r=".5" gradientTransform="translate(2768.79 5176.54) scale(6.25 -8.53)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-7" cx="-439.98" cy="598.31" fx="-439.98" fy="598.31" r=".5" gradientTransform="translate(19606 26410.25) scale(44 -44)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+        <radialGradient id="radial-gradient-8" cx="-430.52" cy="590.03" fx="-430.52" fy="590.03" r=".5" gradientTransform="translate(10539.72 14206.92) scale(24 -24)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#4a90e2"/>
+          <stop offset=".7" stop-color="#357abd"/>
+          <stop offset="1" stop-color="#2c5f94"/>
+        </radialGradient>
+      </defs>
+      <line class="cls-18" x1="293.6" y1="179.25" x2="371.6" y2="135.52"/>
+      <line class="cls-13" x1="53.44" y1="32.58" x2="255.77" y2="93.42"/>
+      <line class="cls-19" x1="370.1" y1="134.42" x2="255.77" y2="93.42"/>
+      <line class="cls-10" x1="107.1" y1="11.42" x2="255.77" y2="93.42"/>
+      <line class="cls-16" x1="331.44" y1="45.92" x2="255.77" y2="93.42"/>
+      <line class="cls-12" x1="150.02" y1="139.92" x2="255.77" y2="93.42"/>
+      <line class="cls-11" x1="212.1" y1="52.92" x2="53.44" y2="32.58"/>
+      <line class="cls-15" x1="107.1" y1="9.92" x2="212.1" y2="49.25"/>
+      <line class="cls-20" x1="331.44" y1="45.92" x2="371.6" y2="130.92"/>
+      <line class="cls-14" x1="153.14" y1="141.85" x2="293.6" y2="179.25"/>
+      <line class="cls-17" x1="57.77" y1="31.92" x2="107.1" y2="9.92"/>
+      <circle class="cls-6" cx="57.77" cy="31.92" r="10"/>
+      <circle class="cls-4" cx="371.6" cy="134.42" r="9"/>
+      <circle class="cls-1" cx="293.6" cy="179.25" r="11"/>
+      <circle class="cls-5" cx="107.1" cy="8.75" r="8"/>
+      <circle class="cls-8" cx="331.44" cy="45.92" r="7"/>
+      <ellipse class="cls-3" cx="150.02" cy="141.85" rx="3.12" ry="4.27"/>
+      <circle class="cls-7" cx="255.77" cy="93.42" r="22"/>
+      <text class="cls-9" transform="translate(0 119.75) scale(1.14 1)"><tspan x="0" y="0">Clarion</tspan></text>
+      <circle class="cls-2" cx="212.1" cy="50.92" r="12"/>
+      <text class="cls-21" transform="translate(19.78 146.26)"><tspan x="0" y="0">cont</tspan><tspan class="cls-22" x="40.48" y="0">e</tspan><tspan x="51.43" y="0">xtualized </tspan></text>
+      <text id="rotatingText" class="cls-21" transform="translate(169.59 146.11)"><tspan x="0" y="0">asset management</tspan></text>
+      <text/>
+    </svg>
+                
         </div>
         
-        <div class="intelligence-visualization">
-            <div class="knowledge-graph">
-                <!-- Particle Flow Canvas -->
-                <canvas class="particle-canvas" id="particleCanvas"></canvas>
-                
-                <!-- Central Intelligence Hub -->
-                <div class="intelligence-core">
-                    <div class="core-icon">🧠</div>
-                    <div class="core-pulse"></div>
-                    <div class="core-ripple"></div>
-                </div>
-                
-                <!-- Data Sources Layer -->
-                <div class="data-layer">
-                    <div class="data-node" data-type="gis" data-angle="0">
-                        <div class="node-icon">📍</div>
-                        <div class="node-label">GIS</div>
-                    </div>
-                    <div class="data-node" data-type="docs" data-angle="60">
-                        <div class="node-icon">📄</div>
-                        <div class="node-label">Docs</div>
-                    </div>
-                    <div class="data-node" data-type="scada" data-angle="120">
-                        <div class="node-icon">⚡</div>
-                        <div class="node-label">SCADA</div>
-                    </div>
-                    <div class="data-node" data-type="cusi" data-angle="180">
-                        <div class="node-icon">👥</div>
-                        <div class="node-label">CUSI</div>
-                    </div>
-                    <div class="data-node" data-type="ami" data-angle="240">
-                        <div class="node-icon">💧</div>
-                        <div class="node-label">AMI</div>
-                    </div>
-                    <div class="data-node" data-type="schedule" data-angle="300">
-                        <div class="node-icon">📅</div>
-                        <div class="node-label">Schedule</div>
-                    </div>
-                </div>
-                
-                <!-- Intelligence Services Layer -->
-                <div class="services-layer">
-                    <div class="service-node" data-service="knowledge" data-angle="30">
-                        <div class="node-icon">🎓</div>
-                        <div class="node-label">Knowledge</div>
-                    </div>
-                    <div class="service-node" data-service="assets" data-angle="90">
-                        <div class="node-icon">🔧</div>
-                        <div class="node-label">Assets</div>
-                    </div>
-                    <div class="service-node" data-service="projects" data-angle="150">
-                        <div class="node-icon">📊</div>
-                        <div class="node-label">Projects</div>
-                    </div>
-                    <div class="service-node" data-service="alerts" data-angle="210">
-                        <div class="node-icon">🔔</div>
-                        <div class="node-label">Alerts</div>
-                    </div>
-                    <div class="service-node" data-service="modeling" data-angle="270">
-                        <div class="node-icon">🌐</div>
-                        <div class="node-label">Modeling</div>
-                    </div>
-                    <div class="service-node" data-service="compliance" data-angle="330">
-                        <div class="node-icon">✅</div>
-                        <div class="node-label">Compliance</div>
-                    </div>
-                </div>
-                
-                <!-- Connection Lines (will be dynamically generated) -->
-                <div class="connections-layer"></div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- The rest of the homepage is intentionally left blank for new concept development. -->
 
-<!-- Features Section -->
-<section class="features-section">
-    <div class="container">
-        <h2>A Unified Hub for Every Utility Operation</h2>
-        <p class="section-intro">Clarion integrates all your disparate systems into a single, intelligent platform. Make smarter decisions with a complete operational picture.</p>
+<script>
+// Rotating text functionality for SVG
+const rotatingTexts = [
+    "asset management",
+    "water utilities",
+    "smart cities", 
+    "infrastructure",
+    "data systems",
+    "operations",
+    "decision making",
+    "resource planning"
+];
+
+let currentIndex = 0;
+const rotatingElement = document.getElementById('rotatingText');
+
+function updateRotatingText() {
+    if (rotatingElement) {
+        // Fade out
+        rotatingElement.style.opacity = '0';
         
-        <div class="feature-grid">
-            <a href="#" class="feature-item">
-                <span class="feature-icon">🌐</span>
-                <span class="feature-label">Modeling & Simulation</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">✅</span>
-                <span class="feature-label">Compliance Tracking</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">📍</span>
-                <span class="feature-label">GIS Integration</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">🔔</span>
-                <span class="feature-label">Smart Notifications</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">📅</span>
-                <span class="feature-label">Scheduling</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">⚡</span>
-                <span class="feature-label">SCADA</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">🗂️</span>
-                <span class="feature-label">Documents</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">📘</span>
-                <span class="feature-label">Knowledge Management</span>
-            </a>
-            <a href="#" class="feature-item">
-                <span class="feature-icon">📈</span>
-                <span class="feature-label">Project Tracking</span>
-            </a>
-        </div>
-    </div>
-</section>
+        setTimeout(() => {
+            // Change text content in the tspan
+            const tspan = rotatingElement.querySelector('tspan');
+            if (tspan) {
+                tspan.textContent = rotatingTexts[currentIndex];
+            }
+            
+            // Fade in
+            rotatingElement.style.opacity = '1';
+            
+            // Move to next text
+            currentIndex = (currentIndex + 1) % rotatingTexts.length;
+        }, 300);
+    }
+}
 
-
-
+// Start the rotation
+if (rotatingElement) {
+    rotatingElement.style.transition = 'opacity 0.3s ease-in-out';
+    updateRotatingText();
+    setInterval(updateRotatingText, 3000); // Change every 3 seconds
+}
+</script>
     </main>
     <footer>
         <div class="container">
@@ -275,11 +406,13 @@
             
             initializeNodes() {
                 setTimeout(() => {
-                    const dataNodes = ['gis', 'docs', 'scada', 'cusi', 'ami', 'schedule'];
-                    const serviceNodes = ['knowledge', 'assets', 'projects', 'alerts', 'modeling', 'compliance'];
-                    
+                    const dataNodes = [
+                        'gis', 'docs', 'scada', 'cusi', 'ami', 'schedule',
+                        'knowledge', 'assets', 'projects', 'alerts', 'modeling', 'compliance'
+                    ];
+                    const angles = [0, 60, 120, 180, 240, 300, 30, 90, 150, 210, 270, 330];
                     dataNodes.forEach((nodeId, index) => {
-                        const angle = index * 60;
+                        const angle = angles[index];
                         const element = document.querySelector(`[data-type="${nodeId}"]`);
                         if (element) {
                             element.style.setProperty('--angle', angle);
@@ -287,22 +420,10 @@
                             this.nodes.set(nodeId, { element, angle, type: 'data' });
                         }
                     });
-                    
-                    serviceNodes.forEach((nodeId, index) => {
-                        const angle = index * 60 + 30;
-                        const element = document.querySelector(`[data-service="${nodeId}"]`);
-                        if (element) {
-                            element.style.setProperty('--angle', angle);
-                            element.style.animationDelay = `${angle * 0.01 + 1}s`;
-                            this.nodes.set(nodeId, { element, angle, type: 'service' });
-                        }
-                    });
-                    
                     const coreElement = document.querySelector('.intelligence-core');
                     if (coreElement) {
                         this.nodes.set('core', { element: coreElement, angle: 0, type: 'core' });
                     }
-                    
                     // Start with first theme
                     this.activateTheme(0);
                 }, 100);

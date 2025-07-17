@@ -1,288 +1,324 @@
 # Homepage Styling Guide
 
 ## Overview
-This document explains how the Snowball Systems homepage is structured and styled. It serves as a reference for future edits and improvements.
+This document explains how the Snowball Systems homepage is currently structured and styled, focusing on the lessons learned from optimizing text spacing, animation sizing, and responsive design. It serves as a reference for maintaining and improving the hero section.
 
 ---
 
-## 🏗️ PAGE STRUCTURE
+## 🏗️ **PAGE STRUCTURE**
 
 ### HTML Layout (index.html)
 ```
 <section class="intelligence-hub-hero">
-  ├── <header class="hero-header"> - Fixed navigation
-  ├── <div class="hero-background"> - Visual effects
-  └── <div class="hero-content"> - Main content grid
-      ├── <div class="hero-text"> - Left column: text content
-      └── <div class="intelligence-visualization"> - Right column: animation
-          └── <div class="clarion-brain"> - Orbital animation container
+  ├── <header class="hero-header"> - Fixed navigation with backdrop blur
+  ├── <div class="hero-background"> - Subtle depth effects (NEW)
+  │   ├── <div class="floating-particles"> - Animated depth particles
+  │   └── <div class="grid-overlay"> - Subtle grid animation
+  └── <div class="hero-content"> - Main content container
+      ├── <div class="hero-text"> - Left-positioned text content
+      └── <div class="intelligence-visualization"> - Right-aligned animation
+          └── <div class="knowledge-graph"> - Particle animation container
 ```
 
-### CSS Grid System
-- **Container**: `.hero-content` uses CSS Grid
-- **Base Layout**: `grid-template-columns: 1fr 1fr` (equal columns)
-- **Responsive**: Adjusts to asymmetric ratios on larger screens
-- **Alignment**: Text stays left-aligned, animation centers
+### Z-Index Layering System
+```
+Text Content (z-index: 20) - Highest priority, always visible
+Animation (z-index: 5) - Middle layer
+Background Effects (z-index: 1) - Lowest, atmospheric only
+```
 
 ---
 
-## 📱 RESPONSIVE SYSTEM
+## 📱 **RESPONSIVE SYSTEM**
 
-### Core Approach: CSS Custom Properties + Media Queries
-Uses the proven pattern of CSS variables updated by media queries to avoid specificity conflicts.
+### Core Approach: CSS Custom Properties for Text Spacing
+Uses CSS variables that update via media queries to create responsive text spacing without specificity conflicts.
 
-### Breakpoints Strategy
 ```css
-/* Base: up to 1600px */
-/* 1600px+: Large screens */
-/* 1800px+: Very large screens */  
-/* 2200px+: Ultra large (4K, ultrawide) */
-```
-
-### Text Scaling
-```css
-/* Base */
-.hero-headline { font-size: 3.2rem; }
-
-/* Large screens */
-@media (min-width: 1600px) {
-    .hero-headline { font-size: 4.2rem; }
+/* Base responsive variables */
+.hero-text {
+    --headline-spacing: 1rem;     /* Tight spacing between elements */
+    --subtitle-spacing: 1.3rem;   /* Reduced from previous 2rem */
+    --tagline-spacing: 2.2rem;    /* Reduced from previous 3rem */
+    --subtitle-indent: 1.7rem;    /* Corrected alignment */
 }
 
-/* Very large screens */
-@media (min-width: 1800px) {
-    .hero-headline { font-size: 5rem; }
-}
-
-/* Ultra large screens */
-@media (min-width: 2200px) {
-    .hero-headline { font-size: 6rem; }
-}
-```
-
-### Animation Scaling
-```css
-/* Base */
-.clarion-brain {
-    --connector-radius: 200px;
-    --service-radius: 260px;
-}
-
-/* Transforms use variables */
-.connector {
-    transform: translateY(calc(-1 * var(--connector-radius)));
-}
-
-/* Media queries update variables */
-@media (min-width: 1600px) {
-    .clarion-brain {
-        --connector-radius: 220px;
-        --service-radius: 280px;
+/* Variables update across breakpoints */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-text {
+        --headline-spacing: 1.1rem;
+        --subtitle-spacing: 1.4rem;
+        --tagline-spacing: 2.4rem;
+        --subtitle-indent: 1.8rem;
     }
 }
 ```
 
----
+### Breakpoint Strategy
+```
+Mobile: up to 768px
+Tablet: 769px - 1024px
+Large: 1600px+
+XL: 1800px+
+Ultra-wide: 2200px+
+```
 
-## 🎯 LAYOUT & SPACING
-
-### Grid Column Ratios
-Prevents text from expanding toward center and cramping animation:
-
-| Screen Size | Grid Columns | Text Space | Animation Space |
-|-------------|--------------|------------|-----------------|
-| Base        | `1fr 1fr`    | 50%        | 50%             |
-| 1600px+     | `1.2fr 1fr`  | 55%        | 45%             |
-| 1800px+     | `1.3fr 1fr`  | 57%        | 43%             |
-| 2200px+     | `1.4fr 1fr`  | 58%        | 42%             |
-
-### Container Max-Widths
-Prevents content from stretching too wide on large monitors:
-
-| Screen Size | Max-Width | Gap    |
-|-------------|-----------|--------|
-| Base        | 1400px    | 2rem   |
-| 1600px+     | 1600px    | 4rem   |
-| 1800px+     | 2000px    | 5rem   |
-| 2200px+     | 2400px    | 6rem   |
-
-### Text Constraints
+### Text Positioning System
 ```css
-.hero-text {
-    max-width: 750px; /* Prevents text from spreading too wide */
-    justify-self: start; /* Keeps text left-aligned within column */
+.hero-content {
+    /* Text hugs left edge on larger screens */
+    --text-left-offset: 5%; /* 5% → 4% → 3% → 2% as screen grows */
+    --text-width: 45%;
+    /* Animation stays consistently positioned */
+    --animation-right-offset: 5%; /* Always 5% from right edge */
+    --animation-width: 65%;
 }
 
-/* CRITICAL: Single-line text rules */
+.hero-text {
+    position: absolute;
+    left: var(--text-left-offset);
+    top: 40%; /* Sweet spot positioning */
+    transform: translateY(-50%);
+}
+
+.intelligence-visualization {
+    justify-content: flex-end; /* Right-aligned animation */
+}
+```
+
+---
+
+## 🎯 **CRITICAL TEXT RULES**
+
+### **NEVER REMOVE: White-space Nowrap**
+These rules are essential for professional appearance and must be maintained:
+
+```css
 .hero-headline {
-    white-space: nowrap; /* Main headline must never wrap to multiple lines */
+    white-space: nowrap; /* "Clarion Is the Brain of Your Utility" - single line */
 }
 
 .hero-subtitle {
-    white-space: nowrap; /* "More Than..." must never wrap to multiple lines */
-}
-
-.rotating-text {
-    white-space: nowrap; /* Rotating text must never wrap */
+    white-space: nowrap; /* "More Than..." text - single line */
 }
 ```
 
+### Text Hierarchy & Spacing
+1. **Main Headline**: "Clarion Is the Brain of Your Utility"
+2. **Subtitle**: "More Than [Rotating Text]" 
+3. **Tagline**: "Where utility data becomes actionable intelligence"
+4. **CTA Button**: "Try the Demo"
+
+### Spacing Optimization Lessons
+- **Tighter spacing improves cohesion**: Reduced from 1.5rem/2rem/3rem to 1rem/1.3rem/2.2rem
+- **Responsive scaling maintains proportions**: All spacing variables scale together
+- **Indent alignment matters**: Subtitle indent reduced to 1.7rem to match other elements
+
 ---
 
-## 🧠 ORBITAL ANIMATION
+## 🧠 **ANIMATION SIZING & POSITIONING**
 
-### Structure
-- **Central Core**: `.brain-core` - Fixed position brain icon
-- **Inner Ring**: `.connector` - 6 blue data connectors
-- **Outer Ring**: `.service` - 6 green intelligence services (animated)
-
-### Positioning Logic
+### Size Configuration
 ```css
-.connector {
-    transform: translate(-50%, -50%) 
-               rotate(var(--angle)) 
-               translateY(calc(-1 * var(--connector-radius))) 
-               rotate(calc(-1 * var(--angle)));
+.knowledge-graph {
+    /* Critical sizing constraints */
+    width: min(120vw, 120vh, 1200px);  /* Increased from 90vw/90vh/600px */
+    height: min(120vw, 120vh, 1200px);
+    
+    /* Final optimized node radii */
+    --data-radius: 245px;      /* Reduced from 280px after user feedback */
+    --service-radius: 330px;   /* Reduced from 380px after user feedback */
 }
 ```
 
-### Interactive Features
-- **Text Rotation**: Changes every 3 seconds with highlighting
-- **Node Highlighting**: Uses `.highlighted` class for visual emphasis
-- **Smooth Animation**: Outer ring rotates slowly (80s per revolution)
+### Positioning Lessons
+- **Right-alignment works better**: `justify-content: flex-end` instead of `center`
+- **Mobile override needed**: Re-center on mobile screens for better balance
+- **Consistent spacing**: Animation stays 5% from right edge across all screen sizes
+- **Size constraints matter**: The `min()` function determines actual animation size
 
-### Responsive Scaling
-Animation orbits scale proportionally with screen size:
-- **Small screens**: 90px/120px orbits
-- **Medium screens**: 160px/210px orbits  
-- **Large screens**: 220px/280px orbits
-- **Ultra large**: 300px/380px orbits
-
----
-
-## 🎨 VISUAL DESIGN
-
-### Color Scheme
-- **Background**: Dark gradient (`#0f1419` → `#2c3e50`)
-- **Text**: White with green accent (`#69f0ae`)
-- **Connectors**: Blue gradient (`#42a5f5` → `#1e88e5`)
-- **Services**: Green gradient (`#69f0ae` → `#00c853`)
-- **CTA Button**: Blue gradient with hover effects
-
-### Typography
-- **Font**: Apple system fonts stack for native feel
-- **Headline**: Bold, large size with responsive scaling
-- **Tagline**: Lighter weight, moderate size
-- **Line Heights**: Optimized for readability at each size
-
-### Effects
-- **Header**: Frosted glass effect with backdrop blur
-- **Nodes**: Gradient backgrounds with drop shadows
-- **Hover**: Scale and glow effects on interactive elements
-- **Text Animation**: Smooth fade transitions between rotating words
+### Animation Scaling Journey
+1. **Initial problem**: Animation too small on large screens
+2. **First attempt**: Increased container widths - didn't work (size constraints)
+3. **Root cause**: `.knowledge-graph` had restrictive `min()` constraints
+4. **Solution**: Increased base values and node radii proportionally
+5. **User feedback**: Too large, reduced by ~12.5%
+6. **Final optimization**: Current values balance visibility with elegance
 
 ---
 
-## ✅ LESSONS LEARNED
+## 🎨 **BACKGROUND ENHANCEMENT SYSTEM**
 
-### What Works
-1. **CSS Custom Properties**: Perfect for responsive scaling without conflicts
-2. **Asymmetric Grid Ratios**: Prevents text from cramping animation
-3. **Progressive Container Widths**: Maintains proportions across screen sizes
-4. **Media Query Breakpoints**: 1600px, 1800px, 2200px catch most monitors
-5. **Text Constraint + Left Alignment**: Keeps text positioned correctly
-6. **Single-Line Text Rules**: `white-space: nowrap` on headlines prevents wrapping
+### Subtle Depth Layers (NEW)
+```css
+.hero-background {
+    position: absolute;
+    z-index: 1; /* Behind all content */
+    pointer-events: none;
+}
+```
 
-### What Doesn't Work
-1. **`clamp()` with `vw` units**: Scales with browser window, not monitor
-2. **Direct transform overrides**: Creates CSS specificity conflicts
-3. **Percentage-based orbits**: Results in tiny, clustered animations
-4. **Equal grid columns on large screens**: Text expands toward center
+### Grid Overlay Animation
+- **Subtle grid pattern**: White lines at 3% opacity
+- **Gentle movement**: 20-second translation cycle
+- **Responsive sizing**: 60px (mobile) → 80px (desktop) → 100px (large)
+- **Purpose**: Adds technological precision without distraction
+
+### Floating Particles
+- **Two particles**: Different sizes, timings, and colors
+- **Blue/green theme**: Matches existing color palette
+- **15-25 second cycles**: Slow, atmospheric movement
+- **Responsive scaling**: Smaller on mobile devices
+
+### Layered Gradients
+- **Strategic positioning**: Radial gradients at 20%/30% and 80%/70%
+- **Extremely subtle**: 3-5% opacity for depth without distraction
+- **Bottom fade**: Subtle vignette effect for visual grounding
 
 ---
 
-## 🔧 MAINTENANCE GUIDELINES
+## ✅ **LESSONS LEARNED**
 
-### Adding New Breakpoints
-1. Follow the CSS custom properties pattern
-2. Update both text and animation scaling together
-3. Maintain proportional relationships
-4. Test on actual hardware, not just browser resize
+### What Works Extremely Well
+1. **CSS Custom Properties**: Perfect for responsive text spacing without conflicts
+2. **Tight text spacing**: Creates much better visual cohesion
+3. **Right-aligned animation**: Better balance than centered on large screens
+4. **Z-index layering**: Clear hierarchy prevents visual conflicts
+5. **Subtle backgrounds**: Add depth without competing with main content
+6. **Nowrap rules**: Critical for professional single-line headlines
 
-### Modifying Animation
-1. Always use CSS variables for orbit radii
-2. Update variables in media queries, not transforms
-3. Maintain ratio between inner/outer rings
-4. Test highlighting functionality after changes
+### Animation Sizing Discoveries
+1. **Container constraints matter more than widths**: The `min()` function is the real size limiter
+2. **Proportional scaling**: When increasing size, increase all radii proportionally
+3. **User feedback is essential**: Technical "correct" size may not be visually optimal
+4. **Test on target hardware**: Animation appearance varies significantly by screen size
+
+### Background Enhancement Principles
+1. **Less is more**: Subtle effects are more professional than dramatic ones
+2. **Performance conscious**: CSS-only animations are smooth and efficient
+3. **Non-competitive**: Background never competes with foreground content
+4. **Responsive adaptation**: Effects scale appropriately across device types
+
+### Text Positioning Insights
+1. **Left-hugging text works better**: More comfortable reading on large screens
+2. **Consistent animation position**: Right edge alignment is more stable
+3. **Mobile needs different rules**: What works on desktop may need mobile overrides
+4. **Indent consistency**: All text elements should have similar left alignment
+
+---
+
+## 🚫 **WHAT DOESN'T WORK (Avoid These)**
+
+### Failed Approaches
+1. **Text masking/backgrounds**: Removed gradient backgrounds - cleaner without them
+2. **Centered animation on large screens**: Creates awkward balance
+3. **Inconsistent spacing**: Random spacing values hurt visual cohesion
+4. **Competitive background effects**: Neural network animations would be too much
+5. **Grid-based layouts**: Absolute positioning provides better control
+6. **Variable container widths**: Animation needs consistent size constraints
+
+### Common Pitfalls
+1. **Removing nowrap rules**: Causes unprofessional text wrapping
+2. **Ignoring z-index layering**: Creates visual conflicts
+3. **Inconsistent responsive scaling**: Breaks proportions across screen sizes
+4. **Over-animating backgrounds**: Reduces trust and readability
+
+---
+
+## 🔧 **MAINTENANCE GUIDELINES**
 
 ### Text Content Changes
-1. Update rotating text in `_layouts/default.html`
-2. Adjust `min-width` on `.rotating-text` if needed
-3. **CRITICAL**: Test that `white-space: nowrap` prevents wrapping at all breakpoints
-4. Verify highlighting still works with new content
-5. **RULE**: Main headline and "More Than..." must ALWAYS stay single-line
+1. **Test nowrap behavior**: Ensure headlines stay single-line at ALL breakpoints
+2. **Verify spacing variables**: Check that all responsive spacing scales properly
+3. **Update rotating text carefully**: Ensure `min-width` accommodates new content
+4. **Maintain indent consistency**: All text should align properly
 
-### Layout Adjustments
-1. Modify grid ratios in media queries if needed
-2. Adjust gaps to prevent cramping
-3. Update max-widths to maintain proportions
-4. Always test left-alignment with `justify-self: start`
+### Animation Modifications
+1. **Preserve size constraints**: Don't arbitrarily change `min()` values
+2. **Scale proportionally**: If changing one radius, adjust others proportionally
+3. **Test across screen sizes**: Animation appearance varies dramatically
+4. **Maintain positioning**: Keep right-alignment and mobile centering
 
----
+### Background Effects
+1. **Keep subtlety**: Resist urge to make effects more dramatic
+2. **Preserve performance**: Stick to CSS-only animations
+3. **Maintain layering**: Background effects must stay behind content (z-index: 1)
+4. **Responsive behavior**: Effects should scale appropriately
 
-## 🚀 PERFORMANCE NOTES
-
-### Optimizations
-- **CSS Grid**: Efficient layout system
-- **CSS Custom Properties**: Minimal JavaScript dependency
-- **Transform Animations**: Hardware accelerated
-- **Backdrop Filter**: Modern browser feature for header
-
-### Browser Support
-- **CSS Grid**: IE11+ (with prefixes)
-- **CSS Custom Properties**: IE15+, Chrome 49+, Firefox 31+
-- **Backdrop Filter**: Chrome 76+, Safari 9+ (graceful degradation)
+### Adding New Breakpoints
+1. **Follow CSS custom properties pattern**: Update variables, not rules
+2. **Test text spacing**: Ensure proportional scaling maintains hierarchy
+3. **Verify animation scaling**: Check that effects remain proportional
+4. **Mobile-first approach**: Start with mobile, enhance for larger screens
 
 ---
 
-## 📋 QUICK REFERENCE
+## 📋 **CRITICAL RULES TO NEVER BREAK**
+
+### ⚠️ **TEXT WRAPPING PREVENTION**
+- **NEVER remove `white-space: nowrap`** from `.hero-headline` or `.hero-subtitle`
+- **ALWAYS test text behavior** at all breakpoints before deployment
+- **Headlines must stay single-line** - this is non-negotiable for professional appearance
+
+### ⚠️ **Z-INDEX HIERARCHY**
+- **Text content**: z-index: 20 (highest)
+- **Animation**: z-index: 5 (middle)
+- **Background**: z-index: 1 (lowest)
+- **Never change these values** without understanding the full impact
+
+### ⚠️ **RESPONSIVE SCALING**
+- **Always scale text spacing together**: Headlines, subtitles, taglines, and CTA spacing
+- **Maintain proportional relationships**: Don't change one element without considering others
+- **Test on actual hardware**: Browser resize doesn't show real monitor behavior
+
+### ⚠️ **PERFORMANCE & ACCESSIBILITY**
+- **Keep background effects subtle**: Professional B2B software needs trustworthy appearance
+- **Maintain CSS-only animations**: Avoid JavaScript for decorative effects
+- **Respect reduced motion preferences**: Consider accessibility in future enhancements
+
+---
+
+## 🚀 **CURRENT STATUS & FUTURE CONSIDERATIONS**
+
+### What's Working Well Right Now
+✅ Responsive text spacing with perfect cohesion  
+✅ Properly sized and positioned animation  
+✅ Subtle background enhancement for depth  
+✅ Clean text presentation without masking  
+✅ Professional single-line headlines  
+✅ Excellent performance across devices  
+
+### Potential Future Enhancements
+- [ ] Container queries support (when browser support improves)
+- [ ] Reduced motion preferences integration
+- [ ] Advanced animation interactions (per knowledge graph vision)
+- [ ] A/B testing different background effect intensities
+
+### Documentation Maintenance
+- [ ] Update this guide when making significant changes
+- [ ] Document any new responsive patterns discovered
+- [ ] Record user feedback on design decisions
+- [ ] Maintain list of working vs. failed approaches
+
+---
+
+## 📖 **QUICK REFERENCE**
 
 ### Key CSS Classes
-- `.intelligence-hub-hero` - Main section container
-- `.hero-content` - Grid container
-- `.hero-text` - Text column
-- `.clarion-brain` - Animation container with CSS variables
-- `.connector/.service` - Orbital elements
+- `.intelligence-hub-hero` - Main container with background gradient
+- `.hero-background` - Subtle enhancement effects container
+- `.hero-content` - Text and animation positioning
+- `.hero-text` - Text content with responsive spacing variables
+- `.knowledge-graph` - Animation with size constraints and node radii
 
-### Important CSS Variables
-- `--connector-radius` - Inner orbit size
-- `--service-radius` - Outer orbit size
+### Essential CSS Variables
+- `--headline-spacing`, `--subtitle-spacing`, `--tagline-spacing` - Text spacing
+- `--text-left-offset`, `--animation-right-offset` - Positioning
+- `--data-radius`, `--service-radius` - Animation node sizes
 
-### JavaScript Dependencies
-- Text rotation functionality in `_layouts/default.html`
-- Node highlighting system
-- Mobile menu toggle
+### Critical Files
+- `assets/css/style.css` - All styling rules
+- `index.html` - HTML structure
+- `_layouts/default.html` - Animation JavaScript
 
----
-
-## 🔄 UPDATE LOG
-
-**Latest Changes:**
-- ✅ Implemented responsive spacing system
-- ✅ Fixed text cramping animation on large screens  
-- ✅ Added asymmetric grid ratios for better proportions
-- ✅ Documented CSS custom properties approach
-- ✅ Created comprehensive styling guide
-- ✅ **CRITICAL FIX**: Added `white-space: nowrap` to prevent text wrapping
-- ✅ Updated hierarchy: Main headline → "More Than..." → Tagline → CTA
-
-**Next Potential Improvements:**
-- [ ] Add smooth transitions between breakpoints
-- [ ] Optimize animation performance further
-- [ ] Add reduced motion preferences support
-- [ ] Consider container queries for future CSS support
-
-**CRITICAL RULES TO MAINTAIN:**
-- [ ] ⚠️ **NEVER remove `white-space: nowrap` from headlines**
-- [ ] ⚠️ **Test single-line text at ALL screen sizes before deploying**
-- [ ] ⚠️ **Main headline and "More Than..." must stay single-line always** 
+This guide reflects the current optimized state of the homepage after extensive iteration on text spacing, animation sizing, and background enhancement. The lessons learned here should guide any future modifications to maintain the professional, cohesive appearance we've achieved. 

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Debug Tool</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .debug-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 100vh;
+        }
+        .debug-panel {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+        .debug-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+        }
+        .debug-title {
+            color: #5dade2;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .test-element {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .rotating-text-test {
+            color: white;
+            display: inline-block;
+            min-width: 150px;
+            text-align: left;
+            position: relative;
+            opacity: 1;
+            white-space: nowrap;
+            background: #ff6b6b;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        /* Test the exact same responsive rules */
+        @media (min-width: 1400px) {
+            .rotating-text-test {
+                font-size: 3.5rem !important;
+                min-width: 300px !important;
+                white-space: nowrap !important;
+                background: #00ff00 !important;
+            }
+        }
+
+        @media (max-width: 1399px) and (min-width: 1200px) {
+            .rotating-text-test {
+                font-size: 3rem !important;
+                min-width: 250px !important;
+                white-space: nowrap !important;
+                background: #ffff00 !important;
+            }
+        }
+
+        @media (max-width: 1199px) and (min-width: 1024px) {
+            .rotating-text-test {
+                font-size: 2.5rem !important;
+                min-width: 200px !important;
+                white-space: nowrap !important;
+                background: #ff9900 !important;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .rotating-text-test {
+                font-size: 2rem !important;
+                min-width: 150px !important;
+                white-space: nowrap !important;
+                background: #ff0099 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rotating-text-test {
+                font-size: 1.8rem !important;
+                min-width: 120px !important;
+                white-space: nowrap !important;
+                background: #9900ff !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rotating-text-test {
+                font-size: 1.5rem !important;
+                min-width: 100px !important;
+                white-space: nowrap !important;
+                background: #0099ff !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <div class="debug-panel">
+            <div class="debug-section">
+                <div class="debug-title">Screen Information</div>
+                <div id="screen-info"></div>
+            </div>
+            
+            <div class="debug-section">
+                <div class="debug-title">Media Query Tests</div>
+                <div class="rotating-text-test">Test Text That Should Change</div>
+                <div>Color indicates which breakpoint is active:</div>
+                <div>🟢 Green: 1400px+ | 🟡 Yellow: 1200-1399px | 🟠 Orange: 1024-1199px</div>
+                <div>🟣 Pink: 1024px- | 🟣 Purple: 768px- | 🔵 Blue: 480px-</div>
+            </div>
+            
+            <div class="debug-section">
+                <div class="debug-title">CSS Link Analysis</div>
+                <div id="css-analysis"></div>
+            </div>
+            
+            <div class="debug-section">
+                <div class="debug-title">Computed Styles</div>
+                <div id="computed-styles"></div>
+            </div>
+        </div>
+        
+        <div class="debug-panel">
+            <div class="debug-section">
+                <div class="debug-title">Live CSS Inspection</div>
+                <div id="live-css"></div>
+            </div>
+            
+            <div class="debug-section">
+                <div class="debug-title">Network Tab Check</div>
+                <div>Open browser DevTools > Network tab, then refresh this page.</div>
+                <div>Check if style.css is loading and what timestamp it has.</div>
+                <button onclick="location.reload()">Refresh Page</button>
+            </div>
+            
+            <div class="debug-section">
+                <div class="debug-title">Manual CSS Test</div>
+                <div>
+                    <button onclick="injectTestCSS()">Inject Test CSS</button>
+                    <div id="test-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateScreenInfo() {
+            const info = document.getElementById('screen-info');
+            info.innerHTML = `
+                <div>Window: ${window.innerWidth} x ${window.innerHeight}</div>
+                <div>Screen: ${screen.width} x ${screen.height}</div>
+                <div>Device Pixel Ratio: ${window.devicePixelRatio}</div>
+                <div>Viewport: ${document.documentElement.clientWidth} x ${document.documentElement.clientHeight}</div>
+            `;
+        }
+
+        function analyzeCSSLinks() {
+            const analysis = document.getElementById('css-analysis');
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            let html = `<div>Found ${links.length} stylesheets:</div>`;
+            
+            links.forEach((link, index) => {
+                html += `<div>${index + 1}. ${link.href}</div>`;
+            });
+            
+            analysis.innerHTML = html;
+        }
+
+        function analyzeComputedStyles() {
+            const computed = document.getElementById('computed-styles');
+            const testElement = document.querySelector('.rotating-text-test');
+            const styles = window.getComputedStyle(testElement);
+            
+            computed.innerHTML = `
+                <div>Font Size: ${styles.fontSize}</div>
+                <div>Min Width: ${styles.minWidth}</div>
+                <div>White Space: ${styles.whiteSpace}</div>
+                <div>Background Color: ${styles.backgroundColor}</div>
+                <div>Display: ${styles.display}</div>
+            `;
+        }
+
+        function checkLiveCSS() {
+            const liveCSS = document.getElementById('live-css');
+            
+            // Try to fetch the main site's CSS
+            fetch('http://127.0.0.1:4000/assets/css/style.css')
+                .then(response => response.text())
+                .then(css => {
+                    const lines = css.split('\n');
+                    const importantLines = lines.filter(line => 
+                        line.includes('rotating-text') || 
+                        line.includes('!important') ||
+                        line.includes('@media')
+                    ).slice(0, 20);
+                    
+                    liveCSS.innerHTML = `
+                        <div>CSS loaded successfully (${css.length} chars)</div>
+                        <div>Key lines containing 'rotating-text' or '!important':</div>
+                        <pre style="font-size: 10px; max-height: 200px; overflow-y: auto;">
+${importantLines.join('\n')}
+                        </pre>
+                    `;
+                })
+                .catch(error => {
+                    liveCSS.innerHTML = `<div style="color: red;">Error loading CSS: ${error}</div>`;
+                });
+        }
+
+        function injectTestCSS() {
+            const testCSS = `
+                .rotating-text-test {
+                    font-size: 4rem !important;
+                    background: red !important;
+                    border: 5px solid yellow !important;
+                }
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = testCSS;
+            document.head.appendChild(style);
+            
+            document.getElementById('test-result').innerHTML = 
+                '<div style="color: lime;">Test CSS injected! Element should be huge and red.</div>';
+        }
+
+        // Update every second
+        setInterval(() => {
+            updateScreenInfo();
+            analyzeComputedStyles();
+        }, 1000);
+
+        // Initial load
+        updateScreenInfo();
+        analyzeCSSLinks();
+        analyzeComputedStyles();
+        checkLiveCSS();
+
+        // Update on resize
+        window.addEventListener('resize', () => {
+            updateScreenInfo();
+            analyzeComputedStyles();
+        });
+    </script>
+</body>
+</html> 

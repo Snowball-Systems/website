@@ -2,6 +2,9 @@
 layout: page
 title: Key Features
 ---
+
+<div class="container">
+
 # Clarion: Key Features
 
 This document outlines the core features of the Clarion platform.
@@ -41,3 +44,5 @@ A single source of truth for all documentation and asset information.
 - **Document Viewer:** View original source documents (PDFs, text files) directly in the UI.
 - **Asset Registry:** A searchable and filterable list of all physical assets, from pipes and pumps to tanks and valves.
 - **Rich Metadata:** The graph stores not just the asset, but its relationships, maintenance history, and links to relevant documentation. 
+
+</div> 

@@ -1,10 +1,24 @@
+/* Base page styles from original stylesheet */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    background: #0f1419;
     color: #333;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -46,45 +60,53 @@ header a {
 }
 
 header nav {
+    display: flex;
+    gap: 1rem;
 }
 
 header nav a {
-    padding: 0 10px;
+    padding: 0.5rem 1rem;
 }
 
 header nav a:hover {
-    text-decoration: underline;
+    background: #555;
+    border-radius: 5px;
 }
 
 .mobile-menu-toggle {
     display: none;
-    background: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
     border: none;
     cursor: pointer;
-    flex-direction: column;
-    gap: 4px;
-    padding: 5px;
+    padding: 0;
+    z-index: 20;
 }
 
 .mobile-menu-toggle span {
-    display: block;
+    width: 30px;
     height: 3px;
-    width: 25px;
-    background: #fff;
-    border-radius: 3px;
-    transition: all 0.3s ease;
+    background: white;
+    border-radius: 5px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
     opacity: 0;
+    transform: translateX(20px);
 }
 
 .mobile-menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg);
 }
 
 main {
@@ -95,91 +117,86 @@ footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 2rem 0;
+    margin-top: auto;
 }
 
 .cta-button {
     display: inline-block;
     background: #5dade2;
     color: #fff;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 1rem 2rem;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
+    border-radius: 25px;
+    font-weight: bold;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
 .cta-button:hover {
-    background: #2e86c1;
+    background: #4a90e2;
 }
 
 article.page {
     background: #fff;
     padding: 2rem;
-    border-radius: 5px;
+    margin-bottom: 2rem;
+    border-radius: 8px;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
     }
-    
+
     header .container {
+        flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
-        position: relative;
     }
-    
+
     .mobile-menu-toggle {
         display: flex;
     }
-    
+
     .main-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #333;
         display: none;
         flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        width: 100%;
+        background: #444;
+        position: absolute;
+        top: 60px;
+        left: 0;
     }
-    
+
     .main-nav.active {
         display: flex;
     }
-    
+
     .main-nav a {
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #555;
         text-align: center;
+        padding: 1rem;
+        border-top: 1px solid #555;
     }
-    
+
     .main-nav a:last-child {
-        border-bottom: none;
+        border-bottom: 1px solid #555;
     }
-    
+
     .logo img {
         max-height: 35px;
     }
-    
+
     main {
         padding: 1rem 0;
     }
-    
+
     article.page {
         padding: 1.5rem;
     }
-    
+
     .cta-button {
-        display: block;
-        text-align: center;
-        margin: 20px auto;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -187,8 +204,1039 @@ article.page {
     .logo img {
         max-height: 30px;
     }
-    
+
     article.page {
         padding: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Hero Section - Cleaned up and improved for better responsiveness
+   ========================================================================== */
+
+.intelligence-hub-hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2c3e50 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.hero-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.5rem 2rem; /* Further reduced padding */
+    box-sizing: border-box;
+    z-index: 100;
+    background: rgba(15, 20, 25, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-header .logo img {
+    max-height: 30px; /* Slimmer logo */
+}
+
+.hero-header .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-header .main-nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.hero-header .main-nav a:hover {
+    color: #fff;
+}
+
+.hero-header .demo-link {
+    background: #4a90e2;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.hero-header .demo-link:hover {
+    background: #5dade2;
+    color: white;
+}
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Using CSS custom properties for responsive positioning
+       Text hugs left edge on larger screens, animation stays consistently positioned */
+    --text-left-offset: 5%; /* Base: 5% → 4% → 3% → 2% (hugs left) */
+    --text-width: 45%;
+    --animation-right-offset: 5%; /* Consistent: 5% across all screen sizes */
+    --animation-width: 65%; /* Much larger animation */
+}
+
+.hero-text {
+    position: absolute;
+    left: var(--text-left-offset);
+    top: 40%; /* Sweet spot between center (50%) and high (30%) */
+    transform: translateY(-50%);
+    width: var(--text-width);
+    color: white;
+    text-align: left;
+    z-index: 20; /* Higher z-index to stay above animation */
+}
+
+.hero-headline {
+    /* Simplified main headline */
+    --base-font-size: 3.2rem;
+    --headline-spacing: 1rem; /* Tighter spacing - responsive variable */
+    
+    font-size: var(--base-font-size);
+    font-weight: 700;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* CRITICAL: Prevent "Clarion Is the Brain..." from wrapping */
+    margin-bottom: var(--headline-spacing);
+}
+
+.hero-headline .rotating-text.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.hero-headline .rotating-text.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-headline .gradient-text {
+    background: linear-gradient(45deg, #42a5f5, #69f0ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.hero-tagline {
+    --tagline-font-size: 1.3rem; /* Responsive font size */
+    --tagline-spacing: 2.2rem; /* Tighter spacing - responsive variable */
+    --tagline-indent: 2rem; /* Responsive indent variable */
+    
+    font-size: var(--tagline-font-size);
+    margin: 0 0 var(--tagline-spacing) var(--tagline-indent);
+    color: #e0e0e0; /* Slightly brighter for better contrast */
+    white-space: nowrap; /* Keep tagline on single line */
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.hero-cta {
+    --cta-indent: 2rem; /* Responsive indent variable */
+    margin-left: var(--cta-indent);
+}
+
+.primary-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #4a90e2, #5dade2, #69d0e7); /* Enhanced gradient */
+    color: #fff;
+    padding: 1.2rem 3rem; /* Larger, more prominent button */
+    font-size: 1.1rem; /* Slightly larger text */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700; /* Bolder text */
+    letter-spacing: 0.5px; /* Better letter spacing */
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3); /* More prominent shadow */
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.primary-cta:hover {
+    transform: translateY(-4px) scale(1.02); /* More dynamic hover effect */
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.primary-cta:hover::before {
+    left: 100%; /* Shimmer effect on hover */
+}
+
+.primary-cta:active {
+    transform: translateY(-2px) scale(1.01);
+}
+
+.intelligence-visualization {
+    position: absolute;
+    right: var(--animation-right-offset);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--animation-width);
+    height: 80vh;
+    max-height: 600px;
+    display: flex;
+    justify-content: flex-end; /* Align content to right side of container */
+    align-items: center;
+    z-index: 5; /* Below text layer (z-index: 20) */
+}
+
+/* Hero Subtitle - "More Than [rotating text]" */
+.hero-subtitle {
+    --subtitle-font-size: 2.4rem; /* Increased from 1.8rem */
+    --subtitle-min-width: 280px;
+    --subtitle-spacing: 1.3rem; /* Tighter spacing - responsive variable */
+    --subtitle-indent: 1.7rem; /* Reduced to align with tagline/CTA */
+    
+    font-size: var(--subtitle-font-size);
+    font-weight: 600;
+    margin: 0 0 var(--subtitle-spacing) var(--subtitle-indent);
+    color: white;
+    white-space: nowrap; /* CRITICAL: Prevent "More Than..." from wrapping */
+}
+
+.subtitle-prefix {
+    color: #b0bec5;
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+
+.rotating-text {
+    color: #69f0ae;
+    font-weight: 700;
+    display: inline-block;
+    transition: opacity 0.4s ease, color 0.4s ease, text-shadow 0.4s ease;
+    opacity: 1;
+    min-width: var(--subtitle-min-width);
+    text-align: left;
+    text-shadow: 0 0 20px currentColor;
+    white-space: nowrap;
+}
+
+.knowledge-graph {
+    position: relative;
+    width: min(120vw, 120vh, 1200px); /* Much larger constraints */
+    height: min(120vw, 120vh, 1200px); /* Much larger constraints */
+    aspect-ratio: 1;
+    --data-radius: 245px; /* Reduced by ~12.5% from 280px */
+    --service-radius: 330px; /* Reduced by ~12.5% from 380px */
+}
+
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.intelligence-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(74, 144, 226, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: core-breathe 4s ease-in-out infinite;
+}
+
+.core-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.core-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 3s ease-out infinite;
+}
+
+.core-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 3s ease-out infinite 1.5s;
+}
+
+@keyframes core-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+.data-layer, .services-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.data-node, .service-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: node-float 6s ease-in-out infinite;
+}
+
+.data-node {
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) * 1deg)) translateY(calc(-1 * var(--data-radius))) rotate(calc(-1 * var(--angle) * 1deg));
+}
+
+.service-node {
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) * 1deg)) translateY(calc(-1 * var(--service-radius))) rotate(calc(-1 * var(--angle) * 1deg));
+}
+
+/* Animation delays will be set via JavaScript based on data-angle attributes */
+
+.node-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.data-node .node-icon {
+    background: radial-gradient(circle, rgba(66, 165, 245, 0.2), rgba(30, 136, 229, 0.1));
+    box-shadow: 0 4px 15px rgba(30, 136, 229, 0.2);
+}
+
+.service-node .node-icon {
+    background: radial-gradient(circle, rgba(105, 240, 174, 0.2), rgba(0, 200, 83, 0.1));
+    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.2);
+}
+
+.node-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-node:hover .node-icon,
+.service-node:hover .node-icon {
+    transform: scale(1.2);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.data-node:hover .node-label,
+.service-node:hover .node-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes node-float {
+    0%, 100% { transform: translate(-50%, -50%) rotate(calc(var(--angle) * 1deg)) translateY(calc(-1 * var(--data-radius))) rotate(calc(-1 * var(--angle) * 1deg)) translateZ(0); }
+    50% { transform: translate(-50%, -50%) rotate(calc(var(--angle) * 1deg)) translateY(calc(-1 * var(--data-radius))) rotate(calc(-1 * var(--angle) * 1deg)) translateZ(5px); }
+}
+
+.connections-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Subtle Theme-Specific Node Highlighting - No Scaling */
+.data-node.kg-primary .node-icon,
+.service-node.kg-primary .node-icon {
+    animation: primary-pulse 2s ease-in-out infinite;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.6s ease;
+}
+
+.data-node.kg-secondary .node-icon,
+.service-node.kg-secondary .node-icon {
+    animation: secondary-glow 3s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+}
+
+@keyframes primary-pulse {
+    0%, 100% {
+        filter: brightness(1.3);
+    }
+    50% {
+        filter: brightness(1.6);
+    }
+}
+
+@keyframes secondary-glow {
+    0%, 100% {
+        filter: brightness(1.1);
+    }
+    50% {
+        filter: brightness(1.3);
+    }
+}
+
+/* Dramatic Theme Transition Effects */
+.rotating-text {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Subtle Visual Hierarchy - No Dramatic Scaling */
+.data-node.kg-inactive .node-icon,
+.service-node.kg-inactive .node-icon {
+    opacity: 0.6;
+    filter: grayscale(0.4);
+    transition: all 0.6s ease;
+}
+
+.data-node.kg-inactive:hover .node-icon,
+.service-node.kg-inactive:hover .node-icon {
+    opacity: 0.8;
+    filter: grayscale(0.2);
+}
+
+.intelligence-core {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Theme-specific core highlighting */
+.knowledge-graph[data-theme="0"] .intelligence-core {
+    box-shadow: 0 0 30px rgba(66, 165, 245, 0.4);
+}
+
+.knowledge-graph[data-theme="1"] .intelligence-core {
+    box-shadow: 0 0 30px rgba(105, 240, 174, 0.4);
+}
+
+.knowledge-graph[data-theme="2"] .intelligence-core {
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.4);
+}
+
+/* Responsive breakpoints using CSS custom properties pattern */
+
+/* Large screens (1600px+) - Bigger monitors */
+@media (min-width: 1600px) {
+    .hero-content {
+        --text-left-offset: 4%; /* Closer to left than base 5% */
+        --text-width: 40%;
+        --animation-right-offset: 5%; /* Keep consistent with small monitor spacing */
+        --animation-width: 75%; /* Much larger animation on big screens */
+    }
+    
+    .hero-headline {
+        --base-font-size: 4.2rem;
+        --headline-spacing: 1.2rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 2.8rem; /* Increased from 2.2rem */
+        --subtitle-min-width: 320px;
+        --subtitle-spacing: 1.6rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-tagline {
+        --tagline-spacing: 2.6rem; /* Tighter but proportional spacing */
+    }
+    
+    .knowledge-graph {
+        --data-radius: 305px; /* Reduced by ~12.5% from 350px */
+        --service-radius: 395px; /* Reduced by ~12.5% from 450px */
+    }
+}
+
+/* Very large screens (1800px+) - Large monitors/4K */
+@media (min-width: 1800px) {
+    .hero-content {
+        --text-left-offset: 3%; /* Even closer to left */
+        --text-width: 35%;
+        --animation-right-offset: 5%; /* Keep consistent with small monitor spacing */
+        --animation-width: 80%; /* Much larger animation on XL screens */
+    }
+    
+    .hero-headline {
+        --base-font-size: 5.2rem;
+        --headline-spacing: 1.3rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 3.6rem; /* Increased from 2.8rem */
+        --subtitle-min-width: 380px;
+        --subtitle-spacing: 1.8rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-tagline {
+        --tagline-spacing: 2.9rem; /* Tighter but proportional spacing */
+    }
+    
+    .knowledge-graph {
+        --data-radius: 367px; /* Reduced by ~12.5% from 420px */
+        --service-radius: 455px; /* Reduced by ~12.5% from 520px */
+    }
+}
+
+/* Ultra-wide screens (2200px+) - Ultrawide monitors */
+@media (min-width: 2200px) {
+    .hero-content {
+        --text-left-offset: 2%; /* Hugged to left edge */
+        --text-width: 30%;
+        --animation-right-offset: 5%; /* Keep consistent with small monitor spacing */
+        --animation-width: 85%; /* Much larger animation on ultra-wide screens */
+    }
+    
+    .hero-headline {
+        --base-font-size: 6rem;
+        --headline-spacing: 1.5rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 4.2rem; /* Increased from 3.4rem */
+        --subtitle-min-width: 450px;
+        --subtitle-spacing: 2rem; /* Tighter but proportional spacing */
+    }
+    
+    .hero-tagline {
+        --tagline-spacing: 3.2rem; /* Tighter but proportional spacing */
+    }
+    
+    .knowledge-graph {
+        --data-radius: 420px; /* Reduced by ~12.5% from 480px */
+        --service-radius: 525px; /* Reduced by ~12.5% from 600px */
+    }
+}
+
+/* Mobile and small screens */
+@media (max-width: 768px) {
+    .hero-content {
+        --text-left-offset: 5%;
+        --text-width: 90%;
+        --animation-right-offset: 5%;
+        --animation-width: 100%; /* Full width animation on mobile */
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 0 1rem; /* Add padding for better mobile spacing */
+    }
+    
+    .intelligence-visualization {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 400px;
+        justify-content: center; /* Re-center on mobile for balanced layout */
+    }
+    
+    .hero-headline {
+        --base-font-size: 2.2rem;
+        --headline-spacing: 0.8rem; /* Much tighter spacing on mobile */
+        min-height: 80px;
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 1.8rem; /* Increased from 1.4rem */
+        --subtitle-min-width: 200px;
+        --subtitle-spacing: 1rem; /* Tight mobile spacing */
+        --subtitle-indent: 0; /* No indent on mobile - center aligned */
+    }
+    
+    .hero-tagline {
+        --tagline-font-size: 1.1rem; /* Smaller on mobile */
+        --tagline-spacing: 1.5rem; /* Much tighter spacing on mobile */
+        --tagline-indent: 0; /* No indent on mobile - center aligned */
+    }
+    
+    .hero-cta {
+        --cta-indent: 0; /* No indent on mobile - center aligned */
+        text-align: center;
+    }
+    
+    .primary-cta {
+        padding: 1rem 2.5rem; /* Slightly smaller on mobile */
+        font-size: 1rem;
+    }
+    
+    .knowledge-graph {
+        --data-radius: 157px; /* Reduced by ~12.5% from 180px */
+        --service-radius: 210px; /* Reduced by ~12.5% from 240px */
+    }
+    
+    .intelligence-core {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .core-icon {
+        font-size: 1.8rem;
+    }
+    
+    .node-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .data-node, .service-node {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Small mobile screens - Very tight spacing */
+@media (max-width: 480px) {
+    .hero-headline {
+        --base-font-size: 2rem; /* Smaller on very small screens */
+        --headline-spacing: 0.6rem; /* Extra tight spacing */
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 1.5rem; /* Smaller on very small screens */
+        --subtitle-spacing: 0.8rem; /* Extra tight spacing */
+    }
+    
+    .hero-tagline {
+        --tagline-font-size: 1rem; /* Smaller on very small screens */
+        --tagline-spacing: 1.2rem; /* Extra tight spacing */
+    }
+}
+
+/* Medium screens - Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-headline {
+        --base-font-size: 2.8rem;
+        --headline-spacing: 0.8rem; /* Tighter intermediate spacing */
+    }
+    
+    .hero-subtitle {
+        --subtitle-font-size: 2.1rem;
+        --subtitle-spacing: 1.1rem; /* Tighter intermediate spacing */
+        --subtitle-indent: 1.2rem; /* Reduced to align with tagline/CTA */
+    }
+    
+    .hero-tagline {
+        --tagline-font-size: 1.2rem;
+        --tagline-spacing: 1.6rem; /* Tighter intermediate spacing */
+        --tagline-indent: 1.5rem; /* Reduced indent on tablets */
+    }
+    
+    .hero-cta {
+        --cta-indent: 1.5rem; /* Reduced indent on tablets */
+    }
+    
+    .primary-cta {
+        padding: 1.1rem 2.8rem;
+        font-size: 1.05rem;
+    }
+}
+
+/* Clean, dynamic knowledge graph - old styles removed */
+
+@media (min-width: 2200px) {
+    .knowledge-graph-label {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+} 
+
+/* Clean up conflicting transform rules - removed old narrative animation system */ 
+
+/* Clarion Knowledge Graph - Refactored CSS */
+
+/* Connection Lines */
+.kg-line {
+    position: absolute;
+    border-radius: 0.5px;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.kg-line.kg-active {
+    background: linear-gradient(90deg, #42a5f5, #69f0ae) !important;
+    height: 2px !important;
+    box-shadow: 0 0 8px rgba(66, 165, 245, 0.5);
+    animation: kg-flow 1s ease-out;
+}
+
+@keyframes kg-flow {
+    0% {
+        opacity: 0.1;
+        transform: scaleX(0);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scaleX(1);
+    }
+}
+
+/* Connection Labels */
+.kg-label {
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.kg-label.kg-show {
+    opacity: 1 !important;
+    animation: kg-label-in 0.4s ease-out;
+}
+
+@keyframes kg-label-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Node States */
+.connector, .service {
+    position: relative;
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.connector.kg-highlighted,
+.service.kg-highlighted {
+    z-index: 8;
+}
+
+.connector.kg-source,
+.service.kg-source {
+    z-index: 10;
+}
+
+.connector.kg-source .connector-node,
+.service.kg-source .service-node {
+    filter: brightness(1.4) saturate(1.2);
+    box-shadow: 0 0 20px rgba(66, 165, 245, 0.7);
+    animation: kg-source-glow 2s ease-in-out infinite;
+}
+
+@keyframes kg-source-glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(66, 165, 245, 0.7); 
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(66, 165, 245, 0.9); 
+    }
+}
+
+.connector.kg-processor,
+.service.kg-processor {
+    z-index: 9;
+}
+
+.connector.kg-processor .connector-node,
+.service.kg-processor .service-node {
+    filter: brightness(1.3);
+    box-shadow: 0 0 15px rgba(105, 240, 174, 0.6);
+    animation: kg-processor-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes kg-processor-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(105, 240, 174, 0.6); 
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(105, 240, 174, 0.8); 
+    }
+}
+
+.connector.kg-output,
+.service.kg-output {
+    z-index: 10;
+}
+
+.connector.kg-output .connector-node,
+.service.kg-output .service-node {
+    filter: brightness(1.5);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    animation: kg-output-burst 1s ease-out;
+}
+
+@keyframes kg-output-burst {
+    0% { 
+        filter: brightness(1.5);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); 
+    }
+    50% { 
+        filter: brightness(1.7);
+        box-shadow: 0 0 35px rgba(255, 255, 255, 1); 
+    }
+    100% { 
+        filter: brightness(1.5);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); 
+    }
+}
+
+/* Brain Core */
+.brain-core {
+    z-index: 15;
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .kg-label {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+    }
+    
+    .kg-line {
+        height: 0.8px;
+    }
+    
+    .kg-line.kg-active {
+        height: 1.5px !important;
+    }
+}
+
+@media (min-width: 1600px) {
+    .kg-label {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
+    
+    .kg-line.kg-active {
+        box-shadow: 0 0 10px rgba(66, 165, 245, 0.6);
+    }
+}
+
+@media (min-width: 2200px) {
+    .kg-label {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+    
+    .kg-line.kg-active {
+        height: 3px !important;
+        box-shadow: 0 0 12px rgba(66, 165, 245, 0.7);
+    }
+} 
+
+/* ==========================================================================
+   Hero Background Enhancement - Subtle Depth Layers
+   ========================================================================== */
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1; /* Behind text (z-index: 20) and animation (z-index: 5) */
+}
+
+/* Subtle animated grid overlay */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.4;
+    animation: subtle-grid-shift 20s ease-in-out infinite;
+}
+
+@keyframes subtle-grid-shift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 20px); }
+}
+
+/* Floating particles for atmospheric depth */
+.floating-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(66, 165, 245, 0.15) 0%, transparent 70%);
+    animation: float-up 15s linear infinite;
+}
+
+.floating-particles::before {
+    width: 120px;
+    height: 120px;
+    left: 10%;
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+.floating-particles::after {
+    width: 80px;
+    height: 80px;
+    right: 15%;
+    animation-delay: -10s;
+    animation-duration: 25s;
+    background: radial-gradient(circle, rgba(105, 240, 174, 0.1) 0%, transparent 70%);
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) translateX(10px) scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(-10vh) translateX(-20px) scale(1);
+    }
+    100% {
+        transform: translateY(-20vh) translateX(-30px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Add additional subtle depth with layered gradients */
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(66, 165, 245, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(105, 240, 174, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, transparent 0%, rgba(15, 20, 25, 0.2) 100%);
+    pointer-events: none;
+}
+
+/* Responsive adjustments for background elements */
+@media (max-width: 768px) {
+    .grid-overlay {
+        background-size: 60px 60px;
+        opacity: 0.2;
+    }
+    
+    .floating-particles::before,
+    .floating-particles::after {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .floating-particles::before {
+        left: 5%;
+    }
+    
+    .floating-particles::after {
+        right: 5%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .grid-overlay {
+        background-size: 100px 100px;
+    }
+    
+    .floating-particles::before {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .floating-particles::after {
+        width: 100px;
+        height: 100px;
     }
 } 

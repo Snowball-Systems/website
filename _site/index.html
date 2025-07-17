@@ -3,54 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowball Systems</title>
+    <title></title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
-            </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav class="main-nav">
-                <a href="/key-features">Key Features</a>
-                <a href="/product-overview">Product Overview</a>
-                <a href="/target-audience">Target Audience</a>
-                <a href="https://app.snowballsystems.com" style="font-weight: bold; color: #76d7c4;">Try the Demo</a>
-            </nav>
-        </div>
-    </header>
     <main>
-        <div class="container">
-            <div style="background: #fff; padding: 2rem; text-align: center; border-radius: 5px;">
-    <h2>Welcome to Snowball Systems</h2>
-    <p>We provide Clarion, a revolutionary platform for water distribution system knowledge management and workflow integration.</p>
-    <p>Clarion helps you to consolidate your data, streamline your processes, and make smarter decisions.</p>
-    <a href="https://app.snowballsystems.com" class="cta-button">Try the Live Demo</a>
-</div> 
+        <!-- Hero Section - Full Screen Intelligence Hub -->
+<section class="intelligence-hub-hero">
+    <!-- Integrated Header -->
+    <header class="hero-header">
+        <div class="logo">
+            <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
         </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav">
+            <a href="/product-overview">Product Overview</a>
+            <a href="/key-features">Key Features</a>
+            <a href="/target-audience">Target Audience</a>
+            <a href="https://app.snowballsystems.com" class="demo-link">Try the Demo</a>
+        </nav>
+    </header>
+    
+    <div class="hero-background">
+        <div class="floating-particles"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-headline">
+                <span class="gradient-text">Clarion Is the Brain of Your Utility.</span>
+            </h1>
+            <div class="hero-subtitle">
+                <span class="subtitle-prefix">More Than</span>
+                <span class="rotating-text" id="rotatingText">Asset Management</span>
+            </div>
+            <p class="hero-tagline">
+                Where utility data becomes actionable intelligence.
+            </p>
+            <div class="hero-cta">
+                <a href="https://app.snowballsystems.com" class="primary-cta">Try the Demo</a>
+            </div>
+        </div>
+        
+        <div class="intelligence-visualization">
+            <div class="knowledge-graph">
+                <!-- Particle Flow Canvas -->
+                <canvas class="particle-canvas" id="particleCanvas"></canvas>
+                
+                <!-- Central Intelligence Hub -->
+                <div class="intelligence-core">
+                    <div class="core-icon">🧠</div>
+                    <div class="core-pulse"></div>
+                    <div class="core-ripple"></div>
+                </div>
+                
+                <!-- Data Sources Layer -->
+                <div class="data-layer">
+                    <div class="data-node" data-type="gis" data-angle="0">
+                        <div class="node-icon">📍</div>
+                        <div class="node-label">GIS</div>
+                    </div>
+                    <div class="data-node" data-type="docs" data-angle="60">
+                        <div class="node-icon">📄</div>
+                        <div class="node-label">Docs</div>
+                    </div>
+                    <div class="data-node" data-type="scada" data-angle="120">
+                        <div class="node-icon">⚡</div>
+                        <div class="node-label">SCADA</div>
+                    </div>
+                    <div class="data-node" data-type="cusi" data-angle="180">
+                        <div class="node-icon">👥</div>
+                        <div class="node-label">CUSI</div>
+                    </div>
+                    <div class="data-node" data-type="ami" data-angle="240">
+                        <div class="node-icon">💧</div>
+                        <div class="node-label">AMI</div>
+                    </div>
+                    <div class="data-node" data-type="schedule" data-angle="300">
+                        <div class="node-icon">📅</div>
+                        <div class="node-label">Schedule</div>
+                    </div>
+                </div>
+                
+                <!-- Intelligence Services Layer -->
+                <div class="services-layer">
+                    <div class="service-node" data-service="knowledge" data-angle="30">
+                        <div class="node-icon">🎓</div>
+                        <div class="node-label">Knowledge</div>
+                    </div>
+                    <div class="service-node" data-service="assets" data-angle="90">
+                        <div class="node-icon">🔧</div>
+                        <div class="node-label">Assets</div>
+                    </div>
+                    <div class="service-node" data-service="projects" data-angle="150">
+                        <div class="node-icon">📊</div>
+                        <div class="node-label">Projects</div>
+                    </div>
+                    <div class="service-node" data-service="alerts" data-angle="210">
+                        <div class="node-icon">🔔</div>
+                        <div class="node-label">Alerts</div>
+                    </div>
+                    <div class="service-node" data-service="modeling" data-angle="270">
+                        <div class="node-icon">🌐</div>
+                        <div class="node-label">Modeling</div>
+                    </div>
+                    <div class="service-node" data-service="compliance" data-angle="330">
+                        <div class="node-icon">✅</div>
+                        <div class="node-label">Compliance</div>
+                    </div>
+                </div>
+                
+                <!-- Connection Lines (will be dynamically generated) -->
+                <div class="connections-layer"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <h2>A Unified Hub for Every Utility Operation</h2>
+        <p class="section-intro">Clarion integrates all your disparate systems into a single, intelligent platform. Make smarter decisions with a complete operational picture.</p>
+        
+        <div class="feature-grid">
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🌐</span>
+                <span class="feature-label">Modeling & Simulation</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">✅</span>
+                <span class="feature-label">Compliance Tracking</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📍</span>
+                <span class="feature-label">GIS Integration</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🔔</span>
+                <span class="feature-label">Smart Notifications</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📅</span>
+                <span class="feature-label">Scheduling</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <span class="feature-label">SCADA</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🗂️</span>
+                <span class="feature-label">Documents</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📘</span>
+                <span class="feature-label">Knowledge Management</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📈</span>
+                <span class="feature-label">Project Tracking</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2025 Snowball Systems. All rights reserved.</p>
+            <p>&copy; 2025 . All rights reserved.</p>
         </div>
     </footer>
     <script>
-        // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const nav = document.querySelector('.main-nav');
+        // Focused Knowledge Graph with Clear Theme Transitions
+        class FocusedKnowledgeGraph {
+            constructor() {
+                this.canvas = null;
+                this.ctx = null;
+                this.container = null;
+                this.nodes = new Map();
+                this.particles = [];
+                this.currentTheme = 0;
+                this.animationId = null;
+                this.isTransitioning = false;
+                
+                // Three focused themes with clear, distinct animations
+                this.themes = [
+                    {
+                        name: 'Asset Management',
+                        text: 'Asset Management',
+                        description: 'Complete lifecycle tracking and optimization',
+                        primaryColor: 'rgba(66, 165, 245, 0.8)',
+                        secondaryColor: 'rgba(30, 136, 229, 0.6)',
+                        flows: [
+                            { from: 'gis', to: 'assets', intensity: 'high', delay: 0 },
+                            { from: 'scada', to: 'assets', intensity: 'high', delay: 200 },
+                            { from: 'assets', to: 'projects', intensity: 'medium', delay: 400 },
+                            { from: 'schedule', to: 'projects', intensity: 'medium', delay: 600 },
+                            { from: 'assets', to: 'compliance', intensity: 'low', delay: 800 }
+                        ],
+                        highlightNodes: ['gis', 'scada', 'assets', 'projects', 'schedule', 'compliance']
+                    },
+                    {
+                        name: 'Hydraulic Modeling',
+                        text: 'Hydraulic Modeling', 
+                        description: 'Real-time simulation and predictive analytics',
+                        primaryColor: 'rgba(105, 240, 174, 0.8)',
+                        secondaryColor: 'rgba(0, 200, 83, 0.6)',
+                        flows: [
+                            { from: 'scada', to: 'modeling', intensity: 'high', delay: 0 },
+                            { from: 'ami', to: 'modeling', intensity: 'high', delay: 150 },
+                            { from: 'gis', to: 'modeling', intensity: 'medium', delay: 300 },
+                            { from: 'modeling', to: 'projects', intensity: 'medium', delay: 500 },
+                            { from: 'modeling', to: 'alerts', intensity: 'medium', delay: 650 },
+                            { from: 'modeling', to: 'compliance', intensity: 'low', delay: 800 }
+                        ],
+                        highlightNodes: ['scada', 'ami', 'gis', 'modeling', 'projects', 'alerts']
+                    },
+                    {
+                        name: 'Knowledge Management',
+                        text: 'Knowledge Management',
+                        description: 'AI-powered insights and decision support', 
+                        primaryColor: 'rgba(255, 193, 7, 0.8)',
+                        secondaryColor: 'rgba(255, 152, 0, 0.6)',
+                        flows: [
+                            { from: 'docs', to: 'knowledge', intensity: 'high', delay: 0 },
+                            { from: 'cusi', to: 'knowledge', intensity: 'medium', delay: 200 },
+                            { from: 'assets', to: 'knowledge', intensity: 'medium', delay: 350 },
+                            { from: 'modeling', to: 'knowledge', intensity: 'medium', delay: 500 },
+                            { from: 'knowledge', to: 'alerts', intensity: 'high', delay: 700 },
+                            { from: 'knowledge', to: 'compliance', intensity: 'medium', delay: 900 }
+                        ],
+                        highlightNodes: ['docs', 'cusi', 'assets', 'modeling', 'knowledge', 'alerts', 'compliance']
+                    }
+                ];
+                
+                this.init();
+            }
             
-            toggle.addEventListener('click', function() {
-                nav.classList.toggle('active');
-                toggle.classList.toggle('active');
-            });
-        });
+            init() {
+                document.addEventListener('DOMContentLoaded', () => {
+                    this.setupCanvas();
+                    this.initializeNodes();
+                    this.setupThemeRotation();
+                    this.startAnimation();
+                });
+            }
+            
+            setupCanvas() {
+                this.canvas = document.getElementById('particleCanvas');
+                this.container = document.querySelector('.knowledge-graph');
+                if (!this.canvas || !this.container) return;
+                
+                this.ctx = this.canvas.getContext('2d');
+                this.resizeCanvas();
+                
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+            
+            resizeCanvas() {
+                const rect = this.container.getBoundingClientRect();
+                this.canvas.width = rect.width;
+                this.canvas.height = rect.height;
+            }
+            
+            initializeNodes() {
+                setTimeout(() => {
+                    const dataNodes = ['gis', 'docs', 'scada', 'cusi', 'ami', 'schedule'];
+                    const serviceNodes = ['knowledge', 'assets', 'projects', 'alerts', 'modeling', 'compliance'];
+                    
+                    dataNodes.forEach((nodeId, index) => {
+                        const angle = index * 60;
+                        const element = document.querySelector(`[data-type="${nodeId}"]`);
+                        if (element) {
+                            element.style.setProperty('--angle', angle);
+                            element.style.animationDelay = `${angle * 0.01}s`;
+                            this.nodes.set(nodeId, { element, angle, type: 'data' });
+                        }
+                    });
+                    
+                    serviceNodes.forEach((nodeId, index) => {
+                        const angle = index * 60 + 30;
+                        const element = document.querySelector(`[data-service="${nodeId}"]`);
+                        if (element) {
+                            element.style.setProperty('--angle', angle);
+                            element.style.animationDelay = `${angle * 0.01 + 1}s`;
+                            this.nodes.set(nodeId, { element, angle, type: 'service' });
+                        }
+                    });
+                    
+                    const coreElement = document.querySelector('.intelligence-core');
+                    if (coreElement) {
+                        this.nodes.set('core', { element: coreElement, angle: 0, type: 'core' });
+                    }
+                    
+                    // Start with first theme
+                    this.activateTheme(0);
+                }, 100);
+            }
+            
+            setupThemeRotation() {
+                // Slower rotation for better appreciation
+                setInterval(() => {
+                    if (!this.isTransitioning) {
+                        this.nextTheme();
+                    }
+                }, 6000); // 6 seconds per theme
+            }
+            
+            nextTheme() {
+                this.currentTheme = (this.currentTheme + 1) % this.themes.length;
+                this.activateTheme(this.currentTheme);
+            }
+            
+            activateTheme(themeIndex) {
+                if (this.isTransitioning) return;
+                
+                this.isTransitioning = true;
+                this.currentTheme = themeIndex;
+                const theme = this.themes[themeIndex];
+                
+                // Set theme data attribute for CSS theming
+                this.container.setAttribute('data-theme', themeIndex);
+                
+                // Dramatic transition sequence
+                this.startThemeTransition(theme);
+            }
+            
+            startThemeTransition(theme) {
+                // Smooth, non-jarring transition
+                this.clearParticles();
+                this.updateThemeText(theme);
+                this.updateNodeEmphasis(theme);
+                this.activateParticleFlows(theme);
+            }
+            
+            clearParticles() {
+                // Gradually fade out existing particles
+                this.particles.forEach(particle => {
+                    particle.life *= 0.3;
+                });
+            }
+            
+            updateThemeText(theme) {
+                const textElement = document.querySelector('.rotating-text');
+                if (textElement) {
+                    textElement.style.transition = 'all 0.4s ease';
+                    textElement.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        textElement.textContent = theme.text;
+                        textElement.style.opacity = '1';
+                        textElement.style.color = theme.primaryColor;
+                        textElement.style.textShadow = `0 0 20px ${theme.primaryColor}`;
+                    }, 200);
+                }
+            }
+            
+            updateNodeEmphasis(theme) {
+                // Reset all nodes to baseline state
+                this.nodes.forEach(node => {
+                    if (node.element) {
+                        node.element.classList.remove('kg-primary', 'kg-secondary', 'kg-inactive');
+                        node.element.style.filter = '';
+                    }
+                });
+                
+                // Apply subtle emphasis without changing layout
+                const primaryNodes = theme.highlightNodes.slice(0, 3);
+                const secondaryNodes = theme.highlightNodes.slice(3);
+                
+                // Highlight primary nodes (key to this theme)
+                primaryNodes.forEach(nodeId => {
+                    const node = this.nodes.get(nodeId);
+                    if (node?.element) {
+                        node.element.classList.add('kg-primary');
+                        node.element.style.filter = `drop-shadow(0 0 12px ${theme.primaryColor})`;
+                    }
+                });
+                
+                // Subtle highlight for secondary nodes
+                secondaryNodes.forEach(nodeId => {
+                    const node = this.nodes.get(nodeId);
+                    if (node?.element) {
+                        node.element.classList.add('kg-secondary');
+                        node.element.style.filter = `drop-shadow(0 0 8px ${theme.secondaryColor})`;
+                    }
+                });
+                
+                // Slightly de-emphasize unrelated nodes
+                this.nodes.forEach((node, nodeId) => {
+                    if (!theme.highlightNodes.includes(nodeId) && nodeId !== 'core') {
+                        if (node.element) {
+                            node.element.classList.add('kg-inactive');
+                        }
+                    }
+                });
+            }
+            
+            activateParticleFlows(theme) {
+                // Start particle flows with staggered timing
+                theme.flows.forEach(flow => {
+                    setTimeout(() => {
+                        this.createThemeParticleFlow(flow, theme);
+                    }, flow.delay);
+                });
+                
+                // Complete transition smoothly
+                setTimeout(() => {
+                    this.isTransitioning = false;
+                }, 1500);
+            }
+            
+            createThemeParticleFlow(flow, theme) {
+                const fromNode = this.nodes.get(flow.from);
+                const toNode = this.nodes.get(flow.to);
+                
+                if (!fromNode || !toNode) return;
+                
+                const fromPos = this.getNodePosition(fromNode);
+                const toPos = this.getNodePosition(toNode);
+                
+                // Intensity-based particle count and characteristics  
+                const particleCount = flow.intensity === 'high' ? 15 : flow.intensity === 'medium' ? 10 : 6;
+                const particleSize = flow.intensity === 'high' ? 5 : flow.intensity === 'medium' ? 3.5 : 2.5;
+                const color = flow.intensity === 'high' ? theme.primaryColor : theme.secondaryColor;
+                
+                // Create particles with staggered release
+                for (let i = 0; i < particleCount; i++) {
+                    setTimeout(() => {
+                        this.particles.push(new ThemeParticle(fromPos, toPos, color, particleSize, theme));
+                    }, i * 80);
+                }
+            }
+            
+            getNodePosition(node) {
+                if (!node.element) return { x: 0, y: 0 };
+                
+                const rect = node.element.getBoundingClientRect();
+                const canvasRect = this.canvas.getBoundingClientRect();
+                
+                return {
+                    x: rect.left + rect.width / 2 - canvasRect.left,
+                    y: rect.top + rect.height / 2 - canvasRect.top
+                };
+            }
+            
+            startAnimation() {
+                const animate = () => {
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                    
+                    this.particles = this.particles.filter(particle => {
+                        particle.update();
+                        particle.draw(this.ctx);
+                        return particle.life > 0;
+                    });
+                    
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+            
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+            }
+        }
+        
+        // Enhanced particle class for theme-specific effects
+        class ThemeParticle {
+            constructor(start, end, color, size, theme) {
+                this.start = { ...start };
+                this.end = { ...end };
+                this.position = { ...start };
+                this.color = color;
+                this.theme = theme;
+                this.life = 1.0;
+                this.speed = 0.015 + Math.random() * 0.02;
+                this.progress = 0;
+                this.size = size;
+                this.trail = [];
+                this.maxTrailLength = 10;
+                this.glowIntensity = 0.8;
+            }
+            
+            update() {
+                this.progress += this.speed;
+                
+                const eased = this.easeInOutCubic(this.progress);
+                
+                this.position.x = this.start.x + (this.end.x - this.start.x) * eased;
+                this.position.y = this.start.y + (this.end.y - this.start.y) * eased;
+                
+                this.trail.push({ ...this.position });
+                if (this.trail.length > this.maxTrailLength) {
+                    this.trail.shift();
+                }
+                
+                if (this.progress >= 1) {
+                    this.life -= 0.03;
+                } else {
+                    this.life = Math.min(1, this.progress * 4);
+                }
+            }
+            
+            draw(ctx) {
+                if (this.life <= 0) return;
+                
+                // Enhanced trail with theme colors
+                for (let i = 0; i < this.trail.length; i++) {
+                    const trailPoint = this.trail[i];
+                    const trailAlpha = (i / this.trail.length) * this.life * 0.4;
+                    const trailSize = (i / this.trail.length) * this.size * 0.6;
+                    
+                    ctx.save();
+                    ctx.globalAlpha = trailAlpha;
+                    ctx.fillStyle = this.theme.secondaryColor;
+                    ctx.beginPath();
+                    ctx.arc(trailPoint.x, trailPoint.y, trailSize, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+                
+                // Main particle with enhanced glow
+                ctx.save();
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 15 * this.glowIntensity;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Inner bright core
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.life * 0.8})`;
+                ctx.beginPath();
+                ctx.arc(this.position.x, this.position.y, this.size * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+            
+            easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+        }
+        
+        // Initialize the focused knowledge graph
+        const focusedGraph = new FocusedKnowledgeGraph();
     </script>
 </body>
 </html> 

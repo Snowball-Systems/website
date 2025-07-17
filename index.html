@@ -1,9 +1,169 @@
 ---
 layout: default
 ---
-<div style="background: #fff; padding: 2rem; text-align: center; border-radius: 5px;">
-    <h2>Welcome to Snowball Systems</h2>
-    <p>We provide Clarion, a revolutionary platform for water distribution system knowledge management and workflow integration.</p>
-    <p>Clarion helps you to consolidate your data, streamline your processes, and make smarter decisions.</p>
-    <a href="https://app.snowballsystems.com" class="cta-button">Try the Live Demo</a>
-</div> 
+
+<!-- Hero Section - Full Screen Intelligence Hub -->
+<section class="intelligence-hub-hero">
+    <!-- Integrated Header -->
+    <header class="hero-header">
+        <div class="logo">
+            <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="main-nav">
+            <a href="/product-overview">Product Overview</a>
+            <a href="/key-features">Key Features</a>
+            <a href="/target-audience">Target Audience</a>
+            <a href="https://app.snowballsystems.com" class="demo-link">Try the Demo</a>
+        </nav>
+    </header>
+    
+    <div class="hero-background">
+        <div class="floating-particles"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-headline">
+                <span class="gradient-text">Clarion Is the Brain of Your Utility.</span>
+            </h1>
+            <div class="hero-subtitle">
+                <span class="subtitle-prefix">More Than</span>
+                <span class="rotating-text" id="rotatingText">Asset Management</span>
+            </div>
+            <p class="hero-tagline">
+                Where utility data becomes actionable intelligence.
+            </p>
+            <div class="hero-cta">
+                <a href="https://app.snowballsystems.com" class="primary-cta">Try the Demo</a>
+            </div>
+        </div>
+        
+        <div class="intelligence-visualization">
+            <div class="knowledge-graph">
+                <!-- Particle Flow Canvas -->
+                <canvas class="particle-canvas" id="particleCanvas"></canvas>
+                
+                <!-- Central Intelligence Hub -->
+                <div class="intelligence-core">
+                    <div class="core-icon">🧠</div>
+                    <div class="core-pulse"></div>
+                    <div class="core-ripple"></div>
+                </div>
+                
+                <!-- Data Sources Layer -->
+                <div class="data-layer">
+                    <div class="data-node" data-type="gis" data-angle="0">
+                        <div class="node-icon">📍</div>
+                        <div class="node-label">GIS</div>
+                    </div>
+                    <div class="data-node" data-type="docs" data-angle="60">
+                        <div class="node-icon">📄</div>
+                        <div class="node-label">Docs</div>
+                    </div>
+                    <div class="data-node" data-type="scada" data-angle="120">
+                        <div class="node-icon">⚡</div>
+                        <div class="node-label">SCADA</div>
+                    </div>
+                    <div class="data-node" data-type="cusi" data-angle="180">
+                        <div class="node-icon">👥</div>
+                        <div class="node-label">CUSI</div>
+                    </div>
+                    <div class="data-node" data-type="ami" data-angle="240">
+                        <div class="node-icon">💧</div>
+                        <div class="node-label">AMI</div>
+                    </div>
+                    <div class="data-node" data-type="schedule" data-angle="300">
+                        <div class="node-icon">📅</div>
+                        <div class="node-label">Schedule</div>
+                    </div>
+                </div>
+                
+                <!-- Intelligence Services Layer -->
+                <div class="services-layer">
+                    <div class="service-node" data-service="knowledge" data-angle="30">
+                        <div class="node-icon">🎓</div>
+                        <div class="node-label">Knowledge</div>
+                    </div>
+                    <div class="service-node" data-service="assets" data-angle="90">
+                        <div class="node-icon">🔧</div>
+                        <div class="node-label">Assets</div>
+                    </div>
+                    <div class="service-node" data-service="projects" data-angle="150">
+                        <div class="node-icon">📊</div>
+                        <div class="node-label">Projects</div>
+                    </div>
+                    <div class="service-node" data-service="alerts" data-angle="210">
+                        <div class="node-icon">🔔</div>
+                        <div class="node-label">Alerts</div>
+                    </div>
+                    <div class="service-node" data-service="modeling" data-angle="270">
+                        <div class="node-icon">🌐</div>
+                        <div class="node-label">Modeling</div>
+                    </div>
+                    <div class="service-node" data-service="compliance" data-angle="330">
+                        <div class="node-icon">✅</div>
+                        <div class="node-label">Compliance</div>
+                    </div>
+                </div>
+                
+                <!-- Connection Lines (will be dynamically generated) -->
+                <div class="connections-layer"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <h2>A Unified Hub for Every Utility Operation</h2>
+        <p class="section-intro">Clarion integrates all your disparate systems into a single, intelligent platform. Make smarter decisions with a complete operational picture.</p>
+        
+        <div class="feature-grid">
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🌐</span>
+                <span class="feature-label">Modeling & Simulation</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">✅</span>
+                <span class="feature-label">Compliance Tracking</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📍</span>
+                <span class="feature-label">GIS Integration</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🔔</span>
+                <span class="feature-label">Smart Notifications</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📅</span>
+                <span class="feature-label">Scheduling</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <span class="feature-label">SCADA</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">🗂️</span>
+                <span class="feature-label">Documents</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📘</span>
+                <span class="feature-label">Knowledge Management</span>
+            </a>
+            <a href="#" class="feature-item">
+                <span class="feature-icon">📈</span>
+                <span class="feature-label">Project Tracking</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+

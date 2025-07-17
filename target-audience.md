@@ -2,6 +2,9 @@
 layout: page
 title: Target Audience
 ---
+
+<div class="container">
+
 # Clarion: Target Audience
 
 Clarion is designed for organizations responsible for managing critical, complex infrastructure. The primary users fall into the following roles:
@@ -23,3 +26,5 @@ The underlying technology of Clarion is adaptable to other infrastructure domain
 -   **Facilities Management:** For large campuses (universities, hospitals) with complex utility and building systems.
 
 The ideal customer is any organization feeling the pain of "data silos" and looking to preserve and operationalize their institutional knowledge in a single, intelligent platform. 
+
+</div> 

@@ -1,98 +1,72 @@
- Clarion for Utility Engineers
-Header: “Deliver lasting value. Work closer with your clients. Spend less time chasing context.”
+---
+layout: icp-page
+title: "Clarion for Utility Engineers"
+subtitle: "Deliver lasting value. Work closer with your clients. Spend less time chasing context."
+icon: "🔧"
+---
 
-📍 Problem We Solve (Top Section)
+## Problem We Solve
+
 You build great systems — but then what?
-Your clients are buried in PDFs, emails, and scattered knowledge. You wait days for a single asset spec or operational SOP. Your plans go stale before they’re even implemented.
 
-✅ What Clarion Does for Engineers
-🔁 1. A Living Master Plan
+Your clients are buried in PDFs, emails, and scattered knowledge. You wait days for a single asset spec or operational SOP. Your plans go stale before they're even implemented.
+
+## What Clarion Does for Engineers
+
+### 🔁 Living Master Plan
 Tie your hydraulic model, reports, and system recommendations into a dynamic interface your client can use — daily.
 
-Host models directly in Clarion
+- **Host models directly in Clarion**
+- **Enable "what-if" scenario exploration**
+- **Connect your plan to real-world system status & updates**
 
-Enable “what-if” scenario exploration
+<div class="highlight-box">
+🟦 **No more plans that gather dust.** You're giving your clients something they can build on.
+</div>
 
-Connect your plan to real-world system status & updates
-
-🟦 No more plans that gather dust. You’re giving your clients something they can build on.
-
-🔍 2. Query the Client’s System, Not Their Inbox
+### 🔍 Query the Client's System, Not Their Inbox
 Stop waiting on info requests.
 
-Search SOPs, asset history, and project docs via semantic knowledge graph
+- **Search SOPs, asset history, and project docs via semantic knowledge graph**
+- **Ask Clarion:**
+  - "Where are the highest nighttime demands?"
+  - "Has this zone ever had pressure complaints?"
 
-Ask Clarion:
-“Where are the highest nighttime demands?”
-“Has this zone ever had pressure complaints?”
+<div class="highlight-box">
+🟦 **Save hours every week.** Get what you need when you need it.
+</div>
 
-🟦 Save hours every week. Get what you need when you need it.
+### 🤝 Tighter Collaboration Without Email Overload
+Get a role-based login as a trusted partner.
 
-🤝 3. Tighter Collaboration Without Email Overload
-Get a role-based login as a trusted partner
+- **Access tagged documents, tasks, and workflows**
+- **Leave notes, receive alerts, and follow changes to the parts of the system you care about**
 
-Access tagged documents, tasks, and workflows
+<div class="highlight-box">
+🟦 **Be the engineer they call first — because you're already in the loop.**
+</div>
 
-Leave notes, receive alerts, and follow changes to the parts of the system you care about
-
-🟦 Be the engineer they call first — because you’re already in the loop.
-
-💡 Bonus: A Differentiator for Your Proposals
+### 💡 Bonus: A Differentiator for Your Proposals
 Offer Clarion as part of your service.
 
-“We don’t just leave you with a binder. We empower your team to use this plan every day.”
+**"We don't just leave you with a binder. We empower your team to use this plan every day."**
 
-🟦 Clarion makes your firm the long-term partner, not just the consultant.
+<div class="highlight-box">
+🟦 **Clarion makes your firm the long-term partner, not just the consultant.**
+</div>
 
-📸 Visual Section (Optional / Scrollable)
-Graphic or GIF: Living Master Plan interface w/ scenarios
+## Real Results
 
-Demo snippet: Clarion answering a natural language query
+<div class="quote-box">
+<p>Clarion lets me stay connected to the system I helped design.</p>
+<div class="attribution">— Senior Engineer, Water Resources</div>
+</div>
 
-Quote Box:
-“Clarion lets me stay connected to the system I helped design.”
-— Senior Engineer, Water Resources
-
-🟦 CTA Block (Final Section)
-“See how Clarion enhances your engineering workflow”
-→ [ Request Demo ]
-→ [ Watch Sample Use Case ]
-
-
-
-📘 Landing Page Messaging (Clarion for Engineers)
-🧩 Tagline
-Work smarter. Stay connected. Deliver a living master plan.
-
-💬 Problem Engineers Face
-You build beautiful models, reports, and plans — but after the final submittal, your client is on their own. Clarion changes that.
-
-🔑 Clarion Value for Engineers
-1. Living Master Plan Environment
-
-Models, reports, and planning documents stay accessible & interactive
-
-Tie capital planning and hydraulic simulations directly into operational dashboards
-
-2. Faster Collaboration & Fewer Emails
-
-Engineers get a secure RBAC login
-
-No more long email threads — answer questions directly through the portal
-
-Get notified when your input is needed, and tag clients back
-
-3. Centralized Context for Every Project
-
-Engineering documents are linked to real assets and field conditions
-
-Stay grounded in the utility’s evolving knowledge graph — from work orders to SCADA events
-
-4. Differentiator in RFPs and Proposals
-
-Offer Clarion as part of your service:
-“We don’t just leave you with a binder. We set you up to use this plan every day.”
-
-📌 Example Microcopy
-“Clarion lets our clients actually use the work we do — not just file it away.”
-— Senior Water Resources Engineer
+<div class="cta-section">
+<h2>See how Clarion enhances your engineering workflow</h2>
+<p>Discover how Clarion can transform your deliverables into living, interactive systems.</p>
+<div class="cta-buttons">
+<a href="/#demo" class="cta-button">Request Demo</a>
+<a href="/#features" class="cta-button secondary">Watch Sample Use Case</a>
+</div>
+</div>

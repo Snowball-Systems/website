@@ -1,0 +1,77 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - Clarion Context Engine</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/icp-pages.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="/" class="logo-text">Clarion</a>
+            </div>
+            <nav class="header-nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/#about" class="nav-link">About</a>
+                <a href="/#contact" class="nav-link">Contact</a>
+                <a href="/#demo" class="nav-link demo-link">Demo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ICP Page Hero Section -->
+    <section class="icp-hero">
+        <div class="icp-hero-background">
+            <div class="icp-grid-overlay"></div>
+            <div class="icp-floating-particles"></div>
+        </div>
+        
+        <div class="icp-hero-content">
+            <div class="icp-header">
+                <div class="icp-icon">{{ page.icon }}</div>
+                <h1 class="icp-title">{{ page.title }}</h1>
+                <p class="icp-subtitle">{{ page.subtitle }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="icp-main">
+        <div class="icp-container">
+            <article class="icp-content">
+                {{ content }}
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="icp-footer">
+        <div class="container">
+            <p>&copy; {{ "now" | date: "%Y" }} Clarion Context Engine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 

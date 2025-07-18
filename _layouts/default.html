@@ -95,15 +95,24 @@
             setupCanvas() {
                 this.canvas = document.getElementById('particleCanvas');
                 this.container = document.querySelector('.knowledge-graph');
-                if (!this.canvas || !this.container) return;
+                if (!this.canvas || !this.container) {
+                    console.log('Knowledge graph elements not found - skipping initialization');
+                    return;
+                }
                 
                 this.ctx = this.canvas.getContext('2d');
-                this.resizeCanvas();
+                if (!this.ctx) {
+                    console.log('Could not get canvas context - skipping initialization');
+                    return;
+                }
                 
+                this.resizeCanvas();
                 window.addEventListener('resize', () => this.resizeCanvas());
             }
             
             resizeCanvas() {
+                if (!this.container || !this.canvas) return; // Safety check
+                
                 const rect = this.container.getBoundingClientRect();
                 this.canvas.width = rect.width;
                 this.canvas.height = rect.height;
@@ -150,6 +159,7 @@
             
             activateTheme(themeIndex) {
                 if (this.isTransitioning) return;
+                if (!this.container) return; // Safety check
                 
                 this.isTransitioning = true;
                 this.currentTheme = themeIndex;
@@ -282,6 +292,8 @@
             }
             
             startAnimation() {
+                if (!this.ctx || !this.canvas) return; // Safety check
+                
                 const animate = () => {
                     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                     
@@ -383,8 +395,16 @@
             }
         }
         
-        // Initialize the focused knowledge graph
-        const focusedGraph = new FocusedKnowledgeGraph();
+        // Initialize the focused knowledge graph only if required elements exist
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('particleCanvas');
+            const container = document.querySelector('.knowledge-graph');
+            
+            // Only initialize if both canvas and container exist (not on homepage)
+            if (canvas && container) {
+                const focusedGraph = new FocusedKnowledgeGraph();
+            }
+        });
     </script>
 </body>
 </html> 

@@ -60,6 +60,12 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
         --subtitle-size: 1.6rem;
         --subtitle-spacing: 1.8rem;
     }
+    
+    .clarion-logo-container svg {
+        width: 85vw !important; /* Larger percentage for mobile */
+        height: auto !important;
+        max-width: 400px !important;
+    }
 }
 
 /* Standard desktop monitors */
@@ -69,6 +75,12 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
         --logo-max-height: 70vh;
         --subtitle-size: 2rem;
         --subtitle-spacing: 2.2rem;
+    }
+    
+    .clarion-logo-container svg {
+        width: 70vw !important; /* Proportional scaling */
+        height: auto !important;
+        max-width: 900px !important;
     }
 }
 
@@ -80,6 +92,12 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
         --subtitle-size: 2.2rem;
         --subtitle-spacing: 2.4rem;
     }
+    
+    .clarion-logo-container svg {
+        width: 80vw !important; /* Largest for ultra-wide */
+        height: auto !important;
+        max-width: 1400px !important;
+    }
 }
 ```
 
@@ -88,6 +106,30 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
 - **Covers common screen sizes** (mobile, tablet, desktop, ultra-wide)
 - **CSS variables scale smoothly** during window resizing
 - **No specificity conflicts** - clean variable updates
+
+### CRITICAL LESSON: Fixed Pixels vs Viewport-Based Scaling
+**Problem Discovered**: Using fixed pixel sizes (e.g., `width: 700px`) caused inconsistent scaling between different screen sizes.
+
+**Example Issue**:
+- Laptop (1536×695): Logo at 700px looked perfect
+- Large monitor (1920×1080+): Logo at 800px looked too small relative to screen
+
+**Solution**: Use viewport-based proportional scaling:
+```css
+/* ❌ WRONG - Fixed pixels don't scale proportionally */
+width: 700px !important;
+
+/* ✅ CORRECT - Proportional to viewport */
+width: 70vw !important; /* Scales with screen size */
+height: auto !important; /* Maintains aspect ratio */
+max-width: 900px !important; /* Cap maximum size */
+```
+
+**Benefits of Viewport-Based Scaling**:
+- ✅ Logo maintains consistent visual impact across all screen sizes
+- ✅ Proportional scaling ensures logo doesn't look "small" on large screens
+- ✅ Automatic aspect ratio maintenance
+- ✅ Smooth scaling during window resizing
 
 ---
 
@@ -181,6 +223,21 @@ Ultra-wide: (min-width: 2561px)
 /* Very short screens (laptops) */
 @media (max-height: 800px) {
     --logo-max-height: 50vh;
+}
+
+/* Specific laptop positioning (like 1536x695) */
+@media (min-width: 1025px) and (max-width: 1920px) and (max-height: 800px) {
+    .clarion-logo-container {
+        align-items: flex-start !important; /* Shift logo down from center */
+        padding-top: 12vh !important; /* Optimized top padding for laptop screens */
+        padding-bottom: 5vh !important; /* Reduce bottom padding */
+    }
+    
+    .clarion-logo-container svg {
+        width: 56vw !important; /* 20% smaller than desktop (70vw → 56vw) */
+        max-width: 720px !important; /* 20% smaller cap */
+        max-height: 540px !important; /* 20% smaller cap */
+    }
 }
 ```
 

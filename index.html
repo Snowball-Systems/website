@@ -2,39 +2,43 @@
 layout: default
 ---
 
-<!-- Hero Section with Clarion Logo Centerpiece -->
-<section class="intelligence-hub-hero" style="min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden;">
-    <!-- Background with depth/mystique -->
-    <div class="hero-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%); z-index: 1;">
-        <div class="floating-particles" style="position: absolute; width: 100%; height: 100%; opacity: 0.3;">
-            <!-- Animated particles for depth -->
+<!-- Header Navigation -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-logo">
+            <span class="logo-text">Clarion</span>
         </div>
-        <div class="grid-overlay" style="position: absolute; width: 100%; height: 100%; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 50px 50px; opacity: 0.2;"></div>
-    </div>
-
-    <!-- Compact Header -->
-    <header class="hero-header" style="padding: 1rem 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative; z-index: 10;">
-        <div class="logo">
-            <a href="/"><img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems logo"></a>
-        </div>
-        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <nav class="header-nav">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#demo" class="nav-link demo-link">Demo</a>
+        </nav>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <nav class="main-nav">
-            <a href="/product-overview">Product Overview</a>
-            <a href="/key-features">Key Features</a>
-            <a href="/target-audience">Target Audience</a>
-            <a href="https://app.snowballsystems.com" class="demo-link">Try the Demo</a>
-        </nav>
-    </header>
+    </div>
+</header>
+
+<!-- Hero Section with Clarion Logo Centerpiece -->
+<section class="intelligence-hub-hero" style="min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+    <!-- Clean Background with Subtle Depth -->
+    <div class="hero-background">
+        <div class="floating-particles">
+            <!-- Minimal animated particles for atmospheric depth -->
+        </div>
+        <div class="grid-overlay"></div>
+    </div>
+
+
     
     <!-- Clarion Logo Centerpiece -->
-    <div class="clarion-hero-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 5; padding: 4rem; min-height: 100vh;">
+    <div class="clarion-hero-content" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 5; padding: 6rem 4rem 4rem 4rem; min-height: 100vh; overflow: visible;">
         <!-- Main Clarion Logo -->
         <div class="clarion-logo-container" style="text-align: center; margin-bottom: 2rem;">
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 381.35 253.92">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 402.77 267.71">
       <defs>
         <style>
           .cls-1 {
@@ -42,17 +46,15 @@ layout: default
           }
 
           .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
-            stroke: #2c5f94;
+            stroke: none;
           }
 
           .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-8 {
-            stroke-width: 1.5px;
+            stroke-width: 0px;
           }
 
           .cls-9 {
-            font-family: NirmalaText-Semilight, 'Nirmala Text';
-            font-size: 101.85px;
-            font-weight: 300;
+            letter-spacing: 0em;
           }
 
           .cls-2 {
@@ -80,6 +82,15 @@ layout: default
             stroke: url(#linear-gradient-6);
           }
 
+          .cls-21 {
+            font-size: 101.85px;
+          }
+
+          .cls-21, .cls-22 {
+            font-family: Bahnschrift, Bahnschrift;
+            font-variation-settings: 'wght' 400, 'wdth' 100;
+          }
+
           .cls-13 {
             stroke: url(#linear-gradient-2);
           }
@@ -88,10 +99,8 @@ layout: default
             stroke: url(#linear-gradient-10);
           }
 
-          .cls-21 {
-            font-family: Bahnschrift, Bahnschrift;
+          .cls-22 {
             font-size: 21px;
-            font-variation-settings: 'wght' 400, 'wdth' 100;
           }
 
           .cls-15 {
@@ -118,7 +127,7 @@ layout: default
             stroke: url(#linear-gradient-11);
           }
 
-          .cls-22 {
+          .cls-23 {
             letter-spacing: -.01em;
           }
 
@@ -128,7 +137,8 @@ layout: default
 
           .cls-7 {
             fill: url(#radial-gradient-7);
-            stroke-width: 2px;
+            stroke: none;
+            stroke-width: 0px;
           }
 
           .cls-8 {
@@ -143,158 +153,391 @@ layout: default
             stroke: url(#linear-gradient-9);
           }
         </style>
-        <linearGradient id="linear-gradient" x1="-457" y1="584.92" x2="-438.56" y2="566.47" gradientTransform="translate(82333.8 556.25) scale(183.13 -.69)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient" x1="-428.84" y1="602.24" x2="-427.61" y2="601.02" gradientTransform="translate(33621.55 -13828.7) scale(78.19 23.06)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-2" x1="-448.3" y1="600.7" x2="-446.55" y2="598.95" gradientTransform="translate(53845.86 33053.33) scale(120 -55)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-2" x1="-425.75" y1="602.58" x2="-423.15" y2="599.98" gradientTransform="translate(21395.48 12060.87) scale(50 -20)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-3" x1="-447.64" y1="600.43" x2="-446.58" y2="599.37" gradientTransform="translate(53965.86 33108.33) scale(120 -55)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-3" x1="-439.57" y1="599.25" x2="-421.12" y2="580.81" gradientTransform="translate(79161.78 579.6) scale(183.13 -.69)" xlink:href="#linear-gradient-2"/>
+        <linearGradient id="linear-gradient-4" x1="-431.08" y1="614.77" x2="-429.13" y2="612.82" gradientTransform="translate(51773.3 33825.67) scale(120 -55)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-4" x1="-446.89" y1="603.39" x2="-445.11" y2="601.61" gradientTransform="translate(40321.44 57290) scale(90 -95)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-5" x1="-430.19" y1="614.23" x2="-429.13" y2="613.17" gradientTransform="translate(51893.3 33880.67) scale(120 -55)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-5" x1="-448.17" y1="598.87" x2="-447.07" y2="597.77" gradientTransform="translate(58484 26994.17) scale(130 -45)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-6" x1="-429.55" y1="617.32" x2="-427.67" y2="615.44" gradientTransform="translate(38771.37 58614) scale(90 -95)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-6" x1="-448.09" y1="603.35" x2="-447.04" y2="602.3" gradientTransform="translate(62862.14 57385) scale(140 -95)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-7" x1="-430.72" y1="612.67" x2="-429.62" y2="611.57" gradientTransform="translate(56237.27 27628.58) scale(130 -45)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-7" x1="-446.1" y1="589" x2="-444.85" y2="587.75" gradientTransform="translate(34965.98 -13524.47) scale(78.19 23.06)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-8" x1="-430.65" y1="617.15" x2="-429.59" y2="616.09" gradientTransform="translate(60441.25 58709) scale(140 -95)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-8" x1="-442.83" y1="588.13" x2="-440.74" y2="586.04" gradientTransform="translate(22248.88 11771.25) scale(50 -20)" xlink:href="#linear-gradient"/>
-        <linearGradient id="linear-gradient-9" x1="-403.79" y1="603.36" x2="-402.77" y2="602.34" gradientTransform="translate(-17527.07 61880.24) rotate(-180) scale(44.33 102.5)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-9" x1="-386.46" y1="617.15" x2="-385.44" y2="616.13" gradientTransform="translate(-16737.52 63307.68) rotate(-180) scale(44.33 102.5)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-10" x1="-455.18" y1="576.91" x2="-441.64" y2="563.37" gradientTransform="translate(90148.98 -302.65) scale(200.54 .81)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-10" x1="-438.08" y1="589.38" x2="-423.88" y2="575.17" gradientTransform="translate(86673.62 -300.06) scale(200.54 .81)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <linearGradient id="linear-gradient-11" x1="-437.27" y1="597.82" x2="-436.07" y2="596.61" gradientTransform="translate(13182.6 23909.58) scale(30 -40)" gradientUnits="userSpaceOnUse">
+        <linearGradient id="linear-gradient-11" x1="-420.61" y1="612.12" x2="-419.24" y2="610.75" gradientTransform="translate(12677.53 24475.04) scale(30 -40)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#6fa8dc" stop-opacity=".8"/>
           <stop offset="1" stop-color="#4a90e2" stop-opacity=".6"/>
         </linearGradient>
-        <radialGradient id="radial-gradient" cx="-430.03" cy="588.67" fx="-430.03" fy="588.67" r=".5" gradientTransform="translate(8654.47 11801.25) scale(20 -20)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient" cx="-414.17" cy="603.41" fx="-414.17" fy="603.41" r=".5" gradientTransform="translate(8323.55 12090.87) scale(20 -20)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-2" cx="-423.55" cy="587.09" fx="-423.55" fy="587.09" r=".5" gradientTransform="translate(7991.84 10698.42) scale(18 -18)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-2" cx="-405.91" cy="600.9" fx="-405.91" fy="600.9" r=".5" gradientTransform="translate(7695.76 10960.46) scale(18 -18)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-3" cx="-428.54" cy="589.51" fx="-428.54" fy="589.51" r=".5" gradientTransform="translate(9717.09 13144.08) scale(22 -22)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-3" cx="-410.94" cy="603.32" fx="-410.94" fy="603.32" r=".5" gradientTransform="translate(9351.35 13461.29) scale(22 -22)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-4" cx="-423.46" cy="583.13" fx="-423.46" fy="583.13" r=".5" gradientTransform="translate(6879.21 9335.58) scale(16 -16)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-4" cx="-406.62" cy="597.78" fx="-406.62" fy="597.78" r=".5" gradientTransform="translate(6617.96 9570.04) scale(16 -16)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-5" cx="-419.14" cy="580.69" fx="-419.14" fy="580.69" r=".5" gradientTransform="translate(6196.58 8172.75) scale(14 -14)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-5" cx="-401.44" cy="594.51" fx="-401.44" fy="594.51" r=".5" gradientTransform="translate(5970.17 8379.62) scale(14 -14)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-6" cx="-419.2" cy="590.4" fx="-419.2" fy="590.4" r=".5" gradientTransform="translate(2768.79 5176.54) scale(6.25 -8.53)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-6" cx="-401.18" cy="604.46" fx="-401.18" fy="604.46" r=".5" gradientTransform="translate(3496.23 5307.98) scale(8.29 -8.53)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-7" cx="-439.98" cy="598.31" fx="-439.98" fy="598.31" r=".5" gradientTransform="translate(19606 26410.25) scale(44 -44)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-7" cx="-422.47" cy="612.11" fx="-422.47" fy="612.11" r=".5" gradientTransform="translate(18857.09 27030.87) scale(44 -44)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
-        <radialGradient id="radial-gradient-8" cx="-430.52" cy="590.03" fx="-430.52" fy="590.03" r=".5" gradientTransform="translate(10539.72 14206.92) scale(24 -24)" gradientUnits="userSpaceOnUse">
+        <radialGradient id="radial-gradient-8" cx="-413.06" cy="603.95" fx="-413.06" fy="603.95" r=".5" gradientTransform="translate(10139.14 14551.71) scale(24 -24)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#4a90e2"/>
           <stop offset=".7" stop-color="#357abd"/>
           <stop offset="1" stop-color="#2c5f94"/>
         </radialGradient>
       </defs>
-      <line class="cls-18" x1="293.6" y1="179.25" x2="371.6" y2="135.52"/>
-      <line class="cls-13" x1="53.44" y1="32.58" x2="255.77" y2="93.42"/>
-      <line class="cls-19" x1="370.1" y1="134.42" x2="255.77" y2="93.42"/>
-      <line class="cls-10" x1="107.1" y1="11.42" x2="255.77" y2="93.42"/>
-      <line class="cls-16" x1="331.44" y1="45.92" x2="255.77" y2="93.42"/>
-      <line class="cls-12" x1="150.02" y1="139.92" x2="255.77" y2="93.42"/>
-      <line class="cls-11" x1="212.1" y1="52.92" x2="53.44" y2="32.58"/>
-      <line class="cls-15" x1="107.1" y1="9.92" x2="212.1" y2="49.25"/>
-      <line class="cls-20" x1="331.44" y1="45.92" x2="371.6" y2="130.92"/>
-      <line class="cls-14" x1="153.14" y1="141.85" x2="293.6" y2="179.25"/>
-      <line class="cls-17" x1="57.77" y1="31.92" x2="107.1" y2="9.92"/>
-      <circle class="cls-6" cx="57.77" cy="31.92" r="10"/>
-      <circle class="cls-4" cx="371.6" cy="134.42" r="9"/>
-      <circle class="cls-1" cx="293.6" cy="179.25" r="11"/>
-      <circle class="cls-5" cx="107.1" cy="8.75" r="8"/>
-      <circle class="cls-8" cx="331.44" cy="45.92" r="7"/>
-      <ellipse class="cls-3" cx="150.02" cy="141.85" rx="3.12" ry="4.27"/>
-      <circle class="cls-7" cx="255.77" cy="93.42" r="22"/>
-      <text class="cls-9" transform="translate(0 119.75) scale(1.14 1)"><tspan x="0" y="0">Clarion</tspan></text>
-      <circle class="cls-2" cx="212.1" cy="50.92" r="12"/>
-      <text class="cls-21" transform="translate(19.78 146.26)"><tspan x="0" y="0">cont</tspan><tspan class="cls-22" x="40.48" y="0">e</tspan><tspan x="51.43" y="0">xtualized </tspan></text>
-      <text id="rotatingText" class="cls-21" transform="translate(169.59 146.11)"><tspan x="0" y="0">asset management</tspan></text>
+      
+      <!-- Text elements will be moved to front by JavaScript -->
+      <text class="cls-21" transform="translate(0 132.33) scale(1.14 1)"><tspan x="0" y="0">C</tspan><tspan class="cls-9" x="63.01" y="0">l</tspan><tspan x="92" y="0">arion</tspan></text>
+      <text class="cls-22" transform="translate(280 157)" text-anchor="middle"><tspan x="0" y="0">context engine</tspan></text>
       <text/>
     </svg>
-                
         </div>
         
 <!-- The rest of the homepage is intentionally left blank for new concept development. -->
 
+<!-- Load D3.js -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
 <script>
-// Rotating text functionality for SVG
-const rotatingTexts = [
-    "asset management",
-    "water utilities",
-    "smart cities", 
-    "infrastructure",
-    "data systems",
-    "operations",
-    "decision making",
-    "resource planning"
-];
-
-let currentIndex = 0;
-const rotatingElement = document.getElementById('rotatingText');
-
-function updateRotatingText() {
-    if (rotatingElement) {
-        // Fade out
-        rotatingElement.style.opacity = '0';
+// Neural network animated logo with D3.js breathing animation
+document.addEventListener('DOMContentLoaded', function() {
+    const textElement = document.querySelector('.cls-22');
+    const svgContainer = document.querySelector('.clarion-logo-container svg');
+    const phrases = [
+        'context engine',
+        'knowledge retention',
+        'asset management',
+        'digital twin'
+    ];
+    
+    // Define wave propagation targets for each phrase
+    const waveTargets = {
+        'context engine': {
+            targets: ['.cls-6', '.cls-5', '.cls-2'], // Top three nodes
+            color: 'context-engine'
+        },
+        'knowledge retention': {
+            targets: ['.cls-6', '.cls-5', '.cls-2'], // Top three nodes
+            color: 'knowledge-retention'
+        },
+        'asset management': {
+            targets: ['.cls-6', '.cls-5', '.cls-2'], // Top three nodes
+            color: 'asset-management'
+        },
+        'digital twin': {
+            targets: ['.cls-6', '.cls-5', '.cls-2'], // Top three nodes
+            color: 'digital-twin'
+        }
+    };
+    
+    // Node data with original positions and breathing parameters
+    const nodes = [
+        { id: 'node-6', x: 44.19, y: 26.75, r: 10, class: 'cls-6', breathingPhase: 0 },
+        { id: 'node-5', x: 115.19, y: 8.75, r: 8, class: 'cls-5', breathingPhase: 0.2 },
+        { id: 'node-2', x: 230.52, y: 61.75, r: 12, class: 'cls-2', breathingPhase: 0.4 },
+        { id: 'node-4', x: 393.02, y: 147.83, r: 9, class: 'cls-4', breathingPhase: 0.6 },
+        { id: 'node-1', x: 315.02, y: 192.67, r: 11, class: 'cls-1', breathingPhase: 0.8 },
+        { id: 'node-8', x: 352.85, y: 59.33, r: 7, class: 'cls-8', breathingPhase: 1.0 },
+        { id: 'node-3', x: 171.44, y: 153.33, r: 4.15, class: 'cls-3', breathingPhase: 1.2, isEllipse: true },
+        { id: 'node-7', x: 277.19, y: 106.83, r: 22, class: 'cls-7', breathingPhase: 1.4 }
+    ];
+    
+    // Link data
+    const links = [
+        { id: 'link-18', source: 'node-2', target: 'node-6', class: 'cls-18' },
+        { id: 'link-10', source: 'node-6', target: 'node-7', class: 'cls-10' },
+        { id: 'link-17', source: 'node-6', target: 'node-5', class: 'cls-17' },
+        { id: 'link-13', source: 'node-5', target: 'node-2', class: 'cls-13' },
+        { id: 'link-12', source: 'node-5', target: 'node-7', class: 'cls-12' },
+        { id: 'link-14', source: 'node-3', target: 'node-1', class: 'cls-14' },
+        { id: 'link-19', source: 'node-1', target: 'node-4', class: 'cls-19' },
+        { id: 'link-11', source: 'node-8', target: 'node-7', class: 'cls-11' },
+        { id: 'link-20', source: 'node-8', target: 'node-4', class: 'cls-20' },
+        { id: 'link-15', source: 'node-3', target: 'node-7', class: 'cls-15' }
+    ];
+    
+    // Create D3 selection for the SVG
+    const svg = d3.select('#Layer_1');
+    
+    // Create link elements first (so they appear behind nodes)
+    links.forEach(link => {
+        let linkElement = svg.select(`#${link.id}`);
+        if (linkElement.empty()) {
+            const sourceNode = nodes.find(n => n.id === link.source);
+            const targetNode = nodes.find(n => n.id === link.target);
+            
+            linkElement = svg.append('path')
+                .attr('id', link.id)
+                .attr('class', `link ${link.class}`)
+                .attr('d', `M ${sourceNode.x} ${sourceNode.y} L ${targetNode.x} ${targetNode.y}`);
+        }
+    });
+    
+    // Create node elements (so they appear in front of links)
+    nodes.forEach(node => {
+        let nodeElement = svg.select(`#${node.id}`);
+        if (nodeElement.empty()) {
+            if (node.isEllipse) {
+                nodeElement = svg.append('ellipse')
+                    .attr('id', node.id)
+                    .attr('class', `node ${node.class}`)
+                    .attr('cx', node.x)
+                    .attr('cy', node.y)
+                    .attr('rx', node.r)
+                    .attr('ry', node.r);
+            } else {
+                nodeElement = svg.append('circle')
+                    .attr('id', node.id)
+                    .attr('class', `node ${node.class}`)
+                    .attr('cx', node.x)
+                    .attr('cy', node.y)
+                    .attr('r', node.r);
+            }
+        }
+    });
+    
+    // Move text elements to the front so they appear above the center node
+    const textElements = svg.selectAll('text');
+    textElements.each(function() {
+        this.parentNode.appendChild(this);
+    });
+    
+    // Remove the dot from the "i" by replacing it with a dotless "i" character
+    const clarionText = svg.select('.cls-21');
+    if (!clarionText.empty()) {
+        // Replace the "i" with a dotless "i" (Unicode: ı)
+        const iTspan = clarionText.select('tspan:nth-child(3)'); // The "arion" tspan
+        if (!iTspan.empty()) {
+            // Change "arion" to "arıon" using dotless "i" (ı)
+            iTspan.text('arıon');
+        }
+    }
+    
+    // Breathing animation function
+    function startBreathingAnimation() {
+        const breathingDuration = 3000; // 3 seconds per breath cycle
+        const breathingAmplitude = 2; // Maximum displacement in pixels
+        
+        function animate() {
+            const time = Date.now() / breathingDuration;
+            
+            // Update node positions with breathing motion
+            nodes.forEach(node => {
+                // Skip breathing animation for center node (node-7) - keep it static
+                if (node.id === 'node-7') {
+                    return;
+                }
+                
+                const breathingOffset = Math.sin((time + node.breathingPhase) * 2 * Math.PI) * breathingAmplitude;
+                const newX = node.x + breathingOffset * 0.5; // Horizontal breathing
+                const newY = node.y + breathingOffset * 0.5; // Vertical breathing
+                
+                // Update node position using D3
+                const nodeElement = svg.select(`#${node.id}`);
+                if (node.isEllipse) {
+                    nodeElement
+                        .attr('cx', newX)
+                        .attr('cy', newY);
+                } else {
+                    nodeElement
+                        .attr('cx', newX)
+                        .attr('cy', newY);
+                }
+            });
+            
+            // Update link positions to connect node centers
+            links.forEach(link => {
+                const sourceNode = nodes.find(n => n.id === link.source);
+                const targetNode = nodes.find(n => n.id === link.target);
+                
+                // Calculate source position (static if it's the center node)
+                let sourceX, sourceY;
+                if (sourceNode.id === 'node-7') {
+                    sourceX = sourceNode.x;
+                    sourceY = sourceNode.y;
+                } else {
+                    const sourceOffset = Math.sin((time + sourceNode.breathingPhase) * 2 * Math.PI) * breathingAmplitude;
+                    sourceX = sourceNode.x + sourceOffset * 0.5;
+                    sourceY = sourceNode.y + sourceOffset * 0.5;
+                }
+                
+                // Calculate target position (static if it's the center node)
+                let targetX, targetY;
+                if (targetNode.id === 'node-7') {
+                    targetX = targetNode.x;
+                    targetY = targetNode.y;
+                } else {
+                    const targetOffset = Math.sin((time + targetNode.breathingPhase) * 2 * Math.PI) * breathingAmplitude;
+                    targetX = targetNode.x + targetOffset * 0.5;
+                    targetY = targetNode.y + targetOffset * 0.5;
+                }
+                
+                // Update link path using D3
+                svg.select(`#${link.id}`)
+                    .attr('d', `M ${sourceX} ${sourceY} L ${targetX} ${targetY}`);
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    }
+    
+    function animateWavePropagation(phrase) {
+        const waveConfig = waveTargets[phrase];
+        if (!waveConfig) return;
+        
+        // Clear any existing wave classes
+        const allNodes = document.querySelectorAll('.node');
+        allNodes.forEach(node => {
+            node.classList.remove('wave-source', 'wave-target', 'wave-context-engine', 'wave-knowledge-retention', 'wave-asset-management', 'wave-digital-twin');
+        });
+        
+        // Simple glow effect on central node (no movement)
+        const centralNode = document.querySelector('.cls-7');
+        if (centralNode) {
+            centralNode.classList.add('wave-source');
+            
+            // Remove wave source class after animation
+            setTimeout(() => {
+                centralNode.classList.remove('wave-source');
+            }, 2000);
+        }
+        
+        // Simple glow effect on target nodes with staggered timing
+        waveConfig.targets.forEach((targetSelector, index) => {
+            const targetNode = document.querySelector(targetSelector);
+            if (targetNode) {
+                // Stagger the glow effect
+                setTimeout(() => {
+                    targetNode.classList.add('wave-target', `wave-${waveConfig.color}`);
+                    
+                    // Remove glow classes after animation
+                    setTimeout(() => {
+                        targetNode.classList.remove('wave-target', `wave-${waveConfig.color}`);
+                    }, 1500);
+                    
+                }, 400 + (index * 300)); // 400ms delay + 300ms per node
+            }
+        });
+    }
+    
+    function updateText() {
+        const nextPhrase = phrases[currentIndex];
+        
+        // Fade out text
+        textElement.style.opacity = '0';
         
         setTimeout(() => {
-            // Change text content in the tspan
-            const tspan = rotatingElement.querySelector('tspan');
-            if (tspan) {
-                tspan.textContent = rotatingTexts[currentIndex];
+            // Update text content
+            textElement.textContent = nextPhrase;
+            
+            // Update text color based on phrase
+            const waveConfig = waveTargets[nextPhrase];
+            if (waveConfig) {
+                // Remove all color classes
+                textElement.classList.remove('context-engine', 'knowledge-retention', 'asset-management', 'digital-twin');
+                // Add new color class
+                textElement.classList.add(waveConfig.color);
             }
             
-            // Fade in
-            rotatingElement.style.opacity = '1';
+            // Fade in text
+            textElement.style.opacity = '1';
             
-            // Move to next text
-            currentIndex = (currentIndex + 1) % rotatingTexts.length;
+            // Trigger wave propagation animation
+            animateWavePropagation(nextPhrase);
+            
         }, 300);
+        
+        // Move to next phrase
+        currentIndex = (currentIndex + 1) % phrases.length;
     }
+    
+    let currentIndex = 0;
+    
+    // Start the breathing animation
+    startBreathingAnimation();
+    
+    // Start the text animation cycle
+    setInterval(updateText, 4000);
+    
+    // Test functions for debugging
+    window.toggleBreathing = function() {
+        console.log('Breathing animation is always running with D3.js');
+    };
+    
+    window.testPathUpdate = function() {
+        console.log('Path updates are handled automatically by D3.js animation loop');
+    };
+});
+
+// Mobile menu toggle function
+function toggleMobileMenu() {
+    const nav = document.querySelector('.header-nav');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    nav.classList.toggle('active');
+    toggle.classList.toggle('active');
 }
 
-// Start the rotation
-if (rotatingElement) {
-    rotatingElement.style.transition = 'opacity 0.3s ease-in-out';
-    updateRotatingText();
-    setInterval(updateRotatingText, 3000); // Change every 3 seconds
-}
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('.header-nav');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+    }
+});
 </script>

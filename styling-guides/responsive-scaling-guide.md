@@ -22,10 +22,10 @@ This document explains the critical distinction between **browser window resizin
 
 ---
 
-## ✅ **SUCCESSFUL APPROACH: Viewport-Based Media Queries**
+## ✅ **SUCCESSFUL APPROACH: Viewport-Based Media Queries + Header Positioning**
 
 ### Core Principle
-Use **viewport width and height combinations** instead of aspect ratios for media queries that work across different screen sizes.
+Use **viewport width and height combinations** instead of aspect ratios for media queries that work across different screen sizes. **CRITICAL**: Account for fixed header height in positioning calculations.
 
 ### Implementation Pattern
 
@@ -55,48 +55,60 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
 /* Mobile phones - portrait orientation */
 @media (max-width: 768px) and (max-height: 1024px) {
     .clarion-logo-container {
-        --logo-max-width: 85vw;
-        --logo-max-height: 45vh;
-        --subtitle-size: 1.6rem;
-        --subtitle-spacing: 1.8rem;
+        --logo-max-width: 98vw;
+        --logo-max-height: 75vh;
+        --subtitle-size: 1.8rem;
+        --subtitle-spacing: 2rem;
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem;
     }
     
     .clarion-logo-container svg {
         width: 85vw !important; /* Larger percentage for mobile */
         height: auto !important;
         max-width: 400px !important;
+        position: absolute !important; /* Mobile absolute positioning */
+        top: 1.25rem !important; /* Header clearance */
+        left: 50% !important;
+        transform: translateX(-50%) scale(1.2) !important;
+        margin: 0 !important;
     }
 }
 
 /* Standard desktop monitors */
 @media (min-width: 1025px) and (max-width: 1920px) {
     .clarion-logo-container {
-        --logo-max-width: 80vw;
-        --logo-max-height: 70vh;
-        --subtitle-size: 2rem;
-        --subtitle-spacing: 2.2rem;
+        --logo-max-width: 95vw;
+        --logo-max-height: 90vh;
+        --subtitle-size: 2.4rem;
+        --subtitle-spacing: 2.8rem;
+        padding: 2rem 3rem 3rem 3rem;
     }
     
     .clarion-logo-container svg {
         width: 70vw !important; /* Proportional scaling */
         height: auto !important;
         max-width: 900px !important;
+        margin: 0 auto !important; /* Desktop centering */
+        transform: scale(1.2) !important;
     }
 }
 
 /* Ultra-wide monitors */
 @media (min-width: 2561px) {
     .clarion-logo-container {
-        --logo-max-width: 90vw;
-        --logo-max-height: 80vh;
-        --subtitle-size: 2.2rem;
-        --subtitle-spacing: 2.4rem;
+        --logo-max-width: 98vw;
+        --logo-max-height: 95vh;
+        --subtitle-size: 3rem;
+        --subtitle-spacing: 3.5rem;
+        padding: 2rem 3rem 3rem 3rem;
     }
     
     .clarion-logo-container svg {
         width: 80vw !important; /* Largest for ultra-wide */
         height: auto !important;
         max-width: 1400px !important;
+        margin: 0 auto !important; /* Desktop centering */
+        transform: scale(1.2) !important;
     }
 }
 ```
@@ -106,6 +118,170 @@ Use **viewport width and height combinations** instead of aspect ratios for medi
 - **Covers common screen sizes** (mobile, tablet, desktop, ultra-wide)
 - **CSS variables scale smoothly** during window resizing
 - **No specificity conflicts** - clean variable updates
+- **Header positioning accounted for** - prevents overlap with fixed headers
+
+### CRITICAL: Fixed Header Positioning
+**Problem**: Fixed headers overlap logo positioning when using viewport-based positioning.
+
+**Solution**: Account for header height in all positioning calculations:
+
+```css
+/* Base positioning with header height */
+.clarion-logo-container {
+    top: calc(10vh + 60px); /* Base position + header height (30px logo + 30px padding) */
+}
+
+/* Mobile positioning with header clearance */
+@media (max-width: 768px) {
+    .clarion-logo-container {
+        top: calc(2vh + 60px) !important; /* Logo at 2% from top + header height */
+    }
+    
+    .clarion-logo-container svg {
+        top: 1rem !important; /* Additional clearance from container top */
+    }
+}
+
+/* Desktop positioning with header clearance */
+@media (min-width: 1025px) {
+    .clarion-logo-container {
+        top: calc(8vh + 60px); /* Logo at 8% from top + header height */
+    }
+}
+```
+
+**Header Height Calculation**:
+- **Logo height**: 30px
+- **Header padding**: 30px (0.5rem top + 0.5rem bottom)
+- **Total header height**: ~60px
+- **Formula**: `calc(desired_vh_position + 60px)`
+
+### CRITICAL LESSON: Hybrid Positioning for Mobile vs Desktop
+
+**Problem**: Mobile (vertical screens) and desktop (horizontal screens) require different positioning approaches.
+
+**Solution**: Use hybrid positioning that switches between absolute (mobile) and relative (desktop) positioning:
+
+```css
+/* Base SVG - Desktop centering approach */
+.clarion-logo-container svg {
+    position: relative !important; /* Default for desktop */
+    margin: 0 auto !important; /* Center horizontally */
+    transform: scale(1.2) !important; /* Just scale */
+}
+
+/* Mobile override - Absolute positioning approach */
+@media (max-width: 768px) {
+    .clarion-logo-container svg {
+        position: absolute !important; /* Override for mobile */
+        top: 1rem !important; /* Position at top */
+        left: 50% !important; /* Center horizontally */
+        transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+        margin: 0 !important; /* Remove auto margin */
+    }
+}
+```
+
+**Benefits**:
+- ✅ **Mobile**: Logo at top of screen, centered horizontally
+- ✅ **Desktop**: Logo centered both horizontally and vertically
+- ✅ **No conflicts**: Different approaches for different screen types
+- ✅ **Header clearance**: Proper spacing from fixed header
+
+## 🎯 **CTA POSITIONING: COMPLEMENTARY TO LOGO POSITIONING**
+
+### The Relationship
+**Logo and CTA positioning work together** to create a balanced layout:
+- **Logo**: Positioned at top of screen (with header clearance)
+- **CTAs**: Positioned at bottom of screen (with responsive adjustment)
+- **Space between**: Maximized to prevent overlap and create visual hierarchy
+
+### CTA Positioning Strategy
+```css
+/* Base CTA positioning - bottom of screen */
+.icp-ctas {
+    position: absolute;
+    bottom: 8vh; /* Base position from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Mobile - CTAs closer to bottom for more space */
+@media (max-width: 768px) {
+    .icp-ctas {
+        bottom: 4vh !important; /* CTAs at 4% from bottom */
+    }
+}
+
+/* Small Mobile - even closer to bottom */
+@media (max-width: 480px) {
+    .icp-ctas {
+        bottom: 2vh !important; /* CTAs at 2% from bottom */
+    }
+}
+
+/* Desktop - more space from bottom */
+@media (min-width: 1025px) {
+    .icp-ctas {
+        bottom: 8vh; /* CTAs at 8% from bottom */
+    }
+}
+```
+
+### Responsive CTA Card Sizing
+```css
+/* Base card styling */
+.cta-card {
+    min-width: 180px;
+    max-width: 240px;
+    padding: 0.8rem 1rem;
+    gap: 0.8rem;
+}
+
+/* Mobile - smaller cards */
+@media (max-width: 768px) {
+    .cta-card {
+        min-width: 160px;
+        max-width: 200px;
+        padding: 0.7rem 0.9rem;
+        gap: 0.6rem;
+    }
+}
+
+/* Small Mobile - even smaller cards */
+@media (max-width: 480px) {
+    .cta-card {
+        min-width: 140px;
+        max-width: 180px;
+        padding: 0.6rem 0.8rem;
+        gap: 0.5rem;
+    }
+}
+```
+
+### Positioning Formula
+```css
+/* Logo: Top positioning with header clearance */
+.clarion-logo-container {
+    top: calc(2vh + 60px); /* 2% from top + header height */
+}
+
+/* CTAs: Bottom positioning with responsive adjustment */
+.icp-ctas {
+    bottom: 4vh; /* 4% from bottom (mobile) */
+    /* Scales to 8vh on larger screens */
+}
+```
+
+### Key Principles
+1. **Logo at top, CTAs at bottom**: Maximize space between elements
+2. **Responsive bottom positioning**: Adjust CTA position based on screen size
+3. **Horizontal centering**: Both elements centered horizontally
+4. **No overlap guarantee**: Sufficient space between logo and CTAs
+5. **Accessible sizing**: CTAs remain clickable on all screen sizes
 
 ### CRITICAL LESSON: Fixed Pixels vs Viewport-Based Scaling
 **Problem Discovered**: Using fixed pixel sizes (e.g., `width: 700px`) caused inconsistent scaling between different screen sizes.
@@ -326,6 +502,18 @@ Using CSS variables allows smooth scaling during window resizing while media que
 - **Media queries in inline styles** don't work reliably
 - **Use external CSS** for consistent behavior
 - **Maintain separation of concerns**
+
+### 5. Fixed Header Overlap
+- **Fixed headers overlap logo positioning** when using viewport-based positioning
+- **Account for header height** in all positioning calculations using `calc()`
+- **Use `calc(desired_vh_position + 60px)`** for proper header clearance
+
+### 6. Mobile vs Desktop Positioning Conflicts
+- **Mobile and desktop require different positioning approaches**
+- **Use hybrid positioning**: absolute for mobile, relative for desktop
+- **Override base positioning** in mobile breakpoints with `!important`
+- **Mobile**: `position: absolute` + `left: 50%` + `translateX(-50%)`
+- **Desktop**: `position: relative` + `margin: 0 auto`
 
 ---
 

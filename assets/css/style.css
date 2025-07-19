@@ -379,56 +379,70 @@ article.page {
    ========================================================================== */
 
 .intelligence-hub-hero {
-    min-height: 100vh;
-    max-height: 100vh;
+    height: 100vh; /* Use height instead of min/max to prevent overflow */
     background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2c3e50 100%);
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    /* Ensure content fits within viewport */
-    justify-content: center;
+    overflow: hidden; /* Keep hidden to prevent scrollbars */
+    /* Remove flex positioning - we'll use absolute positioning instead */
     align-items: center;
-    padding: 80px 2rem 2rem 2rem; /* Account for fixed header */
+    padding: 0; /* Remove padding - we'll handle spacing with absolute positioning */
     box-sizing: border-box;
 }
 
 /* Update the hero content container for better viewport management */
 .clarion-hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 5;
     width: 100%;
     max-width: 1200px;
-    /* Remove fixed padding to allow dynamic sizing */
+    margin: 0 auto;
+    /* Remove all flex and height constraints */
+    display: block;
     padding: 0;
     overflow: visible;
-    /* Ensure content fits within available viewport space */
-    min-height: 0;
-    max-height: calc(100vh - 120px); /* Account for header and some bottom space */
 }
 
 /* Optimize logo container for viewport constraints */
 .clarion-logo-container {
+    position: absolute;
+    top: calc(10vh + 60px); /* Base position + header height (30px logo + 30px padding) */
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-bottom: 0.8rem; /* Reduced from 1.5rem to bring CTAs closer */
-    /* Ensure logo doesn't take up too much space */
-    flex-shrink: 1;
-    min-height: 0;
+    /* Remove flex constraints */
+    width: 100%;
+    max-width: 1200px;
+    padding-top: 1rem; /* Small padding offset from top of container */
+    /* Force the container to align content to top */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    /* Add CSS custom properties for dynamic positioning */
+    --logo-top-position: calc(10vh + 60px);
+    --logo-bottom-margin: 5vh;
 }
 
 /* Optimize CTA section for viewport constraints */
 .icp-ctas {
+    position: absolute;
+    bottom: 8vh; /* Base position - much lower to start */
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    position: relative;
     z-index: 10;
-    /* Ensure CTAs fit within remaining viewport space */
-    flex-shrink: 0;
-    margin-top: auto; /* Push to bottom of available space */
+    width: 100%;
+    max-width: 1200px;
+    /* Add CSS custom properties for dynamic positioning */
+    --cta-bottom-position: 8vh;
+    /* Ensure minimum gap from logo */
+    --minimum-gap: 8vh;
 }
 
 .cta-grid {
@@ -609,6 +623,31 @@ article.page {
     white-space: nowrap; /* Keep tagline on single line */
     font-weight: 400;
     line-height: 1.4;
+}
+
+/* New hero tagline for the main hero section */
+.intelligence-hub-hero .hero-tagline {
+    position: absolute;
+    top: calc(60vh + 60px); /* Position lower to avoid logo overlap */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally only */
+    text-align: center;
+    max-width: 100vw; /* Allow full viewport width for nowrap text */
+    padding: 0 2rem;
+    z-index: 10;
+    width: 100%;
+}
+
+.intelligence-hub-hero .hero-tagline h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrapping on desktop */
 }
 
 .hero-cta {
@@ -1630,12 +1669,12 @@ article.page {
     --logo-max-height: 90vh !important; /* Increased from 80vh to 90vh for more glow space */
     --subtitle-size: 2.2rem !important;
     --subtitle-spacing: 2.5rem !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    position: relative !important; /* Make container relative for absolute positioning of SVG */
+    display: block !important; /* Change to block to avoid flex issues */
     min-height: 100vh !important;
     padding: 2rem 3rem 3rem 3rem !important; /* Increased padding for more glow space */
     overflow: visible !important; /* Ensure glow effects are not clipped */
+    text-align: center !important; /* Center the SVG horizontally */
 }
 
 .clarion-logo-container svg {
@@ -1647,7 +1686,14 @@ article.page {
     transform-origin: center center !important;
     transform: scale(1.2) !important; /* Scale entire SVG by 20% */
     overflow: visible !important; /* Ensure glow effects are not clipped */
-    margin: 2rem !important; /* Additional margin for glow space */
+    margin: 0 auto !important; /* Center horizontally for desktop */
+    display: block !important; /* Ensure block display for proper positioning */
+    /* Desktop positioning - centered */
+    position: relative !important; /* Default to relative for desktop centering */
+    top: auto !important;
+    left: auto !important;
+    transform: scale(1.2) !important; /* Just scale for desktop */
+    transform-origin: center center !important; /* Scale from center */
 }
 
 /* Style the text within the SVG - Bahnschrift logo */
@@ -1807,7 +1853,7 @@ article.page {
         --logo-max-height: 75vh !important; /* Increased from 70vh to 75vh */
         --subtitle-size: 1.8rem !important;
         --subtitle-spacing: 2rem !important;
-        padding: 1rem 1.5rem 1.5rem 1.5rem !important; /* Increased padding for glow space */
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem !important; /* Reduced top padding for mobile */
     }
     
     .clarion-logo-container svg {
@@ -1815,7 +1861,11 @@ article.page {
         height: auto !important; /* Maintain aspect ratio */
         max-width: 400px !important; /* Cap maximum size */
         max-height: 300px !important; /* Cap maximum size */
-        transform: scale(1.2) !important; /* Scale entire SVG by 20% */
+        position: absolute !important; /* Override base positioning for mobile */
+        top: 1.25rem !important; /* Increased offset to avoid header overlap */
+        left: 50% !important; /* Center horizontally */
+        transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+        margin: 0 !important; /* Remove auto margin for absolute positioning */
     }
 }
 
@@ -1835,6 +1885,7 @@ article.page {
         max-width: 600px !important; /* Cap maximum size */
         max-height: 450px !important; /* Cap maximum size */
         transform: scale(1.2) !important; /* Scale entire SVG by 20% */
+        margin: 0 auto !important; /* Ensure horizontal centering */
     }
 }
 
@@ -1854,6 +1905,7 @@ article.page {
         max-width: 900px !important; /* Cap maximum size */
         max-height: 675px !important; /* Cap maximum size */
         transform: scale(1.2) !important; /* Scale entire SVG by 20% */
+        margin: 0 auto !important; /* Ensure horizontal centering */
     }
 }
 
@@ -1915,9 +1967,16 @@ article.page {
 /* Specific adjustment for laptop screens (like 1536x695) */
 @media (min-width: 1025px) and (max-width: 1920px) and (max-height: 800px) {
     .clarion-logo-container {
+        top: 10vh !important; /* Logo at 10% from top on laptop screens - compact */
+        --logo-top-position: 10vh !important;
+        --logo-bottom-margin: 3vh !important;
         align-items: flex-start !important; /* Shift logo down from center */
-        padding-top: 12vh !important; /* Reduced from 20vh to 12vh - move logo back up */
         padding-bottom: 5vh !important; /* Reduce bottom padding */
+    }
+    
+    .icp-ctas {
+        bottom: 6vh !important; /* CTAs at 6% from bottom on laptop screens */
+        --cta-bottom-position: 6vh !important;
     }
     
     .clarion-logo-container svg {
@@ -1926,6 +1985,15 @@ article.page {
         max-width: 720px !important; /* Reduced from 900px to 720px (20% smaller) */
         max-height: 540px !important; /* Reduced from 675px to 540px (20% smaller) */
         transform: scale(1.2) !important; /* Scale entire SVG by 20% */
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: calc(65vh + 60px) !important; /* Position even lower for laptop screens to avoid overlap */
+        padding: 0 2rem;
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        white-space: nowrap !important; /* Prevent text wrapping on laptop screens */
     }
 }
 
@@ -1937,13 +2005,36 @@ article.page {
         max-height: 100vh;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 90px); /* Less space needed on mobile */
-        padding: 0;
+    .clarion-logo-container {
+        top: calc(2vh + 60px) !important; /* Logo at 2% from top + header height on mobile - very high */
+        --logo-top-position: calc(2vh + 60px) !important;
+        --logo-bottom-margin: 3vh !important;
+        padding-top: 0.25rem !important; /* Minimal padding for mobile */
     }
     
-    .clarion-logo-container {
-        margin-bottom: 0.6rem; /* Even closer on mobile */
+    .clarion-logo-container svg {
+        position: absolute !important; /* Override base positioning for mobile */
+        top: 1rem !important; /* Increased offset to avoid header overlap */
+        left: 50% !important; /* Center horizontally */
+        transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+        margin: 0 !important; /* Remove auto margin for absolute positioning */
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: 50%; /* Center vertically on mobile */
+        padding: 0 1rem;
+        max-width: 90vw; /* Allow more width on mobile for wrapping */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.4rem;
+        line-height: 1.3;
+        white-space: normal; /* Ensure text wraps on mobile */
+    }
+    
+    .icp-ctas {
+        bottom: 4vh !important; /* CTAs at 4% from bottom on mobile - lower */
+        --cta-bottom-position: 4vh !important;
     }
     
     .cta-grid {
@@ -1964,8 +2055,36 @@ article.page {
         padding: 60px 0.5rem 0.5rem 0.5rem; /* Minimal padding */
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 80px);
+    .clarion-logo-container {
+        top: calc(1vh + 60px) !important; /* Logo at 1% from top + header height on small mobile - very high */
+        --logo-top-position: calc(1vh + 60px) !important;
+        --logo-bottom-margin: 2vh !important;
+        padding-top: 0.1rem !important; /* Very minimal padding for small mobile */
+    }
+    
+    .clarion-logo-container svg {
+        position: absolute !important; /* Override base positioning for small mobile */
+        top: 0.75rem !important; /* Increased offset to avoid header overlap */
+        left: 50% !important; /* Center horizontally */
+        transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+        margin: 0 !important; /* Remove auto margin for absolute positioning */
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: 50%; /* Center vertically on small mobile */
+        padding: 0 0.5rem;
+        max-width: 95vw; /* Allow more width on small mobile for wrapping */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.2rem;
+        line-height: 1.2;
+        white-space: normal; /* Ensure text wraps on small mobile */
+    }
+    
+    .icp-ctas {
+        bottom: 2vh !important; /* CTAs at 2% from bottom on small mobile - lower */
+        --cta-bottom-position: 2vh !important;
     }
     
     .cta-grid {
@@ -1987,8 +2106,26 @@ article.page {
         padding: 75px 1.5rem 1.5rem 1.5rem;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 110px);
+    .clarion-logo-container {
+        top: calc(8vh + 60px) !important; /* Logo at 8% from top + header height on tablet - much higher */
+        --logo-top-position: calc(8vh + 60px) !important;
+        --logo-bottom-margin: 4vh !important;
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: calc(60vh + 60px); /* Position lower to avoid logo overlap for tablet */
+        padding: 0 1.5rem;
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.6rem;
+        line-height: 1.4;
+        white-space: nowrap; /* Prevent text wrapping on tablet */
+    }
+    
+    .icp-ctas {
+        bottom: 8vh !important; /* CTAs at 8% from bottom on tablet - lower */
+        --cta-bottom-position: 8vh !important;
     }
     
     .cta-grid {
@@ -2002,8 +2139,26 @@ article.page {
         padding: 85px 2rem 2rem 2rem;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 130px);
+    .clarion-logo-container {
+        top: calc(8vh + 60px); /* Logo at 8% from top + header height on large screens - much higher */
+        --logo-top-position: calc(8vh + 60px);
+        --logo-bottom-margin: 6vh;
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: calc(60vh + 60px); /* Position lower to avoid logo overlap for large screens */
+        padding: 0 2rem;
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.8rem;
+        line-height: 1.4;
+        white-space: nowrap; /* Prevent text wrapping on large screens */
+    }
+    
+    .icp-ctas {
+        bottom: 8vh; /* CTAs at 8% from bottom on large screens - much lower */
+        --cta-bottom-position: 8vh;
     }
 }
 
@@ -2013,8 +2168,26 @@ article.page {
         padding: 90px 3rem 3rem 3rem;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 140px);
+    .clarion-logo-container {
+        top: calc(6vh + 60px); /* Logo at 6% from top + header height on extra large screens - much higher */
+        --logo-top-position: calc(6vh + 60px);
+        --logo-bottom-margin: 8vh;
+    }
+    
+    .intelligence-hub-hero .hero-tagline {
+        top: calc(60vh + 60px); /* Position lower to avoid logo overlap for extra large screens */
+        padding: 0 3rem;
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 2rem;
+        line-height: 1.4;
+        white-space: nowrap; /* Prevent text wrapping on extra large screens */
+    }
+    
+    .icp-ctas {
+        bottom: 6vh; /* CTAs at 6% from bottom on extra large screens - much lower */
+        --cta-bottom-position: 6vh;
     }
     
     .cta-grid {
@@ -2029,18 +2202,49 @@ article.page {
     }
 }
 
+/* Ultra-wide screen optimizations */
+@media (min-width: 1921px) {
+    .clarion-logo-container {
+        top: calc(4vh + 60px); /* Logo at 4% from top + header height on ultra-wide screens - much higher */
+        --logo-top-position: calc(4vh + 60px);
+        --logo-bottom-margin: 10vh;
+    }
+    
+    .icp-ctas {
+        bottom: 4vh; /* CTAs at 4% from bottom on ultra-wide screens - much lower */
+        --cta-bottom-position: 4vh;
+    }
+}
+
+/* 4K and larger screen optimizations */
+@media (min-width: 2561px) {
+    .clarion-logo-container {
+        top: calc(2vh + 60px); /* Logo at 2% from top + header height on 4K+ screens - very high */
+        --logo-top-position: calc(2vh + 60px);
+        --logo-bottom-margin: 12vh;
+    }
+    
+    .icp-ctas {
+        bottom: 2vh; /* CTAs at 2% from bottom on 4K+ screens - very low */
+        --cta-bottom-position: 2vh;
+    }
+}
+
 /* Height-based optimizations for shorter screens */
 @media (max-height: 700px) {
     .intelligence-hub-hero {
         padding: 60px 1rem 1rem 1rem;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 80px);
+    .clarion-logo-container {
+        top: calc(8vh + 60px); /* Logo at 8% from top + header height on short screens - compact */
+        --logo-top-position: calc(8vh + 60px);
+        --logo-bottom-margin: 2vh;
     }
     
-    .clarion-logo-container {
-        margin-bottom: 0.5rem;
+    .icp-ctas {
+        bottom: 4vh; /* CTAs at 4% from bottom on short screens */
+        --cta-bottom-position: 4vh;
     }
     
     .cta-card {
@@ -2056,12 +2260,15 @@ article.page {
         padding: 50px 0.5rem 0.5rem 0.5rem;
     }
     
-    .clarion-hero-content {
-        max-height: calc(100vh - 70px);
+    .clarion-logo-container {
+        top: calc(6vh + 60px); /* Logo at 6% from top + header height on very short screens - very compact */
+        --logo-top-position: calc(6vh + 60px);
+        --logo-bottom-margin: 1vh;
     }
     
-    .clarion-logo-container {
-        margin-bottom: 0.5rem;
+    .icp-ctas {
+        bottom: 2vh; /* CTAs at 2% from bottom on very short screens */
+        --cta-bottom-position: 2vh;
     }
     
     .cta-grid {

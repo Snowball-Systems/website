@@ -77,13 +77,13 @@ This document provides a complete step-by-step process for transforming an Adobe
     --subtitle-size: 2.2rem !important;
     --subtitle-spacing: 2.5rem !important;
     
-    /* Layout */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    /* Layout - Hybrid approach for mobile/desktop */
+    position: relative !important; /* Make container relative for absolute positioning of SVG */
+    display: block !important; /* Change to block to avoid flex issues */
     min-height: 100vh !important;
     padding: 2rem 3rem 3rem 3rem !important; /* Increased padding for glow space */
     overflow: visible !important; /* Ensure glow effects are not clipped */
+    text-align: center !important; /* Center the SVG horizontally for desktop */
 }
 ```
 
@@ -102,11 +102,247 @@ This document provides a complete step-by-step process for transforming an Adobe
     filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4)) !important;
     transform-origin: center center !important;
     overflow: visible !important; /* Ensure glow effects are not clipped */
-    margin: 2rem !important; /* Additional margin for glow space */
+    margin: 0 auto !important; /* Center horizontally for desktop */
+    display: block !important; /* Ensure block display for proper positioning */
+    
+    /* Desktop positioning - centered */
+    position: relative !important; /* Default to relative for desktop centering */
+    top: auto !important;
+    left: auto !important;
+    transform: scale(1.2) !important; /* Just scale for desktop */
+    transform-origin: center center !important; /* Scale from center */
 }
 ```
 
 ---
+
+## 🎯 **HYBRID POSITIONING APPROACH: MOBILE VS DESKTOP**
+
+### The Problem We Solved
+**Challenge**: Mobile (vertical screens) and desktop (horizontal screens) require completely different positioning approaches:
+- **Mobile**: Logo needs to be at the top of the screen, close to header
+- **Desktop**: Logo needs to be centered both horizontally and vertically
+- **Previous approach**: Flexbox caused horizontal movement on mobile
+
+### The Hybrid Solution
+
+#### **Desktop (≥769px) - Centered Approach**
+```css
+/* Container uses text-align for horizontal centering */
+.clarion-logo-container {
+    text-align: center !important; /* Center the SVG horizontally */
+    display: block !important; /* Avoid flex issues */
+}
+
+/* SVG uses margin auto for centering */
+.clarion-logo-container svg {
+    position: relative !important; /* Default positioning */
+    margin: 0 auto !important; /* Center horizontally */
+    transform: scale(1.2) !important; /* Just scale */
+}
+```
+
+#### **Mobile (≤768px) - Absolute Positioning Approach**
+```css
+/* Container provides positioning context */
+.clarion-logo-container {
+    position: relative !important; /* For absolute positioning context */
+    padding-top: 0.25rem !important; /* Minimal top padding */
+}
+
+/* SVG positioned absolutely at top */
+.clarion-logo-container svg {
+    position: absolute !important; /* Override base positioning */
+    top: 1rem !important; /* Position at top with header clearance */
+    left: 50% !important; /* Center horizontally */
+    transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+    margin: 0 !important; /* Remove auto margin */
+}
+```
+
+### Key Benefits
+- ✅ **Mobile**: Logo appears at top of screen, centered horizontally
+- ✅ **Desktop**: Logo centered both horizontally and vertically
+- ✅ **No conflicts**: Different approaches for different screen types
+- ✅ **Header clearance**: Logo positioned below fixed header on mobile
+- ✅ **Responsive**: Smooth transitions between breakpoints
+
+### Mobile Breakpoint Examples
+```css
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+    .clarion-logo-container svg {
+        position: absolute !important;
+        top: 1rem !important; /* Clearance from header */
+        left: 50% !important;
+        transform: translateX(-50%) scale(1.2) !important;
+        margin: 0 !important;
+    }
+}
+
+/* Small Mobile (≤480px) */
+@media (max-width: 480px) {
+    .clarion-logo-container svg {
+        position: absolute !important;
+        top: 0.75rem !important; /* Less clearance for smaller screens */
+        left: 50% !important;
+        transform: translateX(-50%) scale(1.2) !important;
+        margin: 0 !important;
+    }
+}
+```
+
+## 🎯 **CTA POSITIONING: LOGO & BUTTON RELATIONSHIP**
+
+### The Challenge
+**Problem**: CTA buttons need to be positioned relative to the logo while ensuring:
+- **No overlap**: Buttons never cover the logo
+- **Proper spacing**: Adequate gap between logo and buttons
+- **Responsive positioning**: Works across all screen sizes
+- **Viewport constraints**: Buttons stay within screen bounds
+
+### The Solution: Absolute Positioning with Dynamic Spacing
+
+#### **Base CTA Container Styling**
+```css
+.icp-ctas {
+    position: absolute;
+    bottom: 8vh; /* Base position from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    /* CSS custom properties for dynamic positioning */
+    --cta-bottom-position: 8vh;
+    /* Ensure minimum gap from logo */
+    --minimum-gap: 8vh;
+}
+```
+
+#### **Responsive CTA Positioning**
+```css
+/* Mobile - buttons closer to bottom */
+@media (max-width: 768px) {
+    .icp-ctas {
+        bottom: 4vh !important; /* CTAs at 4% from bottom on mobile */
+        --cta-bottom-position: 4vh !important;
+    }
+}
+
+/* Small Mobile - even closer to bottom */
+@media (max-width: 480px) {
+    .icp-ctas {
+        bottom: 2vh !important; /* CTAs at 2% from bottom on small mobile */
+        --cta-bottom-position: 2vh !important;
+    }
+}
+
+/* Desktop - more space from bottom */
+@media (min-width: 1025px) {
+    .icp-ctas {
+        bottom: 8vh; /* CTAs at 8% from bottom on large screens */
+        --cta-bottom-position: 8vh;
+    }
+}
+
+/* Large screens - aggressive positioning to prevent overlap */
+@media (min-width: 1600px) {
+    .icp-ctas {
+        bottom: 6vh; /* CTAs at 6% from bottom on extra large screens */
+        --cta-bottom-position: 6vh;
+    }
+}
+```
+
+### CTA Grid and Card Styling
+```css
+.cta-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Reduced from 2rem */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    min-width: 180px;
+    max-width: 240px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Responsive card sizing */
+@media (max-width: 768px) {
+    .cta-card {
+        min-width: 160px;
+        max-width: 200px;
+        padding: 0.7rem 0.9rem;
+        gap: 0.6rem;
+    }
+    
+    .cta-grid {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-card {
+        min-width: 140px;
+        max-width: 180px;
+        padding: 0.6rem 0.8rem;
+        gap: 0.5rem;
+    }
+    
+    .cta-grid {
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+}
+```
+
+### Key Positioning Principles
+1. **Logo at top, CTAs at bottom**: Maximize space between elements
+2. **Dynamic bottom positioning**: Adjust based on screen size
+3. **Horizontal centering**: Both logo and CTAs centered
+4. **Minimum gap enforcement**: Prevent overlap with CSS variables
+5. **Responsive card sizing**: Smaller cards on mobile screens
+
+### Positioning Formula
+```css
+/* Logo positioning: Top of screen + header clearance */
+.clarion-logo-container {
+    top: calc(2vh + 60px); /* 2% from top + header height */
+}
+
+/* CTA positioning: Bottom of screen with responsive adjustment */
+.icp-ctas {
+    bottom: 4vh; /* 4% from bottom (mobile) */
+    /* Increases to 8vh on larger screens */
+}
+```
+
+### Success Metrics
+- ✅ **No overlap**: Logo and CTAs never touch
+- ✅ **Proper spacing**: Adequate gap between elements
+- ✅ **Responsive**: Works on all screen sizes
+- ✅ **Accessible**: Buttons remain clickable
+- ✅ **Visual hierarchy**: Logo prominent, CTAs accessible
 
 ## ⚠️ **CRITICAL: PROPER LOGO SCALING METHOD**
 
@@ -430,16 +666,23 @@ const phrases = [
 ```css
 @media (max-width: 768px) and (max-height: 1024px) {
     .clarion-logo-container {
-        --logo-max-width: 95vw !important;
-        --logo-max-height: 70vh !important;
+        --logo-max-width: 98vw !important; /* Increased for more glow space */
+        --logo-max-height: 75vh !important; /* Increased from 70vh to 75vh */
         --subtitle-size: 1.8rem !important;
         --subtitle-spacing: 2rem !important;
-        padding: 1rem !important;
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem !important; /* Reduced top padding for mobile */
     }
     
     .clarion-logo-container svg {
-        width: 350px !important;
-        height: 262px !important;
+        width: 85vw !important; /* Proportional to viewport width - larger percentage for mobile */
+        height: auto !important; /* Maintain aspect ratio */
+        max-width: 400px !important; /* Cap maximum size */
+        max-height: 300px !important; /* Cap maximum size */
+        position: absolute !important; /* Override base positioning for mobile */
+        top: 1.25rem !important; /* Increased offset to avoid header overlap */
+        left: 50% !important; /* Center horizontally */
+        transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
+        margin: 0 !important; /* Remove auto margin for absolute positioning */
     }
 }
 ```
@@ -465,15 +708,20 @@ const phrases = [
 ```css
 @media (min-width: 1025px) and (max-width: 1920px) {
     .clarion-logo-container {
-        --logo-max-width: 90vw !important;
-        --logo-max-height: 85vh !important;
+        --logo-max-width: 95vw !important; /* Increased from 90vw to 95vw */
+        --logo-max-height: 90vh !important; /* Increased from 85vh to 90vh */
         --subtitle-size: 2.4rem !important;
         --subtitle-spacing: 2.8rem !important;
+        padding: 2rem 3rem 3rem 3rem !important; /* Increased padding for glow space */
     }
     
     .clarion-logo-container svg {
-        width: 700px !important;
-        height: 525px !important;
+        width: 70vw !important; /* Proportional to viewport width */
+        height: auto !important; /* Maintain aspect ratio */
+        max-width: 900px !important; /* Cap maximum size */
+        max-height: 675px !important; /* Cap maximum size */
+        transform: scale(1.2) !important; /* Scale entire SVG by 20% */
+        margin: 0 auto !important; /* Ensure horizontal centering */
     }
 }
 ```

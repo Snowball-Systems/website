@@ -1,35 +1,37 @@
----
-layout: default
----
-<div style="background: #fff; padding: 2rem; text-align: center; border-radius: 5px;">
-    <h2>Welcome to Snowball Systems</h2>
-    <p>We provide Clarion, a revolutionary platform for water distribution system knowledge management and workflow integration.</p>
-    <p>Clarion helps you to consolidate your data, streamline your processes, and make smarter decisions.</p>
-    <a href="https://app.snowballsystems.com" class="cta-button">Try the Live Demo</a>
-</div>
+# Jekyll Configuration
+title: Clarion Context Engine
+description: Intelligent knowledge management for water distribution systems
+baseurl: ""
+url: ""
 
-<section class="ecosystem-section" style="background: #f8f9fa; padding: 3rem 0; margin: 2rem 0; border-radius: 10px;">
-    <div class="container">
-        <h2 style="text-align: center; margin-bottom: 1rem;">How Clarion Connects Your Entire Water System</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: #666;">Interactive visualization of Clarion's integration ecosystem</p>
-        
-        <!-- Controls -->
-        <div class="graph-controls" style="text-align: center; margin-bottom: 2rem;">
-            <button class="control-btn active" data-mode="overview">Full Overview</button>
-            <button class="control-btn" data-mode="asset-flow">Asset Management Flow</button>
-            <button class="control-btn" data-mode="customer-flow">Customer Service Flow</button>
-            <button class="control-btn" data-mode="custom-integrations">Custom Integrations</button>
-        </div>
-        
-        <!-- Graph Container -->
-        <div id="clarion-ecosystem" style="width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px; background: white;"></div>
-        
-        <!-- Legend -->
-        <div class="graph-legend" style="margin-top: 1rem; text-align: center;">
-            <div class="legend-item"><span class="legend-color center"></span> Clarion Platform</div>
-            <div class="legend-item"><span class="legend-color integration"></span> System Integrations</div>
-            <div class="legend-item"><span class="legend-color service"></span> Business Services</div>
-            <div class="legend-item"><span class="legend-color custom"></span> Custom Integrations</div>
-        </div>
-    </div>
-</section>
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  icp_pages:
+    output: true
+    permalink: /ICP_Pages/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "icp_pages"
+    values:
+      layout: "icp-page"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git

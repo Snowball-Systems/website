@@ -113,8 +113,8 @@ This positions the consultant as an innovator — someone bringing new value to 
 <h2>Clarion makes your GIS work indispensable</h2>
 <p>Transform your GIS deliverables into intelligent, interactive systems that drive daily operations.</p>
 <div class="cta-buttons">
-<a href="/#demo" class="cta-button">Watch a Use Case</a>
-<a href="/#features" class="cta-button secondary">Become a Certified Partner</a>
+<a href="mailto:demo@clarion.com" class="cta-button">Watch a Use Case</a>
+<a href="/ICP_Pages/managers/" class="cta-button secondary">Become a Certified Partner</a>
 </div>
 </div>
 

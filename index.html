@@ -9,10 +9,10 @@ layout: default
             <span class="logo-text">Clarion</span>
         </div>
         <nav class="header-nav">
-            <a href="#features" class="nav-link">Features</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <a href="#demo" class="nav-link demo-link">Demo</a>
+            <a href="ICP_Pages/managers/" class="nav-link">Managers</a>
+            <a href="ICP_Pages/engineers/" class="nav-link">Engineers</a>
+            <a href="ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+            <a href="ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
         </nav>
         <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
@@ -264,7 +264,7 @@ layout: default
             <div class="cta-grid">
                 
                 <!-- Managers & Operators CTA -->
-                <a href="ICP_Pages/managers.html" class="cta-card">
+                <a href="ICP_Pages/managers/" class="cta-card">
                     <div>📊</div>
                     <div class="cta-text">
                         <h3>Managers & Operators</h3>
@@ -273,7 +273,7 @@ layout: default
                 </a>
                 
                 <!-- Engineers CTA -->
-                <a href="ICP_Pages/engineers.html" class="cta-card">
+                <a href="ICP_Pages/engineers/" class="cta-card">
                     <div>🔧</div>
                     <div class="cta-text">
                         <h3>Engineers</h3>
@@ -282,7 +282,7 @@ layout: default
                 </a>
                 
                 <!-- GIS Experts CTA -->
-                <a href="ICP_Pages/gis_experts.html" class="cta-card">
+                <a href="ICP_Pages/gis_experts/" class="cta-card">
                     <div>🗺️</div>
                     <div class="cta-text">
                         <h3>GIS Experts</h3>
@@ -574,7 +574,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const isMobileDevice = isMobile || isTablet || 
                                  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                                  ('ontouchstart' in window) ||
-                                 ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
+                                 ('ontouchstart' in window && window.innerWidth <= 768) || // Touch devices on mobile
+                                 (window.devicePixelRatio > 1 && window.innerWidth <= 768) || // High DPI mobile devices
+                                 (navigator.maxTouchPoints > 0 && window.innerWidth <= 768); // Touch-capable mobile devices
             
             let centerX = 277.19; // Default position (works on desktop)
             
@@ -704,6 +706,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(forceMobileCenterNodeFix, 2000);
     setTimeout(ensureLogoFitsAndCenterNodeAligned, 1500);
     setTimeout(ensureLogoFitsAndCenterNodeAligned, 3000);
+    
+    // Production debugging - log what's happening
+    console.log('=== PRODUCTION DEBUG ===');
+    console.log('Viewport width:', window.innerWidth);
+    console.log('Viewport height:', window.innerHeight);
+    console.log('User agent:', navigator.userAgent);
+    console.log('Touch support:', 'ontouchstart' in window);
+    console.log('Device pixel ratio:', window.devicePixelRatio);
+    console.log('Max touch points:', navigator.maxTouchPoints);
+    console.log('Orientation:', window.screen.orientation ? window.screen.orientation.type : 'unknown');
     
     // Continuous monitoring for mobile devices - following responsive scaling guide
     function startMobileMonitoring() {

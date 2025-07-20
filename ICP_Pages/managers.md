@@ -66,7 +66,7 @@ Prepare for the challenges of tomorrow while optimizing for today.
 <h2>See how Clarion transforms utility operations</h2>
 <p>Get a personalized demo of how Clarion can optimize your operations and reduce costs.</p>
 <div class="cta-buttons">
-<a href="/#demo" class="cta-button">Request Demo</a>
-<a href="/#features" class="cta-button secondary">Watch Operations Use Case</a>
+<a href="mailto:demo@clarion.com" class="cta-button">Request Demo</a>
+<a href="/ICP_Pages/engineers/" class="cta-button secondary">Watch Operations Use Case</a>
 </div>
 </div> 

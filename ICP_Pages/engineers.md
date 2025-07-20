@@ -66,7 +66,7 @@ Offer Clarion as part of your service.
 <h2>See how Clarion enhances your engineering workflow</h2>
 <p>Discover how Clarion can transform your deliverables into living, interactive systems.</p>
 <div class="cta-buttons">
-<a href="/#demo" class="cta-button">Request Demo</a>
-<a href="/#features" class="cta-button secondary">Watch Sample Use Case</a>
+<a href="mailto:demo@clarion.com" class="cta-button">Request Demo</a>
+<a href="/ICP_Pages/gis_experts/" class="cta-button secondary">Watch Sample Use Case</a>
 </div>
 </div>

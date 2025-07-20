@@ -2076,6 +2076,29 @@ article.page {
     }
 }
 
+/* Production-specific mobile fix - forces mobile detection in production */
+@media (max-width: 768px), (max-width: 768px) and (orientation: portrait), (max-width: 768px) and (orientation: landscape) {
+    .clarion-logo-container svg {
+        width: 85vw !important;
+        height: auto !important;
+        max-width: calc(100vw - 2rem) !important;
+        position: absolute !important;
+        top: 1.25rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) scale(1.2) !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Center node alignment fix */
+    .clarion-logo-container svg #node-7,
+    .clarion-logo-container svg circle.cls-7 {
+        transform: none !important;
+        transform-origin: center center !important;
+        will-change: auto !important;
+    }
+}
+
 /* Additional mobile detection for developer tools and touch devices */
 @media (hover: none) and (pointer: coarse) {
     .clarion-logo-container svg #node-7,

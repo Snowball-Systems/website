@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Clarion Context Engine</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
@@ -271,31 +271,31 @@
             <div class="cta-grid">
                 
                 <!-- Managers & Operators CTA -->
-                <div class="cta-card" onclick="window.location.href='ICP_Pages/managers.html'">
+                <a href="ICP_Pages/managers.html" class="cta-card">
                     <div>📊</div>
                     <div class="cta-text">
                         <h3>Managers & Operators</h3>
                         <p>Optimize operations</p>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Engineers CTA -->
-                <div class="cta-card" onclick="window.location.href='ICP_Pages/engineers.html'">
+                <a href="ICP_Pages/engineers.html" class="cta-card">
                     <div>🔧</div>
                     <div class="cta-text">
                         <h3>Engineers</h3>
                         <p>Living master plans</p>
                     </div>
-                </div>
+                </a>
                 
                 <!-- GIS Experts CTA -->
-                <div class="cta-card" onclick="window.location.href='ICP_Pages/gis_experts.html'">
+                <a href="ICP_Pages/gis_experts.html" class="cta-card">
                     <div>🗺️</div>
                     <div class="cta-text">
                         <h3>GIS Experts</h3>
                         <p>Intelligent GIS</p>
                     </div>
-                </div>
+                </a>
                 
             </div>
         </div>
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'node-1', x: 315.02, y: 192.67, r: 11, class: 'cls-1', breathingPhase: 0.8 },
         { id: 'node-8', x: 352.85, y: 59.33, r: 7, class: 'cls-8', breathingPhase: 1.0 },
         { id: 'node-3', x: 171.44, y: 153.33, r: 4.15, class: 'cls-3', breathingPhase: 1.2, isEllipse: true },
-        { id: 'node-7', x: 277.19, y: 106.83, r: 22, class: 'cls-7', breathingPhase: 1.4 }
+        { id: 'node-7', x: 277.19, y: 106.83, r: 22, class: 'cls-7', breathingPhase: 1.4 } // Original position - works perfectly on desktop
     ];
     
     // Link data
@@ -575,14 +575,92 @@ document.addEventListener('DOMContentLoaded', function() {
     function ensureCenterNodeAlignment() {
         const centerNode = svg.select('#node-7');
         if (!centerNode.empty()) {
+            // Check if this is a mobile device using viewport-based detection (following responsive scaling guide)
+            const isMobile = window.innerWidth <= 768; // All devices 768px and below
+            const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets (includes iPad mini)
+            const isMobileDevice = isMobile || isTablet || 
+                                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                                 ('ontouchstart' in window) ||
+                                 ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
+            
+            let centerX = 277.19; // Default position (works on desktop)
+            
+            // Apply mobile-specific adjustment for all mobile devices
+            if (isMobileDevice) {
+                centerX = 275.0; // Slight adjustment for all mobile devices
+                console.log('Mobile/tablet device detected - applying mobile-specific center node adjustment');
+            }
+            
             // Force center node to exact position
             centerNode
-                .attr('cx', 277.19)
+                .attr('cx', centerX)
                 .attr('cy', 106.83)
                 .style('transform', 'none')
                 .style('will-change', 'auto');
             
             console.log('Center node alignment enforced');
+        }
+    }
+    
+    // Enhanced mobile detection and fix
+    function forceMobileCenterNodeFix() {
+        const centerNode = svg.select('#node-7');
+        if (!centerNode.empty()) {
+            // More aggressive mobile detection
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                            window.innerWidth <= 768 ||
+                            ('ontouchstart' in window) ||
+                            window.devicePixelRatio > 1; // High DPI screens (mobile)
+            
+            if (isMobile) {
+                console.log('Force applying mobile center node fix');
+                centerNode
+                    .attr('cx', 275.0)
+                    .attr('cy', 106.83)
+                    .style('transform', 'none')
+                    .style('will-change', 'auto');
+                
+                // Also try to force the circle element directly
+                const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
+                if (circleElement) {
+                    circleElement.setAttribute('cx', '275.0');
+                    circleElement.setAttribute('cy', '106.83');
+                }
+            }
+        }
+    }
+    
+    // Function to ensure logo fits and center node stays aligned
+    function ensureLogoFitsAndCenterNodeAligned() {
+        const svgElement = document.querySelector('.clarion-logo-container svg');
+        const centerNode = svg.select('#node-7');
+        
+        if (svgElement && centerNode && !centerNode.empty()) {
+            // Check if logo is overflowing
+            const svgRect = svgElement.getBoundingClientRect();
+            const containerRect = svgElement.parentElement.getBoundingClientRect();
+            
+            // If logo is wider than container, adjust sizing
+            if (svgRect.width > containerRect.width) {
+                console.log('Logo overflow detected - adjusting sizing');
+                svgElement.style.width = '90vw';
+                svgElement.style.maxWidth = 'calc(100vw - 2rem)';
+            }
+            
+            // Ensure center node stays aligned - following responsive scaling guide
+            const isMobile = window.innerWidth <= 768; // All devices 768px and below
+            const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
+            const isMobileDevice = isMobile || isTablet || 
+                                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                                 ('ontouchstart' in window) ||
+                                 ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
+            
+            if (isMobileDevice) {
+                centerNode
+                    .attr('cx', 275.0)
+                    .attr('cy', 106.83)
+                    .style('transform', 'none');
+            }
         }
     }
     
@@ -596,6 +674,79 @@ document.addEventListener('DOMContentLoaded', function() {
     ensureCenterNodeAlignment();
     setTimeout(ensureCenterNodeAlignment, 1000); // Double-check after 1 second
     setTimeout(ensureCenterNodeAlignment, 3000); // Triple-check after 3 seconds
+    
+    // Additional mobile detection and fix - following responsive scaling guide
+    function detectAndFixMobile() {
+        const isMobile = window.innerWidth <= 768; // All devices 768px and below
+        const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
+        const isMobileDevice = isMobile || isTablet || 
+                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             ('ontouchstart' in window) ||
+                             window.devicePixelRatio > 1 ||
+                             ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
+        
+        if (isMobileDevice) {
+            console.log('Mobile/tablet device detected - applying mobile-specific fixes');
+            // Apply mobile-specific center node adjustment
+            const centerNode = svg.select('#node-7');
+            if (!centerNode.empty()) {
+                centerNode
+                    .attr('cx', 275.0)
+                    .attr('cy', 106.83)
+                    .style('transform', 'none');
+            }
+            
+            // Also try to force the circle element directly
+            const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
+            if (circleElement) {
+                circleElement.setAttribute('cx', '275.0');
+                circleElement.setAttribute('cy', '106.83');
+            }
+        }
+    }
+    
+    // Run mobile detection after a delay to ensure proper rendering
+    setTimeout(detectAndFixMobile, 500);
+    setTimeout(forceMobileCenterNodeFix, 1000);
+    setTimeout(forceMobileCenterNodeFix, 2000);
+    setTimeout(ensureLogoFitsAndCenterNodeAligned, 1500);
+    setTimeout(ensureLogoFitsAndCenterNodeAligned, 3000);
+    
+    // Continuous monitoring for mobile devices - following responsive scaling guide
+    function startMobileMonitoring() {
+        const isMobile = window.innerWidth <= 768; // All devices 768px and below
+        const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
+        const isMobileDevice = isMobile || isTablet || 
+                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             ('ontouchstart' in window) ||
+                             window.devicePixelRatio > 1 ||
+                             ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
+        
+        if (isMobileDevice) {
+            console.log('Starting continuous mobile/tablet monitoring');
+            
+            // Monitor and fix center node position every 2 seconds
+            setInterval(() => {
+                const centerNode = svg.select('#node-7');
+                const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
+                
+                if (centerNode && !centerNode.empty()) {
+                    centerNode
+                        .attr('cx', 275.0)
+                        .attr('cy', 106.83)
+                        .style('transform', 'none');
+                }
+                
+                if (circleElement) {
+                    circleElement.setAttribute('cx', '275.0');
+                    circleElement.setAttribute('cy', '106.83');
+                }
+            }, 2000);
+        }
+    }
+    
+    // Start monitoring after initial setup
+    setTimeout(startMobileMonitoring, 3000);
     
     // Test functions for debugging
     window.toggleBreathing = function() {
@@ -630,7 +781,7 @@ document.addEventListener('click', function(event) {
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2025 . All rights reserved.</p>
+            <p>&copy; 2025 Clarion Context Engine. All rights reserved.</p>
         </div>
     </footer>
     <script>

@@ -1866,6 +1866,19 @@ article.page {
         left: 50% !important; /* Center horizontally */
         transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
         margin: 0 !important; /* Remove auto margin for absolute positioning */
+        transform-origin: center center !important; /* Ensure scaling from center */
+    }
+    
+    /* CRITICAL: Ensure center node stays perfectly aligned with "o" in Clarion */
+    .clarion-logo-container svg #node-7 {
+        transform: none !important; /* Override any transforms on center node */
+        transform-origin: center center !important;
+    }
+    
+    /* Ensure text elements maintain their position relative to center node */
+    .clarion-logo-container svg .cls-21,
+    .clarion-logo-container svg .cls-22 {
+        transform-origin: center center !important;
     }
 }
 
@@ -2068,7 +2081,60 @@ article.page {
         left: 50% !important; /* Center horizontally */
         transform: translateX(-50%) scale(1.2) !important; /* Center and scale */
         margin: 0 !important; /* Remove auto margin for absolute positioning */
+        transform-origin: center center !important; /* Ensure scaling from center */
     }
+    
+    /* CRITICAL: Ensure center node stays perfectly aligned with "o" in Clarion */
+.clarion-logo-container svg #node-7 {
+    transform: none !important; /* Override any transforms on center node */
+    transform-origin: center center !important;
+    /* Production-specific fixes for mobile alignment */
+    will-change: auto !important; /* Prevent GPU acceleration issues */
+    backface-visibility: visible !important; /* Ensure proper rendering */
+}
+
+/* Additional production-specific center node protection */
+.clarion-logo-container svg circle.cls-7,
+.clarion-logo-container svg #node-7 {
+    transform: none !important;
+    transform-origin: center center !important;
+    will-change: auto !important;
+}
+
+/* CRITICAL: Mobile production-specific center node alignment fix */
+@media (max-width: 768px) {
+    .clarion-logo-container svg #node-7,
+    .clarion-logo-container svg circle.cls-7 {
+        transform: none !important;
+        transform-origin: center center !important;
+        will-change: auto !important;
+        /* Force exact positioning to prevent any drift */
+        cx: 277.19 !important;
+        cy: 106.83 !important;
+    }
+    
+    /* Ensure the "o" in Clarion text aligns with center node */
+    .clarion-logo-container svg .cls-21 {
+        transform-origin: center center !important;
+        /* Prevent any text positioning issues */
+        text-anchor: start !important;
+    }
+}
+    
+    /* Ensure text elements maintain their position relative to center node */
+.clarion-logo-container svg .cls-21,
+.clarion-logo-container svg .cls-22 {
+    transform-origin: center center !important;
+}
+
+/* Production-specific text positioning protection */
+.clarion-logo-container svg text {
+    transform-origin: center center !important;
+    /* Ensure text renders correctly in production */
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
     
     .intelligence-hub-hero .hero-tagline {
         top: 50%; /* Center vertically on small mobile */

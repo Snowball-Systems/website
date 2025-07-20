@@ -431,8 +431,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Update node positions with breathing motion
             nodes.forEach(node => {
-                // Skip breathing animation for center node (node-7) - keep it static
+                // CRITICAL: Skip breathing animation for center node (node-7) - keep it perfectly static
                 if (node.id === 'node-7') {
+                    // Ensure center node stays at exact original position
+                    const nodeElement = svg.select(`#${node.id}`);
+                    if (!nodeElement.empty()) {
+                        nodeElement
+                            .attr('cx', node.x)
+                            .attr('cy', node.y)
+                            .style('transform', 'none'); // Force no transforms
+                    }
                     return;
                 }
                 
@@ -563,11 +571,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentIndex = 0;
     
+    // CRITICAL: Function to ensure center node alignment
+    function ensureCenterNodeAlignment() {
+        const centerNode = svg.select('#node-7');
+        if (!centerNode.empty()) {
+            // Force center node to exact position
+            centerNode
+                .attr('cx', 277.19)
+                .attr('cy', 106.83)
+                .style('transform', 'none')
+                .style('will-change', 'auto');
+            
+            console.log('Center node alignment enforced');
+        }
+    }
+    
     // Start the breathing animation
     startBreathingAnimation();
     
     // Start the text animation cycle
     setInterval(updateText, 4000);
+    
+    // Ensure center node alignment on load and after a delay
+    ensureCenterNodeAlignment();
+    setTimeout(ensureCenterNodeAlignment, 1000); // Double-check after 1 second
+    setTimeout(ensureCenterNodeAlignment, 3000); // Triple-check after 3 seconds
     
     // Test functions for debugging
     window.toggleBreathing = function() {

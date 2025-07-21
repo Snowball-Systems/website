@@ -6,28 +6,35 @@ layout: default
 <header class="main-header">
     <div class="header-container">
         <div class="header-logo">
-            <span class="logo-text">Clarion</span>
+            <img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems" class="logo-image">
         </div>
-        <nav class="header-nav">
-            <a href="ICP_Pages/managers/" class="nav-link">Managers</a>
-            <a href="ICP_Pages/engineers/" class="nav-link">Engineers</a>
-            <a href="ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
-            <a href="ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
-        </nav>
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-right">
+            <nav class="header-nav">
+                <a href="ICP_Pages/managers/" class="nav-link">Managers</a>
+                <a href="ICP_Pages/engineers/" class="nav-link">Engineers</a>
+                <a href="ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+                <a href="ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
 </header>
 
 <style>
 .cta-card:hover {
-    transform: translateY(-2px); /* More subtle lift */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Lighter shadow */
-    background: rgba(255, 255, 255, 0.12) !important; /* More subtle background change */
-    border-color: rgba(255, 255, 255, 0.25) !important; /* More subtle border change */
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.12) 50%, 
+        rgba(255, 255, 255, 0.08) 100%) !important; /* Enhanced gradient */
+    border: 1px solid rgba(255, 255, 255, 0.18) !important; /* More visible border */
+    opacity: 1 !important; /* Full opacity on hover */
+    box-shadow: 0 0 20px 0 rgba(74, 144, 226, 0.1) !important; /* Subtle glow */
+    transform: translateY(-1px) !important; /* Very subtle lift */
+    animation: none !important; /* Stop breathing animation on hover */
 }
 </style>
 
@@ -109,7 +116,7 @@ layout: default
           }
 
           .cls-22 {
-            font-size: 21px;
+            font-size: 19.95px;
           }
 
           .cls-15 {
@@ -254,42 +261,42 @@ layout: default
         
         </div>
         
-        <!-- Hero Tagline -->
-        <div class="hero-tagline">
-            <h2>Graph powered context ecosystem for Water Utility digital transformation</h2>
-        </div>
-        
-        <!-- ICP CTAs - Clean Design -->
-        <div class="icp-ctas">
-            <div class="cta-grid">
-                
-                <!-- Managers & Operators CTA -->
-                <a href="ICP_Pages/managers/" class="cta-card">
-                    <div>📊</div>
-                    <div class="cta-text">
-                        <h3>Managers & Operators</h3>
-                        <p>Optimize operations</p>
-                    </div>
-                </a>
-                
-                <!-- Engineers CTA -->
-                <a href="ICP_Pages/engineers/" class="cta-card">
-                    <div>🔧</div>
-                    <div class="cta-text">
-                        <h3>Engineers</h3>
-                        <p>Living master plans</p>
-                    </div>
-                </a>
-                
-                <!-- GIS Experts CTA -->
-                <a href="ICP_Pages/gis_experts/" class="cta-card">
-                    <div>🗺️</div>
-                    <div class="cta-text">
-                        <h3>GIS Experts</h3>
-                        <p>Intelligent GIS</p>
-                    </div>
-                </a>
-                
+        <!-- Combined Hero Text and CTA Container -->
+        <div class="hero-content-container">
+            <!-- Hero Tagline -->
+            <div class="hero-tagline">
+                <h2>Graph powered intelligence & microservices integration layer</h2>
+                <div class="hero-subtitle">
+                    <span>designed for water utility:</span>
+                </div>
+            </div>
+            
+            <!-- ICP CTAs - Clean Design -->
+            <div class="icp-ctas">
+                <div class="cta-grid">
+                    
+                    <!-- Managers CTA -->
+                    <a href="ICP_Pages/managers/" class="cta-card">
+                        <div class="cta-text">
+                            <h3>Managers</h3>
+                        </div>
+                    </a>
+                    
+                    <!-- Engineers CTA -->
+                    <a href="ICP_Pages/engineers/" class="cta-card">
+                        <div class="cta-text">
+                            <h3>Engineers</h3>
+                        </div>
+                    </a>
+                    
+                    <!-- GIS Experts CTA -->
+                    <a href="ICP_Pages/gis_experts/" class="cta-card">
+                        <div class="cta-text">
+                            <h3>GIS Experts</h3>
+                        </div>
+                    </a>
+                    
+                </div>
             </div>
         </div>
     </section>
@@ -564,203 +571,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentIndex = 0;
     
-    // CRITICAL: Function to ensure center node alignment
-    function ensureCenterNodeAlignment() {
-        const centerNode = svg.select('#node-7');
-        if (!centerNode.empty()) {
-            // Check if this is a mobile device using viewport-based detection (following responsive scaling guide)
-            const isMobile = window.innerWidth <= 768; // All devices 768px and below
-            const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets (includes iPad mini)
-            const isMobileDevice = isMobile || isTablet || 
-                                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                                 ('ontouchstart' in window) ||
-                                 ('ontouchstart' in window && window.innerWidth <= 768) || // Touch devices on mobile
-                                 (window.devicePixelRatio > 1 && window.innerWidth <= 768) || // High DPI mobile devices
-                                 (navigator.maxTouchPoints > 0 && window.innerWidth <= 768); // Touch-capable mobile devices
-            
-            let centerX = 277.19; // Default position (works on desktop)
-            
-            // Apply mobile-specific adjustment for all mobile devices
-            if (isMobileDevice) {
-                centerX = 275.0; // Slight adjustment for all mobile devices
-                console.log('Mobile/tablet device detected - applying mobile-specific center node adjustment');
-            }
-            
-            // Force center node to exact position
-            centerNode
-                .attr('cx', centerX)
-                .attr('cy', 106.83)
-                .style('transform', 'none')
-                .style('will-change', 'auto');
-            
-            console.log('Center node alignment enforced');
-        }
-    }
-    
-    // Enhanced mobile detection and fix
-    function forceMobileCenterNodeFix() {
-        const centerNode = svg.select('#node-7');
-        if (!centerNode.empty()) {
-            // More aggressive mobile detection
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                            window.innerWidth <= 768 ||
-                            ('ontouchstart' in window) ||
-                            window.devicePixelRatio > 1; // High DPI screens (mobile)
-            
-            if (isMobile) {
-                console.log('Force applying mobile center node fix');
-                centerNode
-                    .attr('cx', 275.0)
-                    .attr('cy', 106.83)
-                    .style('transform', 'none')
-                    .style('will-change', 'auto');
-                
-                // Also try to force the circle element directly
-                const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
-                if (circleElement) {
-                    circleElement.setAttribute('cx', '275.0');
-                    circleElement.setAttribute('cy', '106.83');
-                }
-            }
-        }
-    }
-    
-    // Function to ensure logo fits and center node stays aligned
-    function ensureLogoFitsAndCenterNodeAligned() {
-        const svgElement = document.querySelector('.clarion-logo-container svg');
-        const centerNode = svg.select('#node-7');
-        
-        if (svgElement && centerNode && !centerNode.empty()) {
-            // Check if logo is overflowing
-            const svgRect = svgElement.getBoundingClientRect();
-            const containerRect = svgElement.parentElement.getBoundingClientRect();
-            
-            // If logo is wider than container, adjust sizing
-            if (svgRect.width > containerRect.width) {
-                console.log('Logo overflow detected - adjusting sizing');
-                svgElement.style.width = '90vw';
-                svgElement.style.maxWidth = 'calc(100vw - 2rem)';
-            }
-            
-            // Ensure center node stays aligned - following responsive scaling guide
-            const isMobile = window.innerWidth <= 768; // All devices 768px and below
-            const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
-            const isMobileDevice = isMobile || isTablet || 
-                                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                                 ('ontouchstart' in window) ||
-                                 ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
-            
-            if (isMobileDevice) {
-                centerNode
-                    .attr('cx', 275.0)
-                    .attr('cy', 106.83)
-                    .style('transform', 'none');
-            }
-        }
-    }
-    
     // Start the breathing animation
     startBreathingAnimation();
     
     // Start the text animation cycle
     setInterval(updateText, 4000);
-    
-    // Ensure center node alignment on load and after a delay
-    ensureCenterNodeAlignment();
-    setTimeout(ensureCenterNodeAlignment, 1000); // Double-check after 1 second
-    setTimeout(ensureCenterNodeAlignment, 3000); // Triple-check after 3 seconds
-    
-    // Additional mobile detection and fix - following responsive scaling guide
-    function detectAndFixMobile() {
-        const isMobile = window.innerWidth <= 768; // All devices 768px and below
-        const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
-        const isMobileDevice = isMobile || isTablet || 
-                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                             ('ontouchstart' in window) ||
-                             window.devicePixelRatio > 1 ||
-                             ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
-        
-        if (isMobileDevice) {
-            console.log('Mobile/tablet device detected - applying mobile-specific fixes');
-            // Apply mobile-specific center node adjustment
-            const centerNode = svg.select('#node-7');
-            if (!centerNode.empty()) {
-                centerNode
-                    .attr('cx', 275.0)
-                    .attr('cy', 106.83)
-                    .style('transform', 'none');
-            }
-            
-            // Also try to force the circle element directly
-            const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
-            if (circleElement) {
-                circleElement.setAttribute('cx', '275.0');
-                circleElement.setAttribute('cy', '106.83');
-            }
-        }
-    }
-    
-    // Run mobile detection after a delay to ensure proper rendering
-    setTimeout(detectAndFixMobile, 500);
-    setTimeout(forceMobileCenterNodeFix, 1000);
-    setTimeout(forceMobileCenterNodeFix, 2000);
-    setTimeout(ensureLogoFitsAndCenterNodeAligned, 1500);
-    setTimeout(ensureLogoFitsAndCenterNodeAligned, 3000);
-    
-    // Production debugging - log what's happening
-    console.log('=== PRODUCTION DEBUG ===');
-    console.log('Viewport width:', window.innerWidth);
-    console.log('Viewport height:', window.innerHeight);
-    console.log('User agent:', navigator.userAgent);
-    console.log('Touch support:', 'ontouchstart' in window);
-    console.log('Device pixel ratio:', window.devicePixelRatio);
-    console.log('Max touch points:', navigator.maxTouchPoints);
-    console.log('Orientation:', window.screen.orientation ? window.screen.orientation.type : 'unknown');
-    
-    // Continuous monitoring for mobile devices - following responsive scaling guide
-    function startMobileMonitoring() {
-        const isMobile = window.innerWidth <= 768; // All devices 768px and below
-        const isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024; // Tablets
-        const isMobileDevice = isMobile || isTablet || 
-                             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                             ('ontouchstart' in window) ||
-                             window.devicePixelRatio > 1 ||
-                             ('ontouchstart' in window && window.innerWidth <= 768); // Touch devices on mobile
-        
-        if (isMobileDevice) {
-            console.log('Starting continuous mobile/tablet monitoring');
-            
-            // Monitor and fix center node position every 2 seconds
-            setInterval(() => {
-                const centerNode = svg.select('#node-7');
-                const circleElement = document.querySelector('.clarion-logo-container svg circle.cls-7');
-                
-                if (centerNode && !centerNode.empty()) {
-                    centerNode
-                        .attr('cx', 275.0)
-                        .attr('cy', 106.83)
-                        .style('transform', 'none');
-                }
-                
-                if (circleElement) {
-                    circleElement.setAttribute('cx', '275.0');
-                    circleElement.setAttribute('cy', '106.83');
-                }
-            }, 2000);
-        }
-    }
-    
-    // Start monitoring after initial setup
-    setTimeout(startMobileMonitoring, 3000);
-    
-    // Test functions for debugging
-    window.toggleBreathing = function() {
-        console.log('Breathing animation is always running with D3.js');
-    };
-    
-    window.testPathUpdate = function() {
-        console.log('Path updates are handled automatically by D3.js animation loop');
-    };
 });
 
 // Mobile menu toggle function

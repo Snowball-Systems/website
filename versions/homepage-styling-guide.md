@@ -101,18 +101,50 @@ These rules are essential for professional appearance and must be maintained:
 .hero-subtitle {
     white-space: nowrap; /* "More Than..." text - single line */
 }
+
+.intelligence-hub-hero .hero-tagline h2 {
+    white-space: nowrap; /* "Graph powered context ecosystem..." - single line */
+}
 ```
 
 ### Text Hierarchy & Spacing
 1. **Main Headline**: "Clarion Is the Brain of Your Utility"
 2. **Subtitle**: "More Than [Rotating Text]" 
-3. **Tagline**: "Where utility data becomes actionable intelligence"
-4. **CTA Button**: "Try the Demo"
+3. **Hero Tagline**: "Graph powered context ecosystem for Water Utility digital transformation"
+4. **Tagline**: "Where utility data becomes actionable intelligence"
+5. **CTA Button**: "Try the Demo"
 
 ### Spacing Optimization Lessons
 - **Tighter spacing improves cohesion**: Reduced from 1.5rem/2rem/3rem to 1rem/1.3rem/2.2rem
 - **Responsive scaling maintains proportions**: All spacing variables scale together
 - **Indent alignment matters**: Subtitle indent reduced to 1.7rem to match other elements
+
+### Hero Tagline Responsive Scaling (NEW)
+The hero tagline "Graph powered context ecosystem for Water Utility digital transformation" now uses CSS custom properties for responsive scaling:
+
+```css
+.intelligence-hub-hero .hero-tagline h2 {
+    /* Base responsive variables */
+    --hero-tagline-font-size: 1.8rem;
+    --hero-tagline-line-height: 1.4;
+    --hero-tagline-letter-spacing: 0.02em;
+    --hero-tagline-padding: 0 2rem;
+    
+    font-size: var(--hero-tagline-font-size);
+    line-height: var(--hero-tagline-line-height);
+    letter-spacing: var(--hero-tagline-letter-spacing);
+    white-space: nowrap; /* CRITICAL: Prevent text wrapping */
+}
+```
+
+**Responsive Breakpoints**:
+- **Mobile (≤768px)**: 1.4rem font, 1.3 line-height, 0.01em letter-spacing
+- **Small Mobile (≤480px)**: 1.2rem font, 1.2 line-height, 0.005em letter-spacing  
+- **Tablet (769px-1024px)**: 1.6rem font, 1.4 line-height, 0.015em letter-spacing
+- **Large (≥1600px)**: 2.2rem font, 1.45 line-height, 0.025em letter-spacing
+- **Very Large (≥1800px)**: 2.6rem font, 1.5 line-height, 0.03em letter-spacing
+- **Ultra-wide (≥2200px)**: 3.5rem font, 1.6 line-height, 0.04em letter-spacing
+- **4K+ (≥2561px)**: 4rem font, 1.65 line-height, 0.045em letter-spacing
 
 ---
 
@@ -228,10 +260,11 @@ These rules are essential for professional appearance and must be maintained:
 ## 🔧 **MAINTENANCE GUIDELINES**
 
 ### Text Content Changes
-1. **Test nowrap behavior**: Ensure headlines stay single-line at ALL breakpoints
+1. **Test nowrap behavior**: Ensure headlines and hero taglines stay single-line at ALL breakpoints
 2. **Verify spacing variables**: Check that all responsive spacing scales properly
 3. **Update rotating text carefully**: Ensure `min-width` accommodates new content
 4. **Maintain indent consistency**: All text should align properly
+5. **Test hero tagline scaling**: Verify responsive font sizes work across all screen sizes
 
 ### Animation Modifications
 1. **Preserve size constraints**: Don't arbitrarily change `min()` values
@@ -256,7 +289,7 @@ These rules are essential for professional appearance and must be maintained:
 ## 📋 **CRITICAL RULES TO NEVER BREAK**
 
 ### ⚠️ **TEXT WRAPPING PREVENTION**
-- **NEVER remove `white-space: nowrap`** from `.hero-headline` or `.hero-subtitle`
+- **NEVER remove `white-space: nowrap`** from `.hero-headline`, `.hero-subtitle`, or `.intelligence-hub-hero .hero-tagline h2`
 - **ALWAYS test text behavior** at all breakpoints before deployment
 - **Headlines must stay single-line** - this is non-negotiable for professional appearance
 
@@ -267,9 +300,10 @@ These rules are essential for professional appearance and must be maintained:
 - **Never change these values** without understanding the full impact
 
 ### ⚠️ **RESPONSIVE SCALING**
-- **Always scale text spacing together**: Headlines, subtitles, taglines, and CTA spacing
+- **Always scale text spacing together**: Headlines, subtitles, hero taglines, taglines, and CTA spacing
 - **Maintain proportional relationships**: Don't change one element without considering others
 - **Test on actual hardware**: Browser resize doesn't show real monitor behavior
+- **Follow CSS custom properties pattern**: Use variables for smooth scaling during window resizing
 
 ### ⚠️ **PERFORMANCE & ACCESSIBILITY**
 - **Keep background effects subtle**: Professional B2B software needs trustworthy appearance
@@ -286,6 +320,7 @@ These rules are essential for professional appearance and must be maintained:
 ✅ Subtle background enhancement for depth  
 ✅ Clean text presentation without masking  
 ✅ Professional single-line headlines  
+✅ Hero tagline responsive scaling across all devices  
 ✅ Excellent performance across devices  
 
 ### Potential Future Enhancements

@@ -1,0 +1,273 @@
+/* ==========================================================================
+   ANIMATION STYLES - Keyframes, Animation Effects, and Animated Components
+   ========================================================================== */
+
+/* Gradient shift animation */
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Text pulse animation */
+@keyframes text-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+/* Core breathe animation */
+@keyframes core-breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* Pulse ring animation */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Node entrance animation */
+@keyframes node-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8) rotate(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Service node entrance animation */
+@keyframes node-entrance-service {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Node float animation */
+@keyframes node-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Primary pulse animation */
+@keyframes primary-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(111, 168, 220, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(111, 168, 220, 0.8), 0 0 40px rgba(111, 168, 220, 0.4);
+    }
+}
+
+/* Secondary glow animation */
+@keyframes secondary-glow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(74, 144, 226, 0.7), 0 0 35px rgba(74, 144, 226, 0.3);
+    }
+}
+
+/* KG label in animation */
+@keyframes kg-label-in {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* KG source glow animation */
+@keyframes kg-source-glow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(111, 168, 220, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(111, 168, 220, 0.8), 0 0 35px rgba(111, 168, 220, 0.4);
+    }
+}
+
+/* KG processor pulse animation */
+@keyframes kg-processor-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.7), 0 0 40px rgba(74, 144, 226, 0.3);
+    }
+}
+
+/* KG output burst animation */
+@keyframes kg-output-burst {
+    0% {
+        box-shadow: 0 0 20px rgba(111, 168, 220, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(111, 168, 220, 0.8), 0 0 60px rgba(111, 168, 220, 0.4);
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(111, 168, 220, 0.6);
+        transform: scale(1);
+    }
+}
+
+/* Subtle grid shift animation */
+@keyframes subtle-grid-shift {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(2px) translateY(1px);
+    }
+}
+
+/* Float up animation */
+@keyframes float-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.6);
+    }
+}
+
+/* Text glow animation */
+@keyframes text-glow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(111, 168, 220, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(111, 168, 220, 0.8), 0 0 30px rgba(111, 168, 220, 0.4);
+    }
+}
+
+/* Node wobble animation */
+@keyframes node-wobble {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(2deg);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+}
+
+/* Animated components */
+.rotating-text {
+    animation: text-pulse 3s ease-in-out infinite;
+}
+
+.intelligence-core {
+    animation: core-breathe 4s ease-in-out infinite;
+}
+
+.core-pulse {
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+.data-node, .service-node {
+    animation: node-float 3s ease-in-out infinite;
+}
+
+.data-node.kg-primary .node-icon {
+    animation: primary-pulse 2s ease-in-out infinite;
+}
+
+.data-node.kg-secondary .node-icon {
+    animation: secondary-glow 2.5s ease-in-out infinite;
+}
+
+.connector.kg-source .connector-node {
+    animation: kg-source-glow 2s ease-in-out infinite;
+}
+
+.connector.kg-processor .connector-node {
+    animation: kg-processor-pulse 2.5s ease-in-out infinite;
+}
+
+.connector.kg-output .connector-node {
+    animation: kg-output-burst 3s ease-in-out infinite;
+}
+
+.grid-overlay {
+    animation: subtle-grid-shift 20s ease-in-out infinite;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+    animation: float-up 6s ease-out infinite;
+}
+
+/* Responsive animation adjustments */
+@media (max-width: 768px) {
+    .rotating-text {
+        animation-duration: 2.5s;
+    }
+    
+    .intelligence-core {
+        animation-duration: 3s;
+    }
+    
+    .data-node, .service-node {
+        animation-duration: 2.5s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+} 

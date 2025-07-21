@@ -331,18 +331,21 @@
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    /* FORCE REMOVE ALL BORDERS */
+    border: none !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
 }
 
 .icp-content .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(66, 165, 245, 0.3);
-    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .icp-content .cta-button.secondary {
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
 }
 

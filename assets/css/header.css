@@ -1,0 +1,188 @@
+/* ==========================================================================
+   HEADER STYLES - Navigation and Header Components
+   ========================================================================== */
+
+/* Main Header Styles */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.header-container {
+    width: 100%;
+    margin: 0;
+    padding: 0 clamp(1rem, 3vw, 4rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    flex: 0 0 auto; /* Don't grow or shrink, stay left */
+    justify-self: flex-start;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 auto; /* Don't grow or shrink, stay right */
+    justify-self: flex-end;
+}
+
+.header-logo .logo-text {
+    font-family: 'Bahnschrift', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #6fa8dc;
+    text-shadow: 0 0 10px rgba(111, 168, 220, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.header-logo .logo-image {
+    height: 40px;
+    width: auto;
+    filter: brightness(1.6) contrast(1.3) saturate(1.2) drop-shadow(0 0 8px rgba(111, 168, 220, 0.8));
+    transition: all 0.3s ease;
+    /* Light blue glow effect to make logo stand out */
+    background: transparent;
+}
+
+.header-logo .logo-image:hover {
+    filter: brightness(1.8) contrast(1.4) saturate(1.3) drop-shadow(0 0 12px rgba(111, 168, 220, 1.0));
+    transform: scale(1.05);
+}
+
+.header-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #6fa8dc;
+    background: rgba(111, 168, 220, 0.1);
+    text-shadow: 0 0 8px rgba(111, 168, 220, 0.6);
+}
+
+.nav-link.demo-link {
+    background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
+}
+
+.nav-link.demo-link:hover {
+    background: linear-gradient(135deg, #5a9bd1, #3a7bc8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4);
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: #6fa8dc;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile responsive header */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 1rem;
+    }
+    
+    .header-right {
+        gap: 0.5rem; /* Reduce gap on mobile */
+    }
+    
+    .header-nav {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .header-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .nav-link.demo-link {
+        margin-top: 1rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .header-logo .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .header-logo .logo-image {
+        height: 35px; /* Slightly smaller on mobile */
+    }
+} 

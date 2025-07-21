@@ -1,0 +1,879 @@
+/* ==========================================================================
+   HERO STYLES - Hero Section, Logo, and Hero Text
+   ========================================================================== */
+
+/* Main hero container */
+.intelligence-hub-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Start from top for better control */
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    overflow: hidden;
+    padding: 0; /* Remove padding - let CSS handle spacing */
+    z-index: 1; /* Ensure content appears above background */
+}
+
+/* Logo container */
+.clarion-hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center logo in its space */
+    align-items: center;
+    flex: 2; /* Takes 2/3 of available space */
+    padding: 2rem 1rem; /* More top/bottom padding for safety */
+    gap: 0;
+    margin: 0;
+    min-height: 0; /* Allow shrinking */
+    width: 100%;
+    /* Start after header completely */
+    position: relative;
+    top: 80px; /* Push entire container down past header */
+    height: calc(100vh - 160px); /* Available height minus header and buffer */
+}
+
+.clarion-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: visible !important;
+    margin: 0;
+    flex: 1; /* Take available space in logo area */
+    min-height: 0; /* Allow shrinking */
+    width: 100%;
+    height: 100%; /* Use full height of container */
+}
+
+.clarion-logo-container svg {
+    /* Maximum size within the allocated container space */
+    width: min(90vw, 100%); /* Use most of viewport width */
+    height: min(calc(100vh - 240px), 100%); /* Reserve space for header + CTAs + buffers */
+    max-width: 100%;
+    max-height: 100%;
+    
+    /* Maintain aspect ratio and fit within container */
+    object-fit: contain;
+    
+    /* Visual effects */
+    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4)) !important;
+    transform-origin: center center !important;
+    overflow: visible !important; /* Ensure glow effects are not clipped */
+    margin: 0 auto !important; /* Center horizontally for desktop */
+    display: block !important; /* Ensure block display for proper positioning */
+    
+    /* Scale for optimal size within safe boundaries */
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: scale(1.3) !important; /* Slightly reduced scale for safety */
+    transform-origin: center center !important;
+}
+
+/* Hero content container */
+.hero-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to top-align all content */
+    align-items: center;
+    gap: 1.2vh; /* Reduced from 2vh to bring elements closer together */
+    max-width: 95vw;
+    text-align: center;
+    padding: 2vh 0 0 0; /* Add top padding to prevent content from being too close to edge */
+    margin: 0;
+    flex: 1; /* Takes 1/3 of available space */
+    min-height: 0; /* Allow shrinking */
+    width: 100%;
+}
+
+/* Hero tagline */
+.intelligence-hub-hero .hero-tagline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    max-width: 95vw;
+    text-align: center;
+}
+
+.intelligence-hub-hero .hero-tagline h2 {
+    color: #e2e8f0;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    text-align: center;
+    opacity: 0.95;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+}
+
+/* Hero subtitle - the "designed for water utility:" text */
+.intelligence-hub-hero .hero-subtitle {
+    margin: 0.5vh 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+.intelligence-hub-hero .hero-subtitle span {
+    color: #cbd5e1;
+    font-size: clamp(0.8rem, 1.8vw, 1.2rem);
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+/* Purpose Built Text styles removed - now using hero-subtitle integrated with hero content */
+
+/* ICP CTAs */
+.icp-ctas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    max-width: 95vw;
+    margin-top: -0.3vh; /* Slight negative margin to pull closer */
+}
+
+.cta-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem; /* Increased for better visual breathing room */
+    max-width: 600px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem; /* Increased horizontal padding from 1.2rem to 1.5rem for better text spacing */
+    background: rgba(255, 255, 255, 0.03); /* Much more subtle background */
+    backdrop-filter: blur(5px); /* Reduced blur for subtlety */
+    border-radius: 6px; /* Smaller radius for cleaner look */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Much more subtle border */
+    text-decoration: none;
+    transition: all 0.4s ease; /* Slower, gentler transition */
+    min-height: 50px;
+    /* CONSISTENT SIZING - ALL BUTTONS SAME WIDTH */
+    width: 180px; /* Fixed width ensures all buttons are identical size */
+    max-width: 180px; /* Prevent expansion */
+    min-width: 180px; /* Prevent shrinking */
+    position: relative; /* For pseudo-element positioning */
+    overflow: hidden; /* Hide overflow for subtle effects */
+    /* SLEEK NO-WRAP REQUIREMENT */
+    white-space: nowrap; /* Prevent text wrapping for sleek appearance */
+    /* SOFT NUDGE STYLING */
+    opacity: 0.85; /* Slightly transparent for subtle presence */
+    /* ENTICING NAVIGATION CUES */
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.02) 0%, 
+        rgba(255, 255, 255, 0.04) 50%, 
+        rgba(255, 255, 255, 0.02) 100%); /* Subtle gradient for depth */
+    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0); /* Prepare for glow effect */
+    animation: gentle-pulse 4s ease-in-out infinite; /* Gentle breathing animation */
+}
+
+/* Subtle breathing animation to draw attention */
+@keyframes gentle-pulse {
+    0%, 100% { 
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.02) 0%, 
+            rgba(255, 255, 255, 0.04) 50%, 
+            rgba(255, 255, 255, 0.02) 100%);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    50% { 
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.04) 0%, 
+            rgba(255, 255, 255, 0.06) 50%, 
+            rgba(255, 255, 255, 0.04) 100%);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+}
+
+/* Forward-movement indicator */
+.cta-card::after {
+    content: '→';
+    position: absolute;
+    right: 0.8rem;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.4s ease;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.cta-card:hover {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.12) 50%, 
+        rgba(255, 255, 255, 0.08) 100%); /* Enhanced gradient on hover */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* More visible border */
+    opacity: 1; /* Full opacity on hover */
+    box-shadow: 0 0 20px 0 rgba(74, 144, 226, 0.1); /* Subtle glow effect */
+    transform: translateY(-1px); /* Very subtle lift for feedback */
+    animation: none; /* Stop breathing animation on hover */
+}
+
+/* Reveal navigation arrow on hover */
+.cta-card:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Adjust text positioning to accommodate arrow */
+.cta-card:hover .cta-text,
+.cta-card:hover h3 {
+    transform: translateX(-8px); /* Subtle shift to make room for arrow */
+    color: rgba(255, 255, 255, 0.95); /* Slightly brighter on hover */
+    letter-spacing: 1.0px; /* Enhanced spacing for elegant hover effect */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); /* Enhanced depth on hover */
+    transition: all 0.4s ease;
+}
+
+.cta-card .cta-text {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9); /* Slightly muted text */
+    transition: transform 0.4s ease; /* Smooth text movement */
+}
+
+.cta-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; /* Slightly smaller for less prominence */
+    font-weight: 400; /* Much lighter weight for "soft nudge" feel */
+    font-style: italic; /* Light italic for sophisticated elegance */
+    color: rgba(255, 255, 255, 0.9); /* Slightly muted for subtlety */
+    margin: 0;
+    line-height: 1.3; /* Slightly more relaxed line height */
+    /* ENHANCED TEXT STYLING */
+    letter-spacing: 0.8px; /* Increased spacing for more refined look */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Subtle depth without aggression */
+    /* SLEEK NO-WRAP REQUIREMENT */
+    white-space: nowrap; /* Ensure text stays on single line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+    transition: all 0.4s ease; /* Smooth transitions for all properties */
+}
+
+/* Hero background */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1; /* Behind all content */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+}
+
+/* Subtle animated grid overlay */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.4;
+    animation: subtle-grid-shift 20s ease-in-out infinite;
+}
+
+/* Minimal floating particles for atmospheric depth */
+.floating-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(66, 165, 245, 0.1) 0%, transparent 70%);
+    animation: float-up 15s linear infinite;
+}
+
+.floating-particles::before {
+    width: 120px;
+    height: 120px;
+    left: 10%;
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+.floating-particles::after {
+    width: 80px;
+    height: 80px;
+    right: 15%;
+    animation-delay: -10s;
+    animation-duration: 25s;
+    background: radial-gradient(circle, rgba(105, 240, 174, 0.08) 0%, transparent 70%);
+}
+
+/* Subtle layered gradients for depth */
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(66, 165, 245, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(105, 240, 174, 0.02) 0%, transparent 50%),
+        linear-gradient(180deg, transparent 0%, rgba(15, 20, 25, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Desktop responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content-container {
+        gap: 1vh; /* Reduced from 2vh for closer spacing */
+        padding: 1.5vh 0 0 0; /* Appropriate top padding for tablet */
+    }
+    
+    .clarion-logo-container {
+        --logo-max-width: 85vw !important;
+        --logo-max-height: 65vh !important; /* Reduced from 75vh */
+        padding: 1rem 2rem 2rem 2rem !important; /* Reduced padding */
+    }
+    
+    .clarion-logo-container svg {
+        width: 65vw !important; /* Reduced from 75vw */
+        max-width: 500px !important; /* Reduced from 600px */
+        max-height: 375px !important; /* Reduced from 450px */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.4rem;
+    }
+    
+    .cta-grid {
+        gap: 4.2rem; /* Increased for better visual breathing room */
+        max-width: 500px;
+    }
+    
+    .cta-card {
+        padding: 0.75rem 1.4rem; /* Increased horizontal padding for tablet */
+        opacity: 0.8; /* Slightly more subtle on tablet */
+        animation: gentle-pulse 4.5s ease-in-out infinite; /* Slightly slower pulse on tablet */
+        /* TABLET CONSISTENT SIZING */
+        width: 170px; /* Slightly smaller for tablet */
+        max-width: 170px;
+        min-width: 170px;
+    }
+    
+    /* Hero subtitle - tablet styling */
+    .intelligence-hub-hero .hero-subtitle span {
+        /* Removed fixed font-size to allow clamp() function to work responsively */
+        color: rgba(203, 213, 225, 0.9); /* Match hero subtitle color */
+    }
+    
+    .cta-card h3 {
+        font-size: 0.9rem; /* Slightly larger for tablet readability */
+        font-weight: 400; /* Maintain light weight */
+        white-space: nowrap; /* Maintain no-wrap across breakpoints */
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero-content-container {
+        gap: 1.2vh; /* Reduced from 2vh for closer spacing */
+        padding: 2vh 0 0 0; /* Standard top padding for desktop */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-grid {
+        gap: 5.2rem; /* Increased for better visual breathing room */
+        max-width: 700px;
+    }
+    
+    .cta-card {
+        padding: 0.9rem 1.6rem; /* Increased horizontal padding for desktop */
+        min-height: 55px;
+        white-space: nowrap; /* Maintain no-wrap */
+        opacity: 0.85; /* Consistent subtle presence */
+        animation: gentle-pulse 4s ease-in-out infinite; /* Standard pulse timing */
+        /* DESKTOP CONSISTENT SIZING */
+        width: 180px; /* Standard desktop width */
+        max-width: 180px;
+        min-width: 180px;
+    }
+    
+    /* Hero subtitle - desktop styling */
+    .intelligence-hub-hero .hero-subtitle span {
+        /* Removed fixed font-size to allow clamp() function to work responsively */
+        color: rgba(203, 213, 225, 0.9); /* Consistent hero subtitle color */
+    }
+    
+    .cta-card h3 {
+        font-size: 0.95rem; /* Slightly larger for desktop */
+        font-weight: 400; /* Keep light weight for soft feel */
+        white-space: nowrap; /* Maintain no-wrap */
+    }
+}
+
+@media (min-width: 1921px) {
+    /* Larger screens need more header clearance */
+    .clarion-hero-content {
+        top: 120px !important; /* Extra clearance to prevent logo overlap with header */
+        height: calc(100vh - 220px) !important; /* Adjust container height accordingly */
+        padding: 3rem 1rem !important; /* More top padding */
+    }
+    
+    .clarion-logo-container svg {
+        transform: scale(1.2) !important; /* Reduced scale for large screens */
+        height: min(calc(100vh - 300px), 100%) !important; /* More conservative height */
+    }
+    
+    .hero-content-container {
+        gap: 1.5vh; /* Reduced from 2.5vh for closer spacing */
+        padding: 2.5vh 0 0 0; /* Increased top padding for large screens */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 2.2rem !important;
+    }
+    
+    .cta-grid {
+        gap: 6rem !important; /* Increased for premium visual breathing room */
+        max-width: 900px !important;
+    }
+    
+    .cta-card {
+        padding: 1rem 1.8rem !important; /* Increased horizontal padding for large screens */
+        min-height: 65px !important;
+        white-space: nowrap !important; /* Force no-wrap on large screens */
+        opacity: 0.85 !important; /* Maintain soft presence */
+        animation: gentle-pulse 3.8s ease-in-out infinite !important; /* Slightly faster on large screens */
+        /* LARGE SCREEN CONSISTENT SIZING */
+        width: 200px !important; /* Slightly larger for large screens */
+        max-width: 200px !important;
+        min-width: 200px !important;
+    }
+    
+    /* Purpose built text - large screen styling */
+    /* Hero subtitle - large screen styling */
+    .intelligence-hub-hero .hero-subtitle span {
+        /* Removed fixed font-size to allow clamp() function to work responsively */
+        color: rgba(203, 213, 225, 0.9) !important; /* Consistent hero subtitle color */
+    }
+    
+    .icp-ctas {
+        margin-top: -0.4vh !important; /* More negative margin for large screens */
+    }
+    
+    /* Large screen arrow positioning for CTA cards */
+    .cta-card::after {
+        right: 1rem !important; /* More space on large screens */
+        font-size: 1rem !important; /* Slightly larger arrow */
+    }
+    
+    .cta-card h3 {
+        font-size: 1.1rem !important; /* Proportional sizing */
+        font-weight: 400 !important; /* Keep light weight */
+        white-space: nowrap !important; /* Force no-wrap on large screens */
+    }
+}
+
+@media (min-width: 2561px) {
+    .hero-content-container {
+        gap: 2vh; /* Slightly larger gap for ultra-large screens */
+        padding: 3vh 0 0 0; /* More top padding for ultra-large */
+    }
+    
+    .clarion-logo-container {
+        --logo-max-width: 90vw !important; /* Increased from 90vw */
+        --logo-max-height: 65vh !important; /* Increased from 70vh */
+        padding: 1.5rem 2.5rem 2.5rem 2.5rem !important; /* Increased padding */
+    }
+    
+    .clarion-logo-container svg {
+        width: 75vw !important; /* Increased from 65vw */
+        max-width: 1600px !important; /* Increased from 1200px */
+        max-height: 1200px !important; /* Increased from 900px */
+        transform: scale(1.15) !important; /* Increased scaling */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 3.5rem !important; /* Much larger text to match logo scale */
+    }
+    
+    .cta-grid {
+        gap: 6rem !important; /* Increased from 5rem for ultra-premium spacing */
+        max-width: 1400px !important; /* Increased from 800px */
+    }
+    
+    .cta-card {
+        padding: 1.2rem 2.2rem !important; /* Increased horizontal padding for ultra-large */
+        min-height: 80px !important; /* Taller buttons */
+        white-space: nowrap !important; /* Force no-wrap on ultra-large screens */
+        opacity: 0.85 !important; /* Consistent soft presence */
+        animation: gentle-pulse 4s ease-in-out infinite !important;
+        /* ULTRA-LARGE CONSISTENT SIZING */
+        width: 220px !important; /* Larger for ultra-large screens */
+        max-width: 220px !important;
+        min-width: 220px !important;
+    }
+    
+    /* Hero subtitle - ultra-large screen styling */
+    .intelligence-hub-hero .hero-subtitle span {
+        /* Removed fixed font-size to allow clamp() function to work responsively */
+        color: rgba(203, 213, 225, 0.9) !important; /* Consistent hero subtitle color */
+    }
+    
+    .cta-card h3 {
+        font-size: 1.3rem !important; /* Proportional but not overwhelming */
+        font-weight: 400 !important; /* Maintain light weight */
+        white-space: nowrap !important; /* Force no-wrap on ultra-large screens */
+    }
+}
+
+/* 2560px screen optimization (like 2560x1271) */
+@media (min-width: 2560px) and (max-width: 2560px) {
+    /* Even more conservative approach for 2560px screens */
+    .clarion-hero-content {
+        top: 120px !important; /* Maximum clearance for 2560px screens */
+        height: calc(100vh - 240px) !important; /* More conservative container height */
+        padding: 4rem 1rem !important; /* Maximum top padding */
+    }
+    
+    .clarion-logo-container svg {
+        transform: scale(1.1) !important; /* Most conservative scale for 2560px */
+        height: min(calc(100vh - 360px), 100%) !important; /* Very conservative height */
+        width: min(85vw, 100%) !important; /* Slightly reduced width */
+    }
+    
+    .hero-content-container {
+        gap: 3vh;
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 2.8rem !important; /* Large text for 2560px */
+    }
+    
+    .cta-grid {
+        gap: 6.5rem !important; /* Increased for premium visual breathing room */
+        max-width: 1100px !important;
+    }
+    
+    .cta-card {
+        padding: 1.1rem 2rem !important; /* Increased horizontal padding for 2560px */
+        min-height: 75px !important;
+        white-space: nowrap !important; /* Force no-wrap */
+        opacity: 0.85 !important; /* Consistent soft presence */
+        animation: gentle-pulse 4s ease-in-out infinite !important;
+        /* 2560PX CONSISTENT SIZING */
+        width: 210px !important; /* Appropriate sizing for 2560px */
+        max-width: 210px !important;
+        min-width: 210px !important;
+    }
+    
+    /* Hero subtitle - 2560px styling */
+    .intelligence-hub-hero .hero-subtitle span {
+        /* Removed fixed font-size to allow clamp() function to work responsively */
+        color: rgba(203, 213, 225, 0.9) !important; /* Consistent hero subtitle color */
+    }
+    
+    .cta-card h3 {
+        font-size: 1.2rem !important; /* Appropriate sizing for 2560px */
+        font-weight: 400 !important; /* Maintain light weight */
+        white-space: nowrap !important; /* Force no-wrap */
+    }
+}
+
+/* ==========================================================================
+   CLEAN MOBILE HERO LAYOUT - 1/3, 1/3, 1/3 DISTRIBUTION
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Main hero container - full viewport with flexbox */
+  .intelligence-hub-hero {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+  
+  /* Force logo container to take only 1/3 of space */
+  .clarion-hero-content {
+    flex: 1 1 0 !important;
+    height: auto !important;
+    max-height: 33.33vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* Changed from center to flex-start */
+    align-items: center !important;
+    padding: 4vh 0 0 0 !important; /* Increased from 3vh to 4vh for mobile */
+    margin: 0 !important;
+    gap: 0 !important;
+    order: 1 !important;
+  }
+  
+  /* Make hero-content-container invisible to flexbox so its children become direct flex children */
+  .hero-content-container {
+    display: contents !important;
+  }
+  
+  /* Force hero tagline to take middle 1/3 */
+  .hero-tagline {
+    flex: 1 1 0 !important;
+    height: auto !important;
+    max-height: 33.33vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Reverted back to center for mobile */
+    align-items: center !important;
+    padding: 0 !important; /* Remove top padding for mobile centering */
+    margin: 0 !important;
+    gap: 0 !important;
+    order: 2 !important;
+  }
+  
+  /* Force CTAs to take bottom 1/3 */
+  .icp-ctas {
+    flex: 1 1 0 !important;
+    height: auto !important;
+    max-height: 33.33vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* Move buttons to top of their container */
+    align-items: center !important;
+    padding: 0 !important; /* Remove top padding for mobile centering */
+    margin: 0 !important;
+    order: 3 !important;
+  }
+  
+  /* Constrain logo size */
+  .clarion-logo-container {
+    --logo-max-width: 98vw !important;
+    --logo-max-height: 75vh !important;
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+    overflow: visible !important;
+    margin: 0 !important;
+  }
+  
+  .clarion-logo-container svg {
+    width: 90vw !important; /* Increased for better mobile presence */
+    height: auto !important;
+    max-width: 95vw !important; /* Allow wider on mobile */
+    max-height: 30vh !important; /* Constrain height to fit in 1/3 section */
+    margin: 0 auto !important;
+    transform: scale(1.1) !important; /* Slight scaling for better mobile impact */
+    object-fit: contain !important; /* Ensure it fits within constraints */
+  }
+  
+  /* Hero text styling - with mobile override for transform */
+  .hero-tagline {
+    max-width: 90vw !important; /* Slightly reduced for better readability */
+    text-align: center !important;
+    padding: 0 1rem !important; /* Add horizontal padding */
+    transform: translateY(0) !important; /* No vertical movement to allow CTAs to get closer */
+  }
+  
+  .hero-tagline h2 {
+    font-size: 1.1rem !important; /* Slightly larger for better readability */
+    line-height: 1.3 !important; /* Better line spacing */
+    margin: 0 !important;
+    padding: 0.5rem 0 !important; /* Add vertical padding */
+    font-weight: 500 !important; /* Slightly lighter weight for mobile */
+    white-space: normal !important; /* Allow wrapping on mobile */
+  }
+  
+  /* Hero subtitle - mobile styling */
+  .intelligence-hub-hero .hero-subtitle {
+    margin: 0.3vh 0 !important; /* Proper spacing for mobile */
+  }
+  
+  .intelligence-hub-hero .hero-subtitle span {
+    font-size: 0.85rem !important; /* Increased from 0.7rem for mobile */
+    color: rgba(203, 213, 225, 0.9) !important; /* Consistent color for mobile */
+  }
+  
+  /* CTA styling */
+  .cta-grid {
+    flex-direction: column !important;
+    gap: 1.5rem !important; /* Increased gap for better touch targets and visual separation */
+    max-width: 280px !important; /* Slightly wider for better readability */
+    padding: 0 1rem !important; /* Add horizontal padding */
+  }
+  
+  .icp-ctas {
+    margin-top: -2vh !important; /* Increased negative margin to bring CTAs closer to hero text on mobile */
+  }
+  
+  .cta-card {
+    max-width: 240px !important; /* Wider buttons for better touch targets */
+    padding: 1rem 1.5rem !important; /* Increased horizontal padding for mobile text spacing */
+    min-height: 48px !important; /* Minimum touch target size */
+    border-radius: 6px !important; /* Consistent with desktop minimal style */
+    box-shadow: none !important; /* Remove shadow for clean minimal feel */
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.04) 0%, 
+        rgba(255, 255, 255, 0.06) 50%, 
+        rgba(255, 255, 255, 0.04) 100%) !important; /* Enhanced mobile gradient */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* More visible border for touch clarity */
+    white-space: nowrap !important; /* Maintain sleek no-wrap on mobile */
+    opacity: 0.9 !important; /* Slightly more visible on mobile for usability */
+    animation: gentle-pulse 5s ease-in-out infinite !important; /* Slower pulse on mobile */
+    /* MOBILE CONSISTENT SIZING */
+    width: 240px !important; /* Fixed width for mobile touch targets */
+    max-width: 240px !important;
+    min-width: 240px !important;
+  }
+  
+  /* Mobile navigation arrow - always visible for touch clarity */
+  .cta-card::after {
+    opacity: 0.4 !important; /* Subtle but visible arrow on mobile */
+    right: 0.6rem !important; /* Closer positioning for mobile */
+  }
+  
+  .cta-card:hover,
+  .cta-card:active {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.14) 50%, 
+        rgba(255, 255, 255, 0.1) 100%) !important; /* Enhanced mobile interaction */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Clear interaction feedback */
+    opacity: 1 !important; /* Full opacity on mobile interaction */
+    transform: translateY(-1px) !important; /* Subtle touch feedback */
+    animation: none !important; /* Stop animation during interaction */
+  }
+  
+  .cta-card:hover::after,
+  .cta-card:active::after {
+    opacity: 0.8 !important; /* More visible arrow on mobile interaction */
+  }
+  
+  .cta-card h3 {
+    font-size: 0.85rem !important; /* Readable but not prominent */
+    font-weight: 400 !important; /* Light weight for soft feel */
+    color: rgba(255, 255, 255, 0.95) !important; /* Slightly more contrast for mobile readability */
+    white-space: nowrap !important; /* Ensure text doesn't wrap on mobile */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* Handle overflow gracefully */
+    transition: transform 0.4s ease !important; /* Smooth transitions on mobile */
+  }
+}
+
+/* Mobile landscape - keep text from wrapping if needed */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-tagline h2 {
+    white-space: nowrap !important; /* Prevent wrapping in landscape */
+    font-size: 1rem !important; /* Slightly smaller for landscape */
+  }
+} 
+
+/* Laptop screen optimization (1536x695 and similar) */
+@media (min-width: 1025px) and (max-width: 1920px) and (max-height: 800px) {
+    .clarion-hero-content {
+        margin-top: 2vh; /* Reduced top margin for shorter screens */
+        gap: 0.5vh; /* Minimal gap between logo and content */
+    }
+    
+    .clarion-logo-container {
+        --logo-max-width: 65vw !important;
+        --logo-max-height: 35vh !important; /* Even smaller for laptop screens */
+        padding: 0.5rem 1rem 1rem 1rem !important;
+    }
+    
+    .clarion-logo-container svg {
+        width: 40vw !important; /* Smaller for laptop screens */
+        max-width: 550px !important;
+        max-height: 400px !important;
+    }
+    
+    .hero-content-container {
+        gap: 0.5vh; /* Minimal gap */
+        margin-top: 0.5vh; /* Very small gap from logo */
+    }
+    
+    .intelligence-hub-hero .hero-tagline h2 {
+        font-size: 1.4rem; /* Slightly smaller text */
+    }
+    
+    .cta-grid {
+        gap: 2.5rem; /* Increased gap between buttons for better spacing */
+        max-width: 550px;
+    }
+    
+    .cta-card {
+        white-space: nowrap; /* Maintain no-wrap on laptop screens */
+        padding: 0.85rem 1.5rem; /* Increased horizontal padding for laptop */
+        opacity: 0.85; /* Consistent soft presence */
+        /* LAPTOP CONSISTENT SIZING */
+        width: 175px; /* Appropriate laptop width */
+        max-width: 175px;
+        min-width: 175px;
+    }
+    
+    .cta-card h3 {
+        font-size: 0.9rem; /* Appropriate laptop sizing */
+        font-weight: 400; /* Maintain light weight */
+        white-space: nowrap; /* Ensure text doesn't wrap */
+    }
+}
+
+/* ==========================================================================
+   ROTATING TEXT RESPONSIVE SIZING - Enhanced with 5% size reduction
+   ========================================================================== */
+
+/* Subtitle text (rotating phrases) - Base styling */
+.clarion-logo-container svg .cls-22 {
+    fill: #60a5fa !important;
+    animation: text-glow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+    transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes text-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(96, 165, 250, 0.9)) drop-shadow(0 0 25px rgba(96, 165, 250, 0.4));
+    }
+}
+
+/* Responsive font sizing for rotating text - 5% smaller for better node containment */
+@media (max-width: 768px) {
+    .clarion-logo-container svg .cls-22 {
+        font-size: 13.3px !important; /* 14px reduced by 5% */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .clarion-logo-container svg .cls-22 {
+        font-size: 14.25px !important; /* 15px reduced by 5% */
+    }
+}
+
+@media (min-width: 1025px) {
+    .clarion-logo-container svg .cls-22 {
+        font-size: 16.15px !important; /* 17px reduced by 5% */
+    }
+} 

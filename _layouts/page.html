@@ -1,9 +1,80 @@
----
-layout: default
----
-<article class="page">
-  <h2>{{ page.title }}</h2>
-  <div class="page-content">
-    {{ content }}
-  </div>
-</article> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <!-- CSS Modules - Load in order of dependency -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/hero.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/utilities.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="/">
+                    <img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems" class="logo-image">
+                </a>
+            </div>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
+                    <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
+                    <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+                    <a href="/ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-main">
+        <article class="page">
+            <div class="page-content">
+                {{ content }}
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+                toggle.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

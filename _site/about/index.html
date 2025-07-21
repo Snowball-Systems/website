@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Clarion Context Engine</title>
+    <!-- CSS Modules - Load in order of dependency -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/hero.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/utilities.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="/">
+                    <img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems" class="logo-image">
+                </a>
+            </div>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
+                    <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
+                    <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+                    <a href="/ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-main">
+        <article class="page">
+            <div class="page-content">
+                <h1 id="about-snowball-systems">About Snowball Systems</h1>
+
+<div class="card" style="margin-bottom: 2rem; padding: 2rem;">
+    <h2 style="margin-top: 0; color: #6fa8dc;">Our Mission</h2>
+    <p style="margin-bottom: 0;">Snowball Systems, LLC is a consulting and software development firm focused on helping small and mid-sized water utilities preserve &amp; leverage institutional knowledge to modernize operations and enhance collaborative decision-making.</p>
+</div>
+
+<h2 id="who-we-are">Who We Are</h2>
+
+<p>We combine engineering insight, intuitive software, and integrated data architecture to support utilities in their transition to smarter, more resilient systems. Our team includes licensed professional engineers, GIS experts, and software developers with experience across utility infrastructure planning, knowledge management, and AI system design.</p>
+
+<h2 id="the-challenge-we-solve">The Challenge We Solve</h2>
+
+<p>We are particularly focused on solving a growing challenge for water districts: <strong>the risk of losing operational expertise due to retirements, siloed information, and aging digital infrastructure.</strong></p>
+
+<p>Too many utilities face the reality of critical knowledge walking out the door with retiring employees, while important operational data remains trapped in paper documents, isolated spreadsheets, and the memories of senior operators.</p>
+
+<h2 id="our-approach">Our Approach</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+    <div class="card">
+        <h3 style="margin-top: 0; color: #6fa8dc;">Founder-Led Partnership</h3>
+        <p>As an early-stage, founder-led company, we bring focused attention, transparency, and a highly collaborative approach.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="margin-top: 0; color: #6fa8dc;">Practical Solutions</h3>
+        <p>Our commitment is to deliver practical, durable solutions that align directly with your operational goals — with minimal overhead, rapid iteration, and long-term maintainability.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="margin-top: 0; color: #6fa8dc;">Trusted Partner</h3>
+        <p style="margin-bottom: 0;">We operate as a trusted partner — not just a vendor — and specialize in modular, user-centered software that integrates cleanly with a utility's existing investments.</p>
+    </div>
+</div>
+
+<h2 id="our-philosophy">Our Philosophy</h2>
+
+<p>Our approach is <strong>iterative, open, and grounded in utility operations</strong>. We believe in building on technologies already in use while offering a forward-looking foundation for digital transformation.</p>
+
+<p>We don’t believe in replacing what works — we believe in connecting it, enhancing it, and making it smarter.</p>
+
+<h2 id="clarion-our-flagship-platform">Clarion: Our Flagship Platform</h2>
+
+<div class="card" style="background: linear-gradient(135deg, rgba(111, 168, 220, 0.1), rgba(74, 144, 226, 0.1)); border: 1px solid rgba(111, 168, 220, 0.3); padding: 2rem;">
+    <h3 style="margin-top: 0; color: #6fa8dc;">Built for Real Utilities</h3>
+    <p>Clarion, our flagship platform, reflects this philosophy: it builds on technologies already in use (ArcGIS Pro, FlexNet AMI), while offering a forward-looking foundation for digital transformation.</p>
+    
+    <p>Rather than forcing utilities to abandon their existing systems, Clarion creates intelligent connections between them, turning isolated data into actionable insights.</p>
+    
+    <div style="margin-top: 1.5rem; margin-bottom: 0;">
+        <a href="/product-overview/" class="cta-button">Learn More About Clarion</a>
+    </div>
+</div>
+
+<h2 id="ready-to-transform-your-operations">Ready to Transform Your Operations?</h2>
+
+<p>Whether you’re dealing with knowledge retention challenges, data silos, or the need to modernize aging infrastructure systems, we’re here to help you build a more resilient, intelligent utility operation.</p>
+
+<div style="text-align: center; margin-top: 2rem;">
+    <a href="/ICP_Pages/managers/" class="primary-cta">Get Started Today</a>
+</div>
+
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Clarion Context Engine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+                toggle.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

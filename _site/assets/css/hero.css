@@ -145,8 +145,8 @@
 .cta-grid {
     display: flex;
     flex-direction: row;
-    gap: 5rem; /* Increased for better visual breathing room */
-    max-width: 600px;
+    gap: 10rem; /* Doubled spacing for spacebar-style buttons */
+    max-width: 1200px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -156,74 +156,83 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 1.5rem; /* Increased horizontal padding from 1.2rem to 1.5rem for better text spacing */
-    background: rgba(255, 255, 255, 0.03); /* Much more subtle background */
-    backdrop-filter: blur(5px); /* Reduced blur for subtlety */
-    border-radius: 6px; /* Smaller radius for cleaner look */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Much more subtle border */
+    padding: 0.8rem 1.5rem;
+    /* BRAND GUIDELINE COLORS AND EFFECTS */
+    background: rgba(255, 255, 255, 0.03); /* --glass-subtle from brand guidelines */
+    backdrop-filter: blur(10px); /* Brand-standard glass morphism */
+    border-radius: 8px; /* Slightly rounded for modern feel */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* --border-subtle from brand guidelines */
     text-decoration: none;
-    transition: all 0.4s ease; /* Slower, gentler transition */
+    transition: all 0.3s ease; /* Brand-standard transition timing */
     min-height: 50px;
-    /* CONSISTENT SIZING - ALL BUTTONS SAME WIDTH */
-    width: 180px; /* Fixed width ensures all buttons are identical size */
-    max-width: 180px; /* Prevent expansion */
-    min-width: 180px; /* Prevent shrinking */
-    position: relative; /* For pseudo-element positioning */
-    overflow: hidden; /* Hide overflow for subtle effects */
-    /* SLEEK NO-WRAP REQUIREMENT */
-    white-space: nowrap; /* Prevent text wrapping for sleek appearance */
-    /* SOFT NUDGE STYLING */
-    opacity: 0.85; /* Slightly transparent for subtle presence */
-    /* ENTICING NAVIGATION CUES */
+    /* CONSISTENT SIZING - ALL BUTTONS SAME WIDTH - SPACEBAR STYLE */
+    width: 260px;
+    max-width: 260px;
+    min-width: 260px;
+    position: relative;
+    overflow: hidden;
+    /* BRAND TYPOGRAPHY */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: rgba(255, 255, 255, 0.9); /* --text-muted from brand guidelines */
+    white-space: nowrap;
+    /* SOFT NUDGE STYLING - BRAND COMPLIANT */
+    opacity: 0.85;
+    font-weight: 400; /* Brand-preferred lighter weight */
+    /* SUBTLE BRAND ENHANCEMENT */
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.02) 0%, 
         rgba(255, 255, 255, 0.04) 50%, 
-        rgba(255, 255, 255, 0.02) 100%); /* Subtle gradient for depth */
-    box-shadow: 0 0 0 0 rgba(74, 144, 226, 0); /* Prepare for glow effect */
-    animation: gentle-pulse 4s ease-in-out infinite; /* Gentle breathing animation */
+        rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+    animation: gentle-pulse 4s ease-in-out infinite;
 }
 
-/* Subtle breathing animation to draw attention */
+/* Brand-compliant breathing animation */
 @keyframes gentle-pulse {
     0%, 100% { 
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.02) 0%, 
             rgba(255, 255, 255, 0.04) 50%, 
             rgba(255, 255, 255, 0.02) 100%);
-        border-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.08); /* --border-subtle */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     50% { 
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.04) 0%, 
             rgba(255, 255, 255, 0.06) 50%, 
             rgba(255, 255, 255, 0.04) 100%);
-        border-color: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.1); /* --border-light */
+        box-shadow: 0 4px 12px rgba(111, 168, 220, 0.05); /* Subtle brand glow */
     }
 }
 
-/* Forward-movement indicator */
+/* Brand-compliant navigation arrow */
 .cta-card::after {
     content: '→';
     position: absolute;
     right: 0.8rem;
     opacity: 0;
     transform: translateX(-5px);
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6); /* --text-subtle */
     pointer-events: none;
 }
 
 .cta-card:hover {
+    /* BRAND GUIDELINE HOVER STATES */
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.08) 0%, 
         rgba(255, 255, 255, 0.12) 50%, 
-        rgba(255, 255, 255, 0.08) 100%); /* Enhanced gradient on hover */
-    border: 1px solid rgba(255, 255, 255, 0.18); /* More visible border */
-    opacity: 1; /* Full opacity on hover */
-    box-shadow: 0 0 20px 0 rgba(74, 144, 226, 0.1); /* Subtle glow effect */
-    transform: translateY(-1px); /* Very subtle lift for feedback */
-    animation: none; /* Stop breathing animation on hover */
+        rgba(255, 255, 255, 0.08) 100%); /* --glass-light enhanced */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* --border-medium */
+    opacity: 1;
+    /* SUBTLE BRAND GLOW - NO AGGRESSIVE TRANSFORMS */
+    box-shadow: 0 4px 20px rgba(111, 168, 220, 0.1); /* Primary blue glow */
+    transform: translateY(-1px); /* Minimal lift */
+    animation: none;
+    color: rgba(255, 255, 255, 0.95); /* --text-muted enhanced */
 }
 
 /* Reveal navigation arrow on hover */
@@ -232,38 +241,36 @@
     transform: translateX(0);
 }
 
-/* Adjust text positioning to accommodate arrow */
+/* Brand-compliant text positioning */
 .cta-card:hover .cta-text,
 .cta-card:hover h3 {
-    transform: translateX(-8px); /* Subtle shift to make room for arrow */
-    color: rgba(255, 255, 255, 0.95); /* Slightly brighter on hover */
-    letter-spacing: 1.0px; /* Enhanced spacing for elegant hover effect */
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); /* Enhanced depth on hover */
-    transition: all 0.4s ease;
+    transform: translateX(-8px);
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 1.0px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .cta-card .cta-text {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9); /* Slightly muted text */
-    transition: transform 0.4s ease; /* Smooth text movement */
+    color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
 }
 
 .cta-card h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem; /* Slightly smaller for less prominence */
-    font-weight: 400; /* Much lighter weight for "soft nudge" feel */
-    font-style: italic; /* Light italic for sophisticated elegance */
-    color: rgba(255, 255, 255, 0.9); /* Slightly muted for subtlety */
+    font-family: 'Inter', sans-serif; /* Brand font family */
+    font-size: 0.85rem;
+    font-weight: 400; /* Brand-preferred weight */
+    font-style: normal; /* Clean, no italics for better readability */
+    color: rgba(255, 255, 255, 0.9);
     margin: 0;
-    line-height: 1.3; /* Slightly more relaxed line height */
-    /* ENHANCED TEXT STYLING */
-    letter-spacing: 0.8px; /* Increased spacing for more refined look */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Subtle depth without aggression */
-    /* SLEEK NO-WRAP REQUIREMENT */
-    white-space: nowrap; /* Ensure text stays on single line */
+    line-height: 1.3;
+    letter-spacing: 0.8px; /* Brand-consistent spacing */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if text is too long */
-    transition: all 0.4s ease; /* Smooth transitions for all properties */
+    text-overflow: ellipsis;
+    transition: all 0.3s ease; /* Brand-standard timing */
 }
 
 /* Hero background */
@@ -368,18 +375,22 @@
     }
     
     .cta-grid {
-        gap: 4.2rem; /* Increased for better visual breathing room */
-        max-width: 500px;
+        gap: 8.4rem; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1100px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
     }
     
     .cta-card {
-        padding: 0.75rem 1.4rem; /* Increased horizontal padding for tablet */
-        opacity: 0.8; /* Slightly more subtle on tablet */
-        animation: gentle-pulse 4.5s ease-in-out infinite; /* Slightly slower pulse on tablet */
-        /* TABLET CONSISTENT SIZING */
-        width: 170px; /* Slightly smaller for tablet */
-        max-width: 170px;
-        min-width: 170px;
+        padding: 0.75rem 1.4rem;
+        /* BRAND-CONSISTENT TABLET STYLING */
+        opacity: 0.85; /* Consistent with brand guidelines */
+        animation: gentle-pulse 4.5s ease-in-out infinite;
+        /* TABLET CONSISTENT SIZING - SPACEBAR STYLE */
+        width: 240px;
+        max-width: 240px;
+        min-width: 240px;
+        /* MAINTAIN BRAND TYPOGRAPHY */
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
     }
     
     /* Hero subtitle - tablet styling */
@@ -406,8 +417,8 @@
     }
     
     .cta-grid {
-        gap: 5.2rem; /* Increased for better visual breathing room */
-        max-width: 700px;
+        gap: 10.4rem; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1200px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
     }
     
     .cta-card {
@@ -416,10 +427,10 @@
         white-space: nowrap; /* Maintain no-wrap */
         opacity: 0.85; /* Consistent subtle presence */
         animation: gentle-pulse 4s ease-in-out infinite; /* Standard pulse timing */
-        /* DESKTOP CONSISTENT SIZING */
-        width: 180px; /* Standard desktop width */
-        max-width: 180px;
-        min-width: 180px;
+        /* DESKTOP CONSISTENT SIZING - SPACEBAR STYLE */
+        width: 260px; /* Standard desktop width - spacebar style */
+        max-width: 260px;
+        min-width: 260px;
     }
     
     /* Hero subtitle - desktop styling */
@@ -458,8 +469,8 @@
     }
     
     .cta-grid {
-        gap: 6rem !important; /* Increased for premium visual breathing room */
-        max-width: 900px !important;
+        gap: 12rem !important; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1300px !important;
     }
     
     .cta-card {
@@ -469,9 +480,9 @@
         opacity: 0.85 !important; /* Maintain soft presence */
         animation: gentle-pulse 3.8s ease-in-out infinite !important; /* Slightly faster on large screens */
         /* LARGE SCREEN CONSISTENT SIZING */
-        width: 200px !important; /* Slightly larger for large screens */
-        max-width: 200px !important;
-        min-width: 200px !important;
+        width: 260px !important; /* Slightly larger for large screens */
+        max-width: 260px !important;
+        min-width: 260px !important;
     }
     
     /* Purpose built text - large screen styling */
@@ -522,8 +533,8 @@
     }
     
     .cta-grid {
-        gap: 6rem !important; /* Increased from 5rem for ultra-premium spacing */
-        max-width: 1400px !important; /* Increased from 800px */
+        gap: 12rem !important; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1600px !important; /* Increased to accommodate doubled spacing */
     }
     
     .cta-card {
@@ -533,9 +544,9 @@
         opacity: 0.85 !important; /* Consistent soft presence */
         animation: gentle-pulse 4s ease-in-out infinite !important;
         /* ULTRA-LARGE CONSISTENT SIZING */
-        width: 220px !important; /* Larger for ultra-large screens */
-        max-width: 220px !important;
-        min-width: 220px !important;
+        width: 260px !important; /* Larger for ultra-large screens */
+        max-width: 260px !important;
+        min-width: 260px !important;
     }
     
     /* Hero subtitle - ultra-large screen styling */
@@ -575,8 +586,8 @@
     }
     
     .cta-grid {
-        gap: 6.5rem !important; /* Increased for premium visual breathing room */
-        max-width: 1100px !important;
+        gap: 13rem !important; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1400px !important;
     }
     
     .cta-card {
@@ -586,9 +597,9 @@
         opacity: 0.85 !important; /* Consistent soft presence */
         animation: gentle-pulse 4s ease-in-out infinite !important;
         /* 2560PX CONSISTENT SIZING */
-        width: 210px !important; /* Appropriate sizing for 2560px */
-        max-width: 210px !important;
-        min-width: 210px !important;
+        width: 260px !important; /* Appropriate sizing for 2560px */
+        max-width: 260px !important;
+        min-width: 260px !important;
     }
     
     /* Hero subtitle - 2560px styling */
@@ -717,7 +728,7 @@
   /* CTA styling */
   .cta-grid {
     flex-direction: column !important;
-    gap: 1.5rem !important; /* Increased gap for better touch targets and visual separation */
+    gap: 3rem !important; /* Doubled spacing for spacebar-style buttons */
     max-width: 280px !important; /* Slightly wider for better readability */
     padding: 0 1rem !important; /* Add horizontal padding */
   }
@@ -727,23 +738,29 @@
   }
   
   .cta-card {
-    max-width: 240px !important; /* Wider buttons for better touch targets */
-    padding: 1rem 1.5rem !important; /* Increased horizontal padding for mobile text spacing */
+    max-width: 240px !important;
+    padding: 1rem 1.5rem !important;
     min-height: 48px !important; /* Minimum touch target size */
-    border-radius: 6px !important; /* Consistent with desktop minimal style */
-    box-shadow: none !important; /* Remove shadow for clean minimal feel */
+    /* BRAND-CONSISTENT MOBILE STYLING */
+    border-radius: 8px !important; /* Consistent with brand guidelines */
+    backdrop-filter: blur(10px) !important; /* Brand-standard glass morphism */
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.04) 0%, 
         rgba(255, 255, 255, 0.06) 50%, 
-        rgba(255, 255, 255, 0.04) 100%) !important; /* Enhanced mobile gradient */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* More visible border for touch clarity */
-    white-space: nowrap !important; /* Maintain sleek no-wrap on mobile */
-    opacity: 0.9 !important; /* Slightly more visible on mobile for usability */
-    animation: gentle-pulse 5s ease-in-out infinite !important; /* Slower pulse on mobile */
+        rgba(255, 255, 255, 0.04) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Brand border-subtle */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important; /* Subtle brand shadow */
+    white-space: nowrap !important;
+    opacity: 0.85 !important; /* Consistent with brand guidelines */
+    animation: gentle-pulse 5s ease-in-out infinite !important;
     /* MOBILE CONSISTENT SIZING */
-    width: 240px !important; /* Fixed width for mobile touch targets */
+    width: 240px !important;
     max-width: 240px !important;
     min-width: 240px !important;
+    /* BRAND TYPOGRAPHY */
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
   
   /* Mobile navigation arrow - always visible for touch clarity */
@@ -754,14 +771,17 @@
   
   .cta-card:hover,
   .cta-card:active {
+    /* BRAND-CONSISTENT MOBILE INTERACTIONS */
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.14) 50%, 
-        rgba(255, 255, 255, 0.1) 100%) !important; /* Enhanced mobile interaction */
-    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Clear interaction feedback */
-    opacity: 1 !important; /* Full opacity on mobile interaction */
-    transform: translateY(-1px) !important; /* Subtle touch feedback */
-    animation: none !important; /* Stop animation during interaction */
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.12) 50%, 
+        rgba(255, 255, 255, 0.08) 100%) !important; /* Brand glass-light */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Brand border-medium */
+    opacity: 1 !important;
+    transform: translateY(-1px) !important; /* Minimal brand-appropriate lift */
+    animation: none !important;
+    box-shadow: 0 4px 20px rgba(111, 168, 220, 0.1) !important; /* Brand primary glow */
+    color: rgba(255, 255, 255, 0.95) !important;
   }
   
   .cta-card:hover::after,
@@ -770,13 +790,16 @@
   }
   
   .cta-card h3 {
-    font-size: 0.85rem !important; /* Readable but not prominent */
-    font-weight: 400 !important; /* Light weight for soft feel */
-    color: rgba(255, 255, 255, 0.95) !important; /* Slightly more contrast for mobile readability */
-    white-space: nowrap !important; /* Ensure text doesn't wrap on mobile */
+    font-size: 0.85rem !important;
+    font-weight: 400 !important; /* Brand-preferred weight */
+    font-family: 'Inter', sans-serif !important; /* Brand typography */
+    color: rgba(255, 255, 255, 0.9) !important; /* Brand text-muted */
+    white-space: nowrap !important;
     overflow: hidden !important;
-    text-overflow: ellipsis !important; /* Handle overflow gracefully */
-    transition: transform 0.4s ease !important; /* Smooth transitions on mobile */
+    text-overflow: ellipsis !important;
+    letter-spacing: 0.8px !important; /* Brand-consistent spacing */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important; /* Brand shadow */
+    transition: all 0.3s ease !important; /* Brand-standard timing */
   }
 }
 
@@ -817,18 +840,18 @@
     }
     
     .cta-grid {
-        gap: 2.5rem; /* Increased gap between buttons for better spacing */
-        max-width: 550px;
+        gap: 5rem; /* Doubled spacing for spacebar-style buttons */
+        max-width: 1000px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
     }
     
     .cta-card {
         white-space: nowrap; /* Maintain no-wrap on laptop screens */
         padding: 0.85rem 1.5rem; /* Increased horizontal padding for laptop */
         opacity: 0.85; /* Consistent soft presence */
-        /* LAPTOP CONSISTENT SIZING */
-        width: 175px; /* Appropriate laptop width */
-        max-width: 175px;
-        min-width: 175px;
+        /* LAPTOP CONSISTENT SIZING - SPACEBAR STYLE */
+        width: 260px; /* Spacebar style laptop width */
+        max-width: 260px;
+        min-width: 260px;
     }
     
     .cta-card h3 {

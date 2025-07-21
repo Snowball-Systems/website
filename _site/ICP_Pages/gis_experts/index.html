@@ -19,20 +19,24 @@
     <header class="main-header">
         <div class="header-container">
             <div class="header-logo">
-                <a href="/" class="logo-text">Clarion</a>
+                <a href="/">
+                    <img src="/assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems" class="logo-image">
+                </a>
             </div>
-            <nav class="header-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
-                <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
-                <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
-                <a href="mailto:demo@clarion.com" class="nav-link demo-link">Demo</a>
-            </nav>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
+                    <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
+                    <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+                    <a href="/ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -406,13 +410,25 @@ hero_subtitle: "See how GIS consultants are 3x more valuable with Clarion"
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Mobile menu toggle function
         function toggleMobileMenu() {
             const nav = document.querySelector('.header-nav');
             const toggle = document.querySelector('.mobile-menu-toggle');
+            
             nav.classList.toggle('active');
             toggle.classList.toggle('active');
         }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.header-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+                toggle.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html> 

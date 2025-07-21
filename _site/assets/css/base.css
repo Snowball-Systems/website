@@ -54,4 +54,71 @@ html, body {
 
 .hero-subtitle {
     white-space: nowrap;
+}
+
+/* Page Layout Styles */
+.page-main {
+    padding-top: 120px; /* Account for fixed header */
+    min-height: calc(100vh - 120px);
+    color: #e2e8f0;
+}
+
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-content {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0;
+    backdrop-filter: blur(10px);
+}
+
+.page-content h1 {
+    color: #6fa8dc;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.page-content h2 {
+    color: #6fa8dc;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.page-content h3 {
+    color: #e2e8f0;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.page-content p {
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.page-content ul, .page-content ol {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.page-content li {
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+/* Footer styles */
+footer {
+    background: rgba(15, 23, 42, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    text-align: center;
+    color: #cbd5e1;
 } 

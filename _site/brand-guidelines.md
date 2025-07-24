@@ -96,7 +96,7 @@ font-family: 'Bahnschrift', Bahnschrift;
 ### **Hierarchy Scale**
 ```css
 /* Headlines */
---h1-size: clamp(1.8rem, 5vw, 2.8rem);
+--h1-size: clamp(2.4rem, 6vw, 3.6rem); /* Increased for better prominence */
 --h1-weight: 300;
 --h1-line-height: 1.2;
 

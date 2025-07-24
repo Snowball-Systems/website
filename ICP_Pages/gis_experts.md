@@ -7,20 +7,6 @@ hero_cta: "Book Your Free Demo"
 hero_subtitle: "See how GIS consultants are 3x more valuable with Clarion"
 ---
 
-<!-- Add immediate CTA to hero -->
-<div class="hero-cta-section">
-    <div class="hero-cta-buttons">
-        <a href="/#demo" class="hero-cta-primary">Book Your Free Demo</a>
-        <a href="#how-it-works" class="hero-cta-secondary">See How It Works</a>
-    </div>
-    <div class="hero-social-proof">
-        <p>Trusted by 50+ GIS consultants nationwide</p>
-        <div class="trust-logos">
-            <!-- Add client logos -->
-        </div>
-    </div>
-</div>
-
 ## Acknowledge What's Out There
 
 Many utilities already use ArcGIS-based systems to track assets, issue work orders, and maintain spatial databases.

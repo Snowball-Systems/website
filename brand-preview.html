@@ -287,62 +287,50 @@
             align-items: center;
             justify-content: center;
             padding: 0.8rem 1.5rem;
-            /* BRAND GUIDELINE COLORS AND EFFECTS */
-            background: rgba(255, 255, 255, 0.03); /* --glass-subtle */
+            /* BOLD BLUE GRADIENT - SAME AS DEMO BUTTON */
+            background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+            color: white;
             backdrop-filter: blur(10px); /* Brand-standard glass morphism */
             border-radius: 8px; /* Modern brand feel */
-            border: 1px solid rgba(255, 255, 255, 0.08); /* --border-subtle */
+            border: 1px solid rgba(111, 168, 220, 0.3); /* Brand border */
             text-decoration: none;
             transition: all 0.3s ease; /* Brand-standard timing */
             min-height: 50px;
             width: 260px; /* Spacebar-style width */
-            opacity: 0.85; /* Brand soft nudge */
-            color: rgba(255, 255, 255, 0.9); /* --text-muted */
-            font-weight: 400; /* Brand-preferred weight */
+            opacity: 1; /* Full opacity for solid blue */
+            font-weight: 500; /* Bold for blue background */
             font-size: 0.85rem;
             font-family: 'Inter', sans-serif; /* Brand typography */
             white-space: nowrap;
             position: relative;
             overflow: hidden;
-            /* SUBTLE BRAND ENHANCEMENT */
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.02) 0%, 
-                rgba(255, 255, 255, 0.04) 50%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            animation: gentle-pulse 4s ease-in-out infinite;
+            /* PROMINENT BRAND SHADOW */
+            box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
+            animation: gentle-pulse-blue 4s ease-in-out infinite;
         }
 
-        @keyframes gentle-pulse {
+        @keyframes gentle-pulse-blue {
             0%, 100% { 
-                background: linear-gradient(135deg, 
-                    rgba(255, 255, 255, 0.02) 0%, 
-                    rgba(255, 255, 255, 0.04) 50%, 
-                    rgba(255, 255, 255, 0.02) 100%);
-                border-color: rgba(255, 255, 255, 0.08);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+                box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
+                transform: scale(1);
             }
             50% { 
-                background: linear-gradient(135deg, 
-                    rgba(255, 255, 255, 0.04) 0%, 
-                    rgba(255, 255, 255, 0.06) 50%, 
-                    rgba(255, 255, 255, 0.04) 100%);
-                border-color: rgba(255, 255, 255, 0.1);
-                box-shadow: 0 4px 12px rgba(111, 168, 220, 0.05);
+                background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+                box-shadow: 0 6px 18px rgba(111, 168, 220, 0.4);
+                transform: scale(1.02); /* Very subtle scale for breathing effect */
             }
         }
         
         .cta-card:hover {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.08) 0%, 
-                rgba(255, 255, 255, 0.12) 50%, 
-                rgba(255, 255, 255, 0.08) 100%); /* --glass-light enhanced */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* --border-medium */
+            /* DEMO BUTTON HOVER STYLING */
+            background: linear-gradient(135deg, #5a9bd1, #3a7bc8);
+            border: 1px solid rgba(111, 168, 220, 0.5);
             opacity: 1;
-            box-shadow: 0 4px 20px rgba(111, 168, 220, 0.1); /* Primary blue glow */
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4); /* Enhanced glow */
+            transform: translateY(-2px); /* Demo button lift */
             animation: none;
-            color: rgba(255, 255, 255, 0.95);
+            color: white;
         }
         
         /* Card Component */
@@ -452,75 +440,17 @@
 </head>
 <body>
     <div class="container">
-        <div class="guide-header">
-            <h1>Snowball Systems Brand Guide</h1>
-            <p>Interactive style guide for reviewing and tinkering with design elements</p>
-            <img src="assets/images/Snowball_Systems_Logo-removebg-preview.png" alt="Snowball Systems" class="logo-preview">
-        </div>
+        <header style="text-align: center; margin: 3rem 0;">
+            <h1>Snowball Systems Brand Guidelines</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Interactive Style Guide & Design System</p>
+        </header>
 
-        <!-- Color System -->
-        <div class="section">
-            <h2 class="section-title">🎨 Color System</h2>
+        <!-- Typography Section -->
+        <section class="typography-section">
+            <h2 style="color: var(--blue-primary); margin-bottom: 2rem;">Typography Hierarchy</h2>
             
-            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Primary Blues</h3>
-            <div class="color-grid">
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--primary-blue);"></div>
-                    <div class="color-name">Primary Blue</div>
-                    <div class="color-value" data-color="#6fa8dc">#6fa8dc</div>
-                </div>
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--primary-blue-dark);"></div>
-                    <div class="color-name">Primary Blue Dark</div>
-                    <div class="color-value" data-color="#4a90e2">#4a90e2</div>
-                </div>
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--primary-blue-light);"></div>
-                    <div class="color-name">Clarion Blue</div>
-                    <div class="color-value" data-color="#60a5fa">#60a5fa</div>
-                </div>
-            </div>
-
-            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Background System</h3>
-            <div class="color-grid">
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--bg-primary);"></div>
-                    <div class="color-name">Background Primary</div>
-                    <div class="color-value" data-color="#0f172a">#0f172a</div>
-                </div>
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--bg-secondary);"></div>
-                    <div class="color-name">Background Secondary</div>
-                    <div class="color-value" data-color="#1e293b">#1e293b</div>
-                </div>
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--bg-tertiary);"></div>
-                    <div class="color-name">Background Tertiary</div>
-                    <div class="color-value" data-color="#334155">#334155</div>
-                </div>
-            </div>
-
-            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">Text Colors</h3>
-            <div class="color-grid">
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--text-primary);"></div>
-                    <div class="color-name">Text Primary</div>
-                    <div class="color-value" data-color="#e2e8f0">#e2e8f0</div>
-                </div>
-                <div class="color-card">
-                    <div class="color-swatch" style="background: var(--text-secondary);"></div>
-                    <div class="color-name">Text Secondary</div>
-                    <div class="color-value" data-color="#cbd5e1">#cbd5e1</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Typography -->
-        <div class="section">
-            <h2 class="section-title">📝 Typography System</h2>
-            
-            <div class="type-example">
-                <div class="type-label">H1 - Headlines (clamp(1.8rem, 5vw, 2.8rem), weight: 300)</div>
+            <div class="component-example">
+                <div class="type-label">H1 - Headlines (clamp(2.4rem, 6vw, 3.6rem), weight: 300)</div>
                 <h1 class="h1-example">Clarion Is the Brain of Your Utility</h1>
             </div>
             
@@ -543,7 +473,7 @@
                 <div class="type-label">Logo Font - Bahnschrift</div>
                 <div style="font-family: 'Bahnschrift', sans-serif; font-size: 2rem; font-weight: 400; color: var(--primary-blue);">Clarion</div>
             </div>
-        </div>
+        </section>
 
         <!-- Components -->
         <div class="section">

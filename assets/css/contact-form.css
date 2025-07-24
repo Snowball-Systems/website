@@ -1,0 +1,55 @@
+/* Contact Form Section Styles (moved from components.css) */
+
+.contact-section {
+    padding: 2rem 0 0 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.contact-header p {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.contact-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.contact-form iframe {
+    width: 100%;
+    height: 430px;
+    min-height: 430px;
+    max-height: 430px;
+    overflow: hidden;
+    border: none;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+    .contact-form {
+        max-width: 100%;
+        margin: 0;
+    }
+    .contact-header p {
+        font-size: 1rem;
+        max-width: 100vw;
+        white-space: normal;
+    }
+    .contact-form iframe {
+        height: 600px;
+        min-height: 600px;
+        max-height: 600px;
+    }
+} 

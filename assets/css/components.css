@@ -98,11 +98,112 @@
     
     .primary-cta {
         padding: 1rem 2rem;
-        font-size: 1rem;
     }
     
     .card {
         padding: 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   CONTACT FORM COMPONENT
+   ========================================================================== */
+
+/* Remove contact form styles (now in contact-form.css) */
+
+/* Success/Error states */
+.form-success,
+.form-error {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.form-success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.form-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.success-icon,
+.error-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.form-success h3,
+.form-error h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.form-success p,
+.form-error p {
+    color: rgba(226, 232, 240, 0.8);
+    font-size: 0.9rem;
+}
+
+.contact-form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6fa8dc, #4a90e2, #6fa8dc);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.contact-form-wrapper iframe {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact form responsive adjustments */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 2rem 0;
+    }
+    
+    .contact-header h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-header p {
+        font-size: 1rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .form-container {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .contact-container {
+        padding: 0 3rem;
+    }
+    
+    .contact-form-wrapper {
+        max-width: 700px;
     }
 }
 

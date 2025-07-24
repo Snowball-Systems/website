@@ -24,18 +24,19 @@
                 </a>
             </div>
             <div class="header-right">
-                <nav class="header-nav">
+            <nav class="header-nav">
                     <a href="/about/" class="nav-link">About</a>
-                    <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
-                    <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
-                    <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
+                <a href="/ICP_Pages/managers/" class="nav-link">Managers</a>
+                <a href="/ICP_Pages/engineers/" class="nav-link">Engineers</a>
+                <a href="/ICP_Pages/gis_experts/" class="nav-link">GIS Experts</a>
                     <a href="/ICP_Pages/managers/#demo" class="nav-link demo-link">Demo</a>
-                </nav>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                    <a href="/#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             </div>
         </div>
     </header>
@@ -52,7 +53,23 @@
                 <div class="icp-icon">{{ page.icon }}</div>
                 <h1 class="icp-title">{{ page.title }}</h1>
                 <p class="icp-subtitle">{{ page.subtitle }}</p>
+                {% if page.hero_subtitle %}
+                <p class="icp-hero-subtitle">{{ page.hero_subtitle }}</p>
+                {% endif %}
             </div>
+            
+            <!-- Hero CTA Section -->
+            {% if page.hero_cta %}
+            <div class="hero-cta-section">
+                <div class="hero-cta-buttons">
+                    <a href="/#demo" class="hero-cta-primary">{{ page.hero_cta }}</a>
+                    <a href="#how-it-works" class="hero-cta-secondary">See How It Works</a>
+                </div>
+                <div class="hero-social-proof">
+                    <p>Trusted by leading professionals nationwide</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </section>
 

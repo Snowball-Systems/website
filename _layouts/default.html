@@ -21,7 +21,31 @@
     </main>
     <footer>
         <div class="container">
-            <p>&copy; {{ "now" | date: "%Y" }} Snowball Systems, LLC. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-business-info">
+                        <h4>Snowball Systems, LLC</h4>
+                        <p>Consulting & Software Development for Water Utilities</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="legal-links">
+                            <h5>Legal</h5>
+                            <ul>
+                                <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                                <li><a href="/terms-of-service/">Terms of Service</a></li>
+                            </ul>
+                        </div>
+                        <div class="sms-compliance">
+                            <h5>SMS Terms</h5>
+                            <p class="sms-text">By providing your phone number, you consent to receive text messages. Message and data rates may apply.</p>
+                            <p class="sms-text">Text STOP to opt-out or HELP for assistance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ "now" | date: "%Y" }} Snowball Systems, LLC. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
     <script>

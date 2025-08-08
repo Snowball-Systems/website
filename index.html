@@ -2,24 +2,6 @@
 layout: default
 ---
 
-<!-- Debug Screen Size Box - Remove when done -->
-<div id="debug-screen-info" style="
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-family: monospace;
-    font-size: 12px;
-    z-index: 9999;
-    line-height: 1.4;
-">
-    Screen: <span id="screen-size"></span><br>
-    Viewport: <span id="viewport-size"></span><br>
-    Breakpoint: <span id="breakpoint-info"></span>
-</div>
 
 <!-- Header Navigation -->
 <header class="main-header">
@@ -629,32 +611,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Debug screen info
-function updateDebugInfo() {
-    const screenInfo = document.getElementById('screen-size');
-    const viewportInfo = document.getElementById('viewport-size');
-    const breakpointInfo = document.getElementById('breakpoint-info');
-    
-    if (screenInfo) {
-        screenInfo.textContent = `${screen.width}x${screen.height}`;
-    }
-    if (viewportInfo) {
-        viewportInfo.textContent = `${window.innerWidth}x${window.innerHeight}`;
-    }
-    if (breakpointInfo) {
-        const width = window.innerWidth;
-        let breakpoint = '';
-        if (width <= 768) breakpoint = 'Mobile';
-        else if (width >= 769 && width <= 1024) breakpoint = 'Tablet';
-        else if (width >= 1025 && width <= 1599) breakpoint = 'Small Laptop';
-        else breakpoint = 'Large Desktop';
-        breakpointInfo.textContent = `${breakpoint} (${width}px)`;
-    }
-}
-
-// Update debug info on load and resize
-document.addEventListener('DOMContentLoaded', updateDebugInfo);
-window.addEventListener('resize', updateDebugInfo);
 
 // Scroll to next section function
 function scrollToNextSection() {

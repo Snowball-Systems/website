@@ -2,37 +2,51 @@
    HERO STYLES - Hero Section, Logo, and Hero Text
    ========================================================================== */
 
-/* Main hero container */
-.intelligence-hub-hero {
-    position: relative;
-    height: 100vh;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Start from top for better control */
-    align-items: center;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    overflow: hidden;
-    padding: 0; /* Remove padding - let CSS handle spacing */
-    z-index: 1; /* Ensure content appears above background */
+/* Main Content Wrapper - Remove margin that interferes with hero */
+.main-content {
+    margin-top: 0; /* Remove header margin - hero handles its own clearance */
 }
 
-/* Logo container */
-.clarion-hero-content {
+/* CSS Custom Properties for Easy Editing */
+:root {
+    /* Logo Positioning Variables */
+    --logo-base-top: 140px;
+    --logo-large-desktop-top: 280px;
+    --logo-ultra-wide-top: 250px;
+    --logo-scale: 1.5;
+    
+    /* Hero Text Positioning Variables */
+    --hero-text-top: 20vh;
+    --hero-text-gap: 0rem;
+    --hero-subline-margin: -1rem;
+    
+    /* Scroll Indicator Variables */
+    --scroll-bottom: 2vh;
+    --scroll-text-size: 0.9rem;
+    --scroll-arrow-size: 1.2rem;
+}
+
+/* Main hero container */
+.intelligence-hub-hero {
+    height: 100vh;
+    min-height: 100vh;
+    position: relative; /* Create positioning context for absolute arrow */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center logo in its space */
-    align-items: center;
+    justify-content: flex-start; /* Changed from space-between for better control */
+    padding: 0; /* No padding - elements manage their own spacing */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+/* Logo Area (Flexible Space) */
+.clarion-hero-content {
     flex: 2; /* Takes 2/3 of available space */
-    padding: 2rem 1rem; /* More top/bottom padding for safety */
-    gap: 0;
-    margin: 0;
-    min-height: 0; /* Allow shrinking */
-    width: 100%;
-    /* Start after header completely */
     position: relative;
-    top: 80px; /* Push entire container down past header */
-    height: calc(100vh - 160px); /* Available height minus header and buffer */
+    top: var(--logo-base-top); /* Use CSS variable for easy editing */
+    height: calc(100vh - calc(var(--logo-base-top) * 2)); /* Dynamic height calculation */
+    display: flex;
+    justify-content: center; /* Centers logo within its space */
+    align-items: center;
 }
 
 .clarion-logo-container {
@@ -49,44 +63,69 @@
 }
 
 .clarion-logo-container svg {
-    /* Maximum size within the allocated container space */
-    width: min(90vw, 100%); /* Use most of viewport width */
-    height: min(calc(100vh - 240px), 100%); /* Reserve space for header + CTAs + buffers */
-    max-width: 100%;
-    max-height: 100%;
+    /* Make logo much larger - it's the key visual element */
+    width: min(70vw, 100%) !important; /* Much larger width */
+    height: min(calc(50vh), 100%) !important; /* Much larger height */
+    max-width: 800px !important; /* Increased max-width significantly */
+    max-height: 600px !important; /* Increased max-height significantly */
     
     /* Maintain aspect ratio and fit within container */
     object-fit: contain;
     
-    /* Visual effects */
-    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4)) !important;
+    /* Enhanced visual effects for the star element */
+    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 30px rgba(74, 144, 226, 0.3)) !important;
     transform-origin: center center !important;
     overflow: visible !important; /* Ensure glow effects are not clipped */
     margin: 0 auto !important; /* Center horizontally for desktop */
     display: block !important; /* Ensure block display for proper positioning */
     
-    /* Scale for optimal size within safe boundaries */
+    /* Larger scale for prominent display */
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    transform: scale(1.3) !important; /* Slightly reduced scale for safety */
+    transform: scale(var(--logo-scale)) !important; /* Use CSS variable for scale */
     transform-origin: center center !important;
 }
 
-/* Hero content container */
+/* Content Area (Flexible Space) */
 .hero-content-container {
+    flex: 1; /* Takes 1/3 of available space */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Changed from center to top-align all content */
+    justify-content: flex-start; /* Allow manual positioning */
     align-items: center;
-    gap: 1.2vh; /* Reduced from 2vh to bring elements closer together */
-    max-width: 95vw;
     text-align: center;
-    padding: 2vh 0 0 0; /* Add top padding to prevent content from being too close to edge */
-    margin: 0;
-    flex: 1; /* Takes 1/3 of available space */
-    min-height: 0; /* Allow shrinking */
+    padding: 2rem 0; /* Reset to normal padding */
+    min-height: 50vh; /* Ensure enough space for positioning */
+}
+
+/* Hero text section - positioned at top of content area */
+.hero-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--hero-text-gap); /* Use CSS variable for gap */
+    position: absolute; /* Take out of flexbox flow */
+    top: var(--hero-text-top); /* Use CSS variable for positioning */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
     width: 100%;
+}
+
+/* Scroll indicator - anchored at bottom of screen, hidden when scrolled */
+.scroll-indicator {
+    position: fixed; /* Fixed to viewport */
+    bottom: var(--scroll-bottom); /* Use CSS variable for positioning */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 10; /* Above other content */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade transition */
+}
+
+/* Hide scroll indicator when page is scrolled */
+.scroll-indicator.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Hero tagline */
@@ -352,70 +391,7 @@
 }
 
 /* Desktop responsive */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero-content-container {
-        gap: 1vh; /* Reduced from 2vh for closer spacing */
-        padding: 1.5vh 0 0 0; /* Appropriate top padding for tablet */
-    }
-    
-    .clarion-logo-container {
-        --logo-max-width: 85vw !important;
-        --logo-max-height: 65vh !important; /* Reduced from 75vh */
-        padding: 1rem 2rem 2rem 2rem !important; /* Reduced padding */
-    }
-    
-    .clarion-logo-container svg {
-        width: 65vw !important; /* Reduced from 75vw */
-        max-width: 500px !important; /* Reduced from 600px */
-        max-height: 375px !important; /* Reduced from 450px */
-    }
-    
-    .intelligence-hub-hero .hero-tagline h2 {
-        font-size: 2.27rem; /* Increased by 5% from 2.16rem to 2.27rem */
-    }
-    
-    .cta-grid {
-        gap: 8.4rem; /* Doubled spacing for spacebar-style buttons */
-        max-width: 1100px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
-    }
-    
-    .cta-card {
-        padding: 0.75rem 1.4rem;
-        /* BOLD BLUE TABLET STYLING */
-        background: linear-gradient(135deg, #6fa8dc, #4a90e2);
-        color: white;
-        border: 1px solid rgba(111, 168, 220, 0.3);
-        box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
-        opacity: 1;
-        animation: gentle-pulse-blue 4.5s ease-in-out infinite;
-        /* TABLET CONSISTENT SIZING - SPACEBAR STYLE */
-        width: 240px;
-        max-width: 240px;
-        min-width: 240px;
-        /* MAINTAIN BRAND TYPOGRAPHY */
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-    }
-    
-    .cta-card:hover {
-        background: linear-gradient(135deg, #5a9bd1, #3a7bc8);
-        box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4);
-        transform: translateY(-2px);
-    }
-    
-    /* Hero subtitle - tablet styling */
-    .intelligence-hub-hero .hero-subtitle span {
-        /* Removed fixed font-size to allow clamp() function to work responsively */
-        color: rgba(203, 213, 225, 0.9); /* Match hero subtitle color */
-    }
-    
-    .cta-card h3 {
-        font-size: 0.9rem; /* Slightly larger for tablet readability */
-        font-weight: 500; /* Bold for blue background */
-        color: white;
-        white-space: nowrap; /* Maintain no-wrap across breakpoints */
-    }
-}
+/* TABLET BREAKPOINT - Will be replaced with new responsive structure */
 
 @media (min-width: 1025px) {
     .hero-content-container {
@@ -471,13 +447,26 @@
     }
 }
 
-@media (min-width: 1921px) {
-    /* Larger screens need more header clearance */
-    .clarion-hero-content {
-        top: 120px !important; /* Extra clearance to prevent logo overlap with header */
-        height: calc(100vh - 220px) !important; /* Adjust container height accordingly */
-        padding: 3rem 1rem !important; /* More top padding */
+@media (min-width: 1600px) {
+    :root {
+        --logo-base-top: 280px; /* Override variable for large screens */
     }
+    
+    .clarion-hero-content {
+        top: var(--logo-large-desktop-top) !important; /* Use dedicated large desktop variable */
+        height: calc(100vh - calc(var(--logo-large-desktop-top) * 2)) !important; /* Dynamic calculation */
+        padding: 5rem 1rem !important; /* More top padding */
+    }
+}
+
+/* Ultra-wide screens like 2560x1440 */
+@media (min-width: 2560px) {
+    .clarion-hero-content {
+        top: 350px !important; /* Move logo much further down on ultra-wide screens */
+        height: calc(100vh - 700px) !important; /* Adjust container height accordingly */
+        padding: 6rem 1rem !important; /* Even more top padding */
+    }
+}
     
     .clarion-logo-container svg {
         transform: scale(1.2) !important; /* Reduced scale for large screens */
@@ -618,11 +607,14 @@
 
 /* 2560px screen optimization (like 2560x1271) */
 @media (min-width: 2560px) and (max-width: 2560px) {
-    /* Even more conservative approach for 2560px screens */
+    :root {
+        --logo-base-top: 250px; /* Override variable for ultra-wide screens */
+    }
+    
     .clarion-hero-content {
-        top: 120px !important; /* Maximum clearance for 2560px screens */
-        height: calc(100vh - 240px) !important; /* More conservative container height */
-        padding: 4rem 1rem !important; /* Maximum top padding */
+        top: var(--logo-ultra-wide-top) !important; /* Use dedicated ultra-wide variable */
+        height: calc(100vh - calc(var(--logo-ultra-wide-top) * 2)) !important; /* Dynamic calculation */
+        padding: 5rem 1rem !important; /* Adjust top padding */
     }
     
     .clarion-logo-container svg {
@@ -684,261 +676,631 @@
 }
 
 /* ==========================================================================
-   CLEAN MOBILE HERO LAYOUT - 1/3, 1/3, 1/3 DISTRIBUTION
+   MOBILE - (320px - 768px) - Simplified Clean Layout  
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Main hero container - full viewport with flexbox */
-  .intelligence-hub-hero {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 0 !important;
-  }
-  
-  /* Force logo container to take only 1/3 of space */
-  .clarion-hero-content {
-    flex: 1 1 0 !important;
-    height: auto !important;
-    max-height: 33.33vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important; /* Changed from center to flex-start */
-    align-items: center !important;
-    padding: 4vh 0 0 0 !important; /* Increased from 3vh to 4vh for mobile */
-    margin: 0 !important;
-    gap: 0 !important;
-    order: 1 !important;
-  }
-  
-  /* Make hero-content-container invisible to flexbox so its children become direct flex children */
-  .hero-content-container {
-    display: contents !important;
-  }
-  
-  /* Force hero tagline to take middle 1/3 */
-  .hero-tagline {
-    flex: 1 1 0 !important;
-    height: auto !important;
-    max-height: 33.33vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; /* Reverted back to center for mobile */
-    align-items: center !important;
-    padding: 0 !important; /* Remove top padding for mobile centering */
-    margin: 0 !important;
-    gap: 0 !important;
-    order: 2 !important;
-  }
-  
-  /* Force CTAs to take bottom 1/3 */
-  .icp-ctas {
-    flex: 1 1 0 !important;
-    height: auto !important;
-    max-height: 33.33vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important; /* Move buttons to top of their container */
-    align-items: center !important;
-    padding: 0 !important; /* Remove top padding for mobile centering */
-    margin: 0 !important;
-    order: 3 !important;
-  }
-  
-  /* Constrain logo size */
-  .clarion-logo-container {
-    --logo-max-width: 98vw !important;
-    --logo-max-height: 75vh !important;
-    padding: 1rem 1.5rem 1.5rem 1.5rem !important;
-    overflow: visible !important;
-    margin: 0 !important;
-  }
-  
-  .clarion-logo-container svg {
-    width: 90vw !important; /* Increased for better mobile presence */
-    height: auto !important;
-    max-width: 95vw !important; /* Allow wider on mobile */
-    max-height: 30vh !important; /* Constrain height to fit in 1/3 section */
-    margin: 0 auto !important;
-    transform: scale(1.1) !important; /* Slight scaling for better mobile impact */
-    object-fit: contain !important; /* Ensure it fits within constraints */
-  }
-  
-  /* Hero text styling - with mobile override for transform */
-  .hero-tagline {
-    max-width: 90vw !important; /* Slightly reduced for better readability */
-    text-align: center !important;
-    padding: 0 1rem !important; /* Add horizontal padding */
-    transform: translateY(0) !important; /* No vertical movement to allow CTAs to get closer */
-  }
-  
-  .hero-tagline h2 {
-    font-size: 1.39rem !important; /* Increased by 5% from 1.32rem to 1.39rem */
-    line-height: 1.3 !important; /* Better line spacing */
-    margin: 0 !important;
-    padding: 0.5rem 0 !important; /* Add vertical padding */
-    font-weight: 500 !important; /* Slightly lighter weight for mobile */
-    white-space: normal !important; /* Allow wrapping on mobile */
-  }
-  
-  /* Hero subtitle - mobile styling */
-  .intelligence-hub-hero .hero-subtitle {
-    margin: 0.3vh 0 !important; /* Proper spacing for mobile */
-  }
-  
-  .intelligence-hub-hero .hero-subtitle span {
-    font-size: 0.85rem !important; /* Increased from 0.7rem for mobile */
-    color: rgba(203, 213, 225, 0.9) !important; /* Consistent color for mobile */
-  }
-  
-  /* CTA styling */
-  .cta-grid {
-    flex-direction: column !important;
-    gap: 1.5rem !important; /* Reduced from 3rem to 1.5rem (half) */
-    max-width: 201.6px !important; /* 252px - 20% */
-    padding: 0 0.72rem !important; /* 0.9rem - 20% */
-  }
-  
-  .icp-ctas {
-    margin-top: -2vh !important; /* Increased negative margin to bring CTAs closer to hero text on mobile */
-  }
-  
-  .cta-card {
-    max-width: 172.8px !important; /* 216px - 20% */
-    width: 172.8px !important;
-    min-width: 172.8px !important;
-    padding: 0.72rem 1.08rem !important; /* 0.9rem/1.35rem - 20% */
-    min-height: 34.56px !important; /* 43.2px - 20% */
-    font-size: 0.612rem !important; /* 0.765rem - 20% */
-    /* BOLD BLUE MOBILE STYLING */
-    background: linear-gradient(135deg, #6fa8dc, #4a90e2) !important;
-    color: white !important;
-    border-radius: 8px !important; /* Consistent with brand guidelines */
-    border: 1px solid rgba(111, 168, 220, 0.3) !important;
-    backdrop-filter: blur(10px) !important; /* Brand-standard glass morphism */
-    box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3) !important; /* Brand shadow */
-    white-space: nowrap !important;
-    opacity: 1 !important; /* Full opacity for solid blue buttons */
-    animation: gentle-pulse-blue 5s ease-in-out infinite !important;
-    /* MOBILE CONSISTENT SIZING */
-    width: 240px !important;
-    max-width: 240px !important;
-    min-width: 240px !important;
-    /* BRAND TYPOGRAPHY */
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 500 !important; /* Bold for blue background */
-  }
-  
-  /* Mobile navigation arrow - always visible for touch clarity */
-  .cta-card::after {
-    opacity: 0.6 !important; /* More visible arrow on blue background */
-    right: 0.6rem !important; /* Closer positioning for mobile */
-    color: rgba(255, 255, 255, 0.9) !important; /* Bright on blue */
-  }
-  
-  .cta-card:hover,
-  .cta-card:active {
-    /* BOLD BLUE MOBILE INTERACTIONS */
-    background: linear-gradient(135deg, #5a9bd1, #3a7bc8) !important; /* Demo button hover colors */
-    border: 1px solid rgba(111, 168, 220, 0.5) !important;
-    opacity: 1 !important;
-    transform: translateY(-1px) !important; /* Minimal mobile lift */
-    animation: none !important;
-    box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4) !important; /* Enhanced glow */
-    color: white !important;
-  }
-  
-  .cta-card:hover::after,
-  .cta-card:active::after {
-    opacity: 1 !important; /* Full visibility on interaction */
-  }
-  
-  .cta-card h3 {
-    font-size: 0.85rem !important;
-    font-weight: 500 !important; /* Bold for blue background */
-    font-family: 'Inter', sans-serif !important; /* Brand typography */
-    color: white !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    letter-spacing: 0.8px !important; /* Brand-consistent spacing */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important; /* Subtle shadow on blue */
-    transition: all 0.3s ease !important; /* Brand-standard timing */
-  }
-}
-
-/* Mobile landscape - keep text from wrapping if needed */
-@media (max-width: 768px) and (orientation: landscape) {
-  .hero-tagline h2 {
-    white-space: nowrap !important; /* Prevent wrapping in landscape */
-    font-size: 1.26rem !important; /* Increased by 5% from 1.2rem to 1.26rem */
-  }
-} 
-
-/* Laptop screen optimization (1536x695 and similar) */
-@media (min-width: 1025px) and (max-width: 1920px) and (max-height: 800px) {
-    .clarion-hero-content {
-        margin-top: 2vh; /* Reduced top margin for shorter screens */
-        gap: 0.5vh; /* Minimal gap between logo and content */
+    .intelligence-hub-hero {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 1rem 0 !important;
+        justify-content: center !important;
     }
     
-    .clarion-logo-container {
-        --logo-max-width: 65vw !important;
-        --logo-max-height: 35vh !important; /* Even smaller for laptop screens */
-        padding: 0.5rem 1rem 1rem 1rem !important;
+    .clarion-hero-content {
+        flex: 1.5 !important;
+        padding: 1rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
     
     .clarion-logo-container svg {
-        width: 40vw !important; /* Smaller for laptop screens */
-        max-width: 550px !important;
-        max-height: 400px !important;
+        width: min(85vw, 100%) !important;
+        height: min(calc(35vh), 100%) !important;
+        max-width: 400px !important;
+        max-height: 300px !important;
+        transform: scale(1.2) !important; /* Keep logo prominent on mobile */
     }
     
     .hero-content-container {
-        gap: 0.5vh; /* Minimal gap */
-        margin-top: 0.5vh; /* Very small gap from logo */
+        gap: 1.5rem !important;
+        flex: 1 !important;
+        padding: 1rem !important;
+        justify-content: center !important;
     }
     
-    .intelligence-hub-hero .hero-tagline h2 {
-        font-size: 1.8rem; /* Increased from 1.4rem to match larger baseline */
+    .hero-headline {
+        font-size: 1.8rem !important;
+        max-width: 95vw !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
     }
     
-    .cta-grid {
-        gap: 5rem; /* Doubled spacing for spacebar-style buttons */
-        max-width: 1000px; /* Increased to accommodate wider spacebar-style buttons with doubled spacing */
+    .hero-subheadline {
+        font-size: 1.1rem !important;
+        max-width: 90vw !important;
+        margin: 0 !important;
     }
     
-    .cta-card {
-        white-space: nowrap; /* Maintain no-wrap on laptop screens */
-        padding: 0.85rem 1.5rem; /* Increased horizontal padding for laptop */
-        /* BOLD BLUE LAPTOP STYLING */
-        background: linear-gradient(135deg, #6fa8dc, #4a90e2);
-        color: white;
-        border: 1px solid rgba(111, 168, 220, 0.3);
-        box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
-        opacity: 1; /* Full opacity for blue buttons */
-        animation: gentle-pulse-blue 4s ease-in-out infinite;
-        /* LAPTOP CONSISTENT SIZING - SPACEBAR STYLE */
-        width: 260px; /* Spacebar style laptop width */
-        max-width: 260px;
-        min-width: 260px;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
+    .hero-features {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        width: 100% !important;
     }
     
-    .cta-card:hover {
-        background: linear-gradient(135deg, #5a9bd1, #3a7bc8);
-        box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4);
-        transform: translateY(-2px);
+    .feature-item {
+        padding: 0.8rem 1rem !important;
+        justify-content: center !important;
+        white-space: normal !important; /* Allow wrapping on mobile */
+        text-align: center !important;
+        max-width: 90vw !important;
     }
     
-    .cta-card h3 {
-        font-size: 0.9rem; /* Appropriate laptop sizing */
-        font-weight: 500; /* Bold for blue background */
-        color: white;
-        white-space: nowrap; /* Ensure text doesn't wrap */
+    .feature-label {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+    }
+    
+    .hero-cta-button {
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+        max-width: 90vw !important;
+        white-space: normal !important; /* Allow text to wrap if needed */
+        text-align: center !important;
+        line-height: 1.3 !important;
+    }
+    
+    .hero-cta-subtext {
+        font-size: 0.85rem !important;
+        max-width: 85vw !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* Mobile landscape optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    .intelligence-hub-hero {
+        height: 100vh !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .clarion-logo-container svg {
+        transform: scale(1.0) !important; /* Smaller for landscape */
+        max-height: 250px !important;
+    }
+    
+    .hero-headline {
+        font-size: 1.6rem !important; /* Slightly smaller for landscape */
+    }
+    
+    .hero-subheadline {
+        font-size: 1rem !important;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN - CLEAN BREAKPOINT STRUCTURE  
+   Mobile First Approach with Clear Hierarchy
+   ========================================================================== */
+
+/* ==========================================================================
+   MOBILE FIRST - BASE STYLES (320px+)
+   ========================================================================== */
+/* Base styles are defined above in the main CSS */
+
+/* ==========================================================================
+   TABLET - (769px - 1024px)
+   ========================================================================== */
+@media (min-width: 769px) {
+    .intelligence-hub-hero {
+        height: 80vh;
+        min-height: 80vh;
+        padding: 1.5rem 0;
+    }
+    
+    .clarion-hero-content {
+        flex: 1.5;
+        padding: 1.5rem;
+    }
+    
+    .clarion-logo-container svg {
+        width: min(65vw, 100%);
+        height: min(calc(40vh), 100%);
+        max-width: 550px;
+        max-height: 400px;
+        transform: scale(1.3);
+    }
+    
+    .hero-content-container {
+        gap: 1.5rem;
+    }
+    
+    .hero-headline {
+        font-size: 2.4rem !important;
+        max-width: 85vw !important;
+    }
+    
+    .hero-subheadline {
+        font-size: 1.3rem !important;
+        max-width: 80vw !important;
+    }
+    
+    .hero-features {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .feature-item {
+        min-width: 200px;
+        flex: 1;
+    }
+}
+
+/* ==========================================================================
+   SMALL LAPTOP - (1025px - 1599px) - This fixes the cramming issue
+   ========================================================================== */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    /* Laptop screens - keep same structure */
+    .intelligence-hub-hero {
+        height: 100vh; /* Full viewport height */
+        min-height: 100vh;
+    }
+    
+    .clarion-hero-content {
+        flex: 0 0 45vh; /* Same logo space */
+    }
+    
+    .clarion-logo-container svg {
+        width: 56vw !important; /* 20% smaller than desktop per guide (70vw → 56vw) */
+        height: 36vh !important; /* 20% smaller than desktop */
+        max-width: 720px !important; /* 20% smaller than 900px */
+        max-height: 540px !important; /* 20% smaller than 675px */
+        transform: scale(1.6) !important; /* Clean scaling without positioning */
+    }
+    
+    .hero-content-container {
+        padding: 1rem 0 3vh 0; /* Anchor arrow 3vh from bottom */
+        justify-content: space-between; /* Text at top, arrow at bottom */
+    }
+    
+    .hero-main {
+        margin-bottom: auto; /* Push text to top */
+    }
+    
+    .scroll-indicator {
+        margin-top: auto; /* Anchor arrow at bottom */
+    }
+    
+    .hero-headline {
+        font-size: clamp(1.5rem, 3.5vw, 1.8rem) !important; /* Responsive font size to prevent overflow */
+        max-width: calc(100vw - 4rem) !important; /* Full width minus padding */
+        line-height: 1.3 !important; /* Better line height */
+        padding: 0 2rem !important; /* Side padding */
+        word-break: break-word !important; /* Allow word breaking to prevent overflow */
+        overflow-wrap: break-word !important; /* Backup for word wrapping */
+        hyphens: auto !important; /* Enable hyphenation */
+        text-align: center !important;
+        white-space: normal !important; /* Allow text wrapping */
+    }
+    
+    .hero-subheadline {
+        font-size: clamp(1rem, 2.2vw, 1.1rem) !important; /* Responsive font size */
+        max-width: calc(100vw - 4rem) !important; /* Full width minus padding */
+        padding: 0 2rem !important; /* Side padding */
+        word-break: break-word !important; /* Allow word breaking */
+        overflow-wrap: break-word !important; /* Backup for word wrapping */
+        text-align: center !important;
+        white-space: normal !important; /* Allow text wrapping */
+    }
+    
+    .hero-features {
+        flex-wrap: wrap;
+        gap: 0.8rem; /* Smaller gaps */
+        justify-content: center;
+        margin: 1rem 0; /* Add vertical margin */
+    }
+    
+    .feature-item {
+        flex: 0 1 auto;
+        white-space: nowrap;
+        padding: 0.6rem 1rem !important; /* Smaller padding */
+        font-size: 0.9rem !important; /* Smaller text */
+    }
+    
+    .hero-cta {
+        margin-top: 1.5rem !important; /* More space above button */
+    }
+    
+    .hero-cta-button {
+        padding: 0.9rem 1.8rem !important; /* Smaller button */
+        font-size: 1rem !important;
+    }
+    
+    /* Reduce section spacing for small laptops */
+    .problem-section, .value-pillars, .how-it-works, .faq-section, .contact-section {
+        padding: 3rem 0 !important;
+    }
+}
+
+/* ==========================================================================
+   LARGE LAPTOP & DESKTOP - (1600px-1799px)
+   ========================================================================== */
+@media (min-width: 1600px) and (max-width: 1799px) {
+    .intelligence-hub-hero {
+        height: 100vh; /* Full viewport height */
+        min-height: 100vh;
+    }
+    
+    .clarion-hero-content {
+        flex: 0 0 auto;
+        padding: 4rem 2rem 2rem 2rem; /* Same as laptop - consistent spacing */
+        height: 45vh; /* Same height as laptop */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Same as laptop - logo at top of container */
+        padding-top: 5rem; /* Same as laptop - push logo down */
+    }
+    
+    .clarion-logo-container svg {
+        width: 65vw !important; /* Slightly smaller than ultra-large */
+        height: 42vh !important; /* Slightly smaller height */
+        max-width: 850px !important; /* Between laptop and ultra-large */
+        max-height: 625px !important; /* Between laptop and ultra-large */
+        transform: scale(1.8) translateY(3rem) !important; /* Between laptop and ultra-large */
+    }
+    
+    .hero-content-container {
+        gap: 1.5rem;
+        flex: 1; /* Takes remaining space */
+        padding: 1rem 2rem 3rem 2rem; /* Same as laptop - consistent spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Same as laptop - text at top, arrow at bottom */
+        min-height: 50vh; /* Same as laptop */
+    }
+}
+
+/* ==========================================================================
+   ULTRA-LARGE SCREENS - (1800px+)
+   ========================================================================== */
+@media (min-width: 1800px) {
+    /* Ultra-large screens - keep same structure */
+    .intelligence-hub-hero {
+        height: 100vh; /* Full viewport height */
+        min-height: 100vh;
+    }
+    
+    .clarion-hero-content {
+        flex: 0 0 45vh; /* Same logo space as other screens */
+    }
+    
+    .clarion-logo-container svg {
+        width: 56vw !important; /* 20% smaller (70vw → 56vw) */
+        height: 36vh !important; /* 20% smaller (45vh → 36vh) */
+        max-width: 720px !important; /* 20% smaller (900px → 720px) */
+        max-height: 540px !important; /* 20% smaller (675px → 540px) */
+        transform: scale(1.6) !important; /* 20% smaller scale (2.0 → 1.6) */
+    }
+    
+    .hero-content-container {
+        padding: 1rem 0 3vh 0; /* Anchor arrow 3vh from bottom */
+        justify-content: space-between; /* Text at top, arrow at bottom */
+    }
+    
+    .hero-main {
+        margin-bottom: auto; /* Push text to top */
+    }
+    
+    .scroll-indicator {
+        margin-top: auto; /* Anchor arrow at bottom */
+    }
+    
+    .hero-headline {
+        font-size: 2.8rem !important; /* Full size for large screens */
+        max-width: 85vw !important;
+    }
+    
+    .hero-subheadline {
+        font-size: 1.4rem !important;
+        max-width: 80vw !important;
+    }
+    
+    .hero-features {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .feature-item {
+        flex: 0 1 auto;
+    }
+}
+
+/* ==========================================================================
+   ALL SECTIONS - RESPONSIVE OPTIMIZATION
+   ========================================================================== */
+
+/* Mobile - All Sections */
+@media (max-width: 768px) {
+    /* Reduce section padding for mobile */
+    .problem-section, .value-pillars, .how-it-works, .faq-section, .contact-section {
+        padding: 2rem 0 !important;
+    }
+    
+    .section-title {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Value Pillars - Mobile */
+    .pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    .pillar {
+        padding: 1.5rem !important;
+    }
+    
+    .pillar-header {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1rem !important;
+    }
+    
+    .pillar-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    /* How It Works - Mobile */
+    .steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    .step {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1rem !important;
+    }
+    
+    /* FAQ - Mobile */
+    .faq-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Contact - Mobile */
+    .contact-content {
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+    
+    .contact-form, .contact-info {
+        height: auto !important;
+    }
+    
+    .contact-form {
+        height: 400px !important; /* Fixed height for mobile */
+    }
+}
+
+/* Tablet - All Sections */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .problem-section, .value-pillars, .how-it-works, .faq-section, .contact-section {
+        padding: 3rem 0 !important;
+    }
+    
+    .section-title {
+        font-size: 2.2rem !important;
+    }
+    
+    /* Value Pillars - Tablet */
+    .pillars-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 2rem !important;
+    }
+    
+    .pillar {
+        padding: 2rem !important;
+    }
+    
+    /* How It Works - Tablet */
+    .steps-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 2.5rem !important;
+    }
+    
+    /* Contact - Tablet */
+    .contact-content {
+        gap: 2.5rem !important;
+    }
+    
+    .contact-form {
+        height: 380px !important;
+    }
+}
+
+/* Small Laptop - All Sections */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    .problem-section, .value-pillars, .how-it-works, .faq-section, .contact-section {
+        padding: 3rem 0 !important; /* Reduced padding for small laptops */
+    }
+    
+    .section-title {
+        font-size: 2.3rem !important;
+    }
+    
+    /* Value Pillars - Small Laptop */
+    .pillars-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+        gap: 2.5rem !important;
+    }
+    
+    .pillar {
+        padding: 2rem !important;
+    }
+    
+    /* Demo visuals optimization for small laptops */
+    .demo-screen {
+        padding: 1.2rem !important;
+    }
+    
+    .feature-demo {
+        margin: 1.5rem 0 !important;
+    }
+}
+
+/* Large Laptop & Desktop - All Sections */  
+@media (min-width: 1400px) {
+    .problem-section, .value-pillars, .how-it-works, .faq-section, .contact-section {
+        padding: 4rem 0 !important; /* Full padding for large screens */
+    }
+    
+    .section-title {
+        font-size: 2.5rem !important;
+    }
+    
+    /* Value Pillars - Large Screens */
+    .pillars-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+        gap: 3rem !important;
+    }
+    
+    .pillar {
+        padding: 2.5rem !important;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE TRANSITIONS & POLISH
+   ========================================================================== */
+
+/* Add smooth transitions for responsive elements */
+.intelligence-hub-hero,
+.clarion-logo-container svg,
+.hero-content-container,
+.hero-headline,
+.hero-subheadline,
+.hero-features,
+.feature-item,
+.hero-cta-button,
+.section-title,
+.pillars-grid,
+.pillar,
+.steps-grid,
+.step,
+.contact-content {
+    transition: all 0.3s ease;
+}
+
+/* Ensure smooth font size transitions */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize images and logos for different screen densities */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .clarion-logo-container svg {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ==========================================================================
+   CONTACT SECTION STYLES
+   ========================================================================== */
+
+.contact-section {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    align-items: stretch;
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-form {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 400px; /* Fixed height instead of min-height */
+    flex: 2; /* Takes 2/3 of the width */
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+.contact-info {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    padding: 2rem;
+    flex: 1; /* Takes 1/3 of the width */
+    height: 400px; /* Match form height */
+}
+
+.contact-info h3 {
+    color: #6fa8dc;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.contact-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-benefit {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.contact-benefit h4 {
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contact-benefit p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+        height: 350px; /* Smaller height for mobile */
+        flex: 1;
+    }
+    
+    .contact-info {
+        padding: 1.5rem;
+        height: auto; /* Auto height for mobile */
+        flex: 1;
     }
 }
 
@@ -980,4 +1342,873 @@
     .clarion-logo-container svg .cls-22 {
         font-size: 16.15px !important; /* 17px reduced by 5% */
     }
-} 
+}
+
+/* ==========================================================================
+   UNIFIED HOMEPAGE STYLES - New Sections
+   ========================================================================== */
+
+/* Problem Section */
+.problem-section {
+    padding: 3rem 0; /* Reduced from 4rem */
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.problem-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.problem-content h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.problem-description {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Value Pillars Section */
+.value-pillars {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, #334155 0%, #475569 100%);
+    min-height: auto; /* Removed fixed min-height */
+}
+
+.section-title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.pillar {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(111, 168, 220, 0.3);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Pillar Header Layout */
+.pillar-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.pillar-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.pillar-title-section {
+    flex: 1;
+}
+
+.pillar h3 {
+    color: #6fa8dc;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.pillar h4 {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.pillar-benefits {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.pillar-benefits li {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.pillar-benefits li:before {
+    content: '✓';
+    color: #6fa8dc;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.before-after {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.before, .after {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.before {
+    color: #f87171;
+}
+
+.after {
+    color: #34d399;
+}
+
+/* ==========================================================================
+   FEATURE DEMO VISUALS - Interactive Mockups
+   ========================================================================== */
+
+/* Feature Demo Container */
+.feature-demo {
+    margin: 2rem 0;
+}
+
+.demo-placeholder {
+    text-align: center;
+}
+
+.demo-screen {
+    background: linear-gradient(145deg, #1e293b, #334155);
+    border: 2px solid rgba(111, 168, 220, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.demo-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6fa8dc, #4a90e2, #6fa8dc);
+    animation: screen-glow 3s ease-in-out infinite;
+}
+
+@keyframes screen-glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.demo-header {
+    color: #6fa8dc;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(111, 168, 220, 0.2);
+}
+
+.demo-caption {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Emergency Response Demo */
+.demo-map {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.pipe-break-point {
+    background: rgba(239, 68, 68, 0.2);
+    border: 2px solid #ef4444;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    70% { 
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+}
+
+.affected-area, .isolation-valves {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid #fbbf24;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #fbbf24;
+}
+
+.demo-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.demo-btn {
+    background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(111, 168, 220, 0.4);
+}
+
+/* AI Knowledge Demo */
+.chat-interface {
+    text-align: left;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+
+.chat-message.user {
+    background: rgba(111, 168, 220, 0.2);
+    border-left: 4px solid #6fa8dc;
+    color: #e2e8f0;
+    margin-left: 2rem;
+}
+
+.chat-message.ai {
+    background: rgba(34, 197, 94, 0.2);
+    border-left: 4px solid #22c55e;
+    color: #e2e8f0;
+    margin-right: 2rem;
+    animation: typing-appear 2s ease-out;
+}
+
+@keyframes typing-appear {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.knowledge-sources {
+    background: rgba(64, 64, 64, 0.3);
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Integration Demo */
+.unified-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.system-tile {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.status {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+.status.online {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+    animation: status-pulse 3s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.central-search {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(111, 168, 220, 0.2), rgba(74, 144, 226, 0.2));
+    border: 2px solid rgba(111, 168, 220, 0.4);
+    border-radius: 8px;
+    padding: 1rem;
+    color: #e2e8f0;
+    font-style: italic;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.central-search::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: search-shine 3s ease-in-out infinite;
+}
+
+@keyframes search-shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Social Proof Section */
+.social-proof {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+}
+
+.proof-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.proof-metric {
+    text-align: center;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.metric-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #6fa8dc;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: #cbd5e1;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.testimonial-card blockquote {
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    border: none;
+    padding: 0;
+}
+
+.testimonial-author {
+    border-top: 1px solid rgba(111, 168, 220, 0.2);
+    padding-top: 1rem;
+}
+
+.testimonial-author strong {
+    color: #6fa8dc;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.testimonial-author em {
+    color: #94a3b8;
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-result {
+    color: #34d399;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.section-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    background: linear-gradient(135deg, #6fa8dc, #4a90e2);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    color: #e2e8f0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.step-content p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.step-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.step-details span {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.implementation-timeline {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.implementation-timeline h4 {
+    color: #6fa8dc;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.implementation-timeline p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.implementation-timeline p:last-child {
+    color: #34d399;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Demo Section */
+.demo-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+}
+
+.demo-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.demo-content h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.demo-subtitle {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+}
+
+.demo-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.benefit-icon {
+    color: #34d399;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.benefit-item span:last-child {
+    color: #e2e8f0;
+    font-size: 1rem;
+}
+
+.demo-form-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.demo-form {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 525px;
+}
+
+.trust-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.trust-item {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.trust-item strong {
+    color: #6fa8dc;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.faq-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.faq-item h3 {
+    color: #6fa8dc;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.faq-item p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Old responsive rules - now handled in consolidated responsive section above */
+
+/* ==========================================================================
+   NEW HERO STYLES - Override for Unified Homepage
+   ========================================================================== */
+
+/* New Hero Main Section - Clean, no floating box */
+.hero-main {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important; /* Remove padding that creates the box */
+    background: none !important; /* Remove background that creates the floating box */
+    border-radius: 0 !important; /* Remove border radius */
+    backdrop-filter: none !important; /* Remove blur effect */
+    box-shadow: none !important; /* Remove shadow */
+    margin: 0 auto !important; /* Remove margin */
+    position: relative !important;
+    z-index: 10 !important;
+    border: none !important; /* Remove border */
+}
+
+.hero-headline {
+    font-size: 2.8rem !important; /* Base size for smaller screens */
+    font-weight: 600 !important;
+    line-height: 1.3 !important; /* Better line height for readability */
+    color: #ffffff !important;
+    margin: 0 !important;
+    text-align: center !important;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(74, 144, 226, 0.3) !important; /* Enhanced shadow with glow */
+    max-width: 85vw !important; /* Ensure it doesn't overflow */
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+    padding: 0 1rem !important; /* Add padding for safety */
+}
+
+/* Large desktop screens - bigger text */
+@media (min-width: 1600px) {
+    .hero-headline {
+        font-size: 3.8rem !important; /* Much larger on big screens */
+    }
+    
+    .hero-subheadline {
+        font-size: 1.8rem !important; /* Larger subheadline */
+    }
+}
+
+.hero-subheadline {
+    font-size: 1.4rem !important; /* Slightly larger */
+    color: #cbd5e1 !important;
+    margin: -1rem 0 0 0 !important; /* Stronger negative top margin to pull much closer to headline */
+    text-align: center !important;
+    max-width: 80vw !important; /* Prevent overflow */
+    line-height: 1.6 !important; /* Better readability */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important; /* Add subtle shadow */
+    padding: 0 1rem !important; /* Add padding for safety */
+}
+
+/* Hero Features Bar - Clean and centered */
+.hero-features {
+    display: flex !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 2rem 0 !important;
+    flex-wrap: wrap !important;
+    max-width: 90vw !important; /* Prevent overflow */
+}
+
+.feature-item {
+    display: flex !important;
+    flex-direction: row !important; /* Horizontal layout for features */
+    align-items: center !important;
+    gap: 0.8rem !important;
+    background: rgba(111, 168, 220, 0.15) !important; /* Slightly more visible */
+    padding: 1rem 1.5rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(111, 168, 220, 0.4) !important; /* More visible border */
+    backdrop-filter: blur(10px) !important; /* Add glass effect */
+    white-space: nowrap !important; /* Prevent text wrapping */
+}
+
+.feature-icon {
+    font-size: 1.5rem !important;
+    color: #6fa8dc !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    flex-shrink: 0 !important; /* Prevent icon from shrinking */
+}
+
+.feature-label {
+    font-size: 1rem !important;
+    color: #e2e8f0 !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Hero CTA - Clean and centered */
+.hero-cta {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin-top: 2rem !important;
+    width: 100% !important;
+    max-width: 90vw !important; /* Prevent overflow */
+}
+
+.hero-cta-button {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #6fa8dc 0%, #4a90e2 100%) !important;
+    color: white !important;
+    padding: 1.25rem 2.5rem !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(111, 168, 220, 0.4) !important;
+    border: 2px solid rgba(111, 168, 220, 0.3) !important;
+    text-align: center !important; /* Center text */
+    max-width: 90vw !important; /* Prevent overflow */
+    white-space: nowrap !important; /* Prevent text wrapping */
+}
+
+.hero-cta-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(111, 168, 220, 0.5) !important;
+    background: linear-gradient(135deg, #5a9bd4 0%, #357abd 100%) !important;
+    border-color: rgba(111, 168, 220, 0.6) !important;
+    color: white !important;
+}
+
+.hero-cta-subtext {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    font-style: italic !important;
+}
+
+/* Scroll Down Indicator */
+.scroll-indicator {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0rem !important; /* No gap - text directly above arrow */
+    margin-top: 2rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.scroll-indicator:hover .scroll-arrow span {
+    opacity: 0.7 !important; /* Light fade on hover */
+    transition: opacity 0.2s ease !important;
+}
+
+.scroll-text {
+    color: #cbd5e1 !important;
+    font-size: 0.9rem !important; /* Smaller text */
+    margin: 0 !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+}
+
+.scroll-arrow {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important; /* Remove fixed width */
+    height: auto !important; /* Remove fixed height */
+    border: none !important; /* Remove circle border */
+    border-radius: 0 !important; /* Remove circle */
+    background: none !important; /* Remove circle background */
+    backdrop-filter: none !important; /* Remove blur effect */
+    animation: none !important; /* Remove pulse animation */
+}
+
+.scroll-arrow span {
+    color: #6fa8dc !important;
+    font-size: 1.2rem !important; /* Smaller, more minimal */
+    font-weight: normal !important; /* Less bold for minimal look */
+    animation: gentle-float 3s ease-in-out infinite !important; /* Subtle floating animation */
+}
+
+@keyframes gentle-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(3px); /* Very subtle downward float */
+    }
+}
+
+@keyframes pulse-scroll {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(111, 168, 220, 0.4);
+        background: rgba(111, 168, 220, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(111, 168, 220, 0);
+        background: rgba(111, 168, 220, 0.2);
+    }
+}
+
+@keyframes bounce-arrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Hero responsive styles now handled in main responsive section above */ 

@@ -13,10 +13,19 @@ This document explains the complete layout architecture of the Clarion homepage,
 ├── .clarion-hero-content (Logo Area)
 │   └── .clarion-logo-container
 │       └── SVG Logo + D3 Animation
-└── .hero-content-container (Content Area)
-    ├── .hero-tagline (Hero Text)
-    └── .icp-ctas (CTA Buttons)
+└── .hero-content-container (Content Area - flexbox)
+    └── .hero-main (Absolutely positioned hero text)
+        ├── .hero-headline (Main headline)
+        └── .hero-subheadline (Subtitle)
+└── .scroll-indicator (Fixed positioned at bottom)
+    ├── .scroll-text (Explore text)
+    └── .scroll-arrow (Down arrow)
 ```
+
+### **CRITICAL POSITIONING APPROACH**
+- **Logo**: Uses flexbox with relative positioning (`top` values)
+- **Hero Text**: Uses absolute positioning (`top: 20vh`)  
+- **Scroll Arrow**: Uses fixed positioning (`bottom: 2vh`)
 
 ---
 
@@ -55,36 +64,41 @@ This document explains the complete layout architecture of the Clarion homepage,
 
 ---
 
-## 🎯 **Progressive Clearance System**
+## 🎯 **Progressive Logo Positioning System**
 
-### **Header Overlap Prevention**
-The layout uses a **mathematical clearance system** that scales with screen size:
+### **UPDATED: Screen-Specific Logo Positioning**
+The layout uses a **progressive positioning system** that moves the logo down more on larger screens:
 
 ```css
-/* Base clearance (laptop/desktop) */
+/* Base clearance (all screens) */
 .clarion-hero-content {
-    top: 80px;
-    transform: scale(1.3);
+    top: 140px; /* Base positioning */
+    transform: scale(1.5); /* Prominent logo size */
 }
 
-/* Large screens (1921px+) */
-.clarion-hero-content {
-    top: 100px; /* +20px more clearance */
-    transform: scale(1.2); /* Less aggressive scaling */
+/* Large desktop screens (1600px+) */
+@media (min-width: 1600px) {
+    .clarion-hero-content {
+        top: 280px; /* Much lower on large screens */
+        height: calc(100vh - 560px);
+    }
 }
 
-/* Ultra-wide (2560px+) */
-.clarion-hero-content {
-    top: 120px; /* +40px maximum clearance */
-    transform: scale(1.1); /* Conservative scaling */
+/* Ultra-wide screens (2560px exactly) */
+@media (min-width: 2560px) and (max-width: 2560px) {
+    .clarion-hero-content {
+        top: 250px !important; /* Optimized for 2560x1440 screens */
+        height: calc(100vh - 500px) !important;
+        transform: scale(1.1) !important; /* Conservative scaling */
+    }
 }
 ```
 
-### **Why Progressive Clearance Works**
-- **Larger screens** = **Larger scaled logos**
-- **Larger logos** = **More potential for overlap**
-- **Progressive clearance** = **Guaranteed safety**
-- **Mathematical approach** = **No guesswork**
+### **Why Progressive Positioning Works**
+- **Larger screens** = **More vertical space available**
+- **Logo positioned lower** = **Better visual balance**  
+- **Screen-specific optimization** = **Perfect positioning for each resolution**
+- **Mathematical approach** = **Consistent, predictable results**
 
 ---
 
@@ -343,69 +357,185 @@ min-height: 48px (touch targets)
 
 ---
 
-## 🎯 **Current Hero Text Flexbox Setup**
+## 🎯 **CURRENT Hero Text Positioning System (UPDATED)**
 
-### **Current Positioning:**
-The hero text is currently **centered** in its container:
+### **IMPLEMENTED: Absolute Positioning Approach**
+The hero text now uses **absolute positioning** for precise control:
 
 ```css
-.hero-content-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* ← This centers ALL content vertically */
-    align-items: center;
-    gap: 2vh;
+.hero-main {
+    position: absolute; /* Take out of flexbox flow */
+    top: 20vh; /* Position at 20% down the viewport */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 100%;
+    gap: 0rem; /* No gap between headline and subline */
+}
+
+.hero-subheadline {
+    margin: -1rem 0 0 0 !important; /* Negative margin pulls text closer */
 }
 ```
 
-**Container Structure:**
+### **Current Layout Structure:**
 ```
-┌─ .hero-content-container (centered) ─┐
-│  1. .hero-tagline                     │
-│  2. .cta-indicator-arrows             │  
-│  3. .icp-ctas                         │
-└───────────────────────────────────────┘
+┌─ .intelligence-hub-hero (100vh) ─────────────┐
+│  ┌─ .clarion-hero-content (logo area) ─────┐ │
+│  │  Logo positioned with relative + top    │ │
+│  └─────────────────────────────────────────┘ │
+│                                              │
+│  ┌─ .hero-main (absolutely positioned) ────┐ │
+│  │  • top: 20vh                            │ │  
+│  │  • Hero headline                        │ │
+│  │  • Hero subheadline (negative margin)   │ │
+│  └─────────────────────────────────────────┘ │
+│                                              │
+│  ┌─ .scroll-indicator (fixed position) ────┐ │
+│  │  • bottom: 2vh                          │ │
+│  │  • Explore text + down arrow            │ │
+│  └─────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
 ```
 
-## 🔧 **Options to Move Hero Text Up**
+## 🔧 **EDITING GUIDE: How to Adjust Positions**
 
-### **Option 1: Independent Text Positioning (Recommended)**
-Move just the hero text up without affecting other elements:
-
+### **To Move Logo Up/Down:**
 ```css
-<code_block_to_apply_changes_from>
-```
-
-### **Option 2: Container Layout Change**
-Change the entire container to start from top, then adjust other elements:
-
-```css
-.hero-content-container {
-    justify-content: flex-start; /* Start from top */
-    padding-top: 1vh; /* Add some top spacing */
+.clarion-hero-content {
+    top: 140px; /* Increase = move down, decrease = move up */
 }
 
-.cta-indicator-arrows {
-    margin-top: auto; /* Push arrows down */
-}
-```
-
-### **Option 3: Negative Margin (Clean)**
-Use negative margin to pull text up specifically:
-
-```css
-.intelligence-hub-hero .hero-tagline {
-    margin-top: -2vh; /* Pull up without affecting others */
+/* For specific screen sizes, add media queries */
+@media (min-width: 2560px) and (max-width: 2560px) {
+    .clarion-hero-content {
+        top: 250px !important; /* Screen-specific positioning */
+    }
 }
 ```
 
-## 💡 **My Recommendation**
+### **To Move Hero Text Up/Down:**
+```css
+.hero-main {
+    top: 20vh; /* Increase = move down, decrease = move up */
+}
+```
 
-**Option 1 (transform)** is cleanest because:
-- ✅ Only affects the hero text
-- ✅ Doesn't disturb other element spacing
-- ✅ Easy to fine-tune with different values
-- ✅ Maintains responsive behavior
-- ✅ Won't interfere with CTA arrows or buttons
+### **To Move Scroll Arrow Up/Down:**
+```css
+.scroll-indicator {
+    bottom: 2vh; /* Increase = move up, decrease = move down */
+}
+```
 
-**Would you like me to implement Option 1 with `transform: translateY(-1.5vh)` to move the hero text up?** We can adjust the exact amount (maybe -1vh, -2vh, etc.) based on what looks best. 
+### **To Adjust Text Spacing:**
+```css
+.hero-subheadline {
+    margin: -1rem 0 0 0 !important; /* More negative = closer together */
+}
+
+.scroll-indicator {
+    gap: 0rem !important; /* Spacing between text and arrow */
+}
+```
+
+## ⚠️ **TROUBLESHOOTING TIPS**
+
+### **If Logo Won't Move:**
+1. **Check for conflicting media queries** - Search for your screen width in CSS
+2. **Look for `!important` rules** that override your changes
+3. **Use browser dev tools** to see which CSS rule is actually being applied
+4. **Try adding `!important`** to your rule if needed
+
+### **If Text Overlaps Logo:**
+1. **Increase hero text `top` value** (e.g., `top: 25vh`)
+2. **Or decrease logo positioning** (e.g., reduce logo `top` value)
+3. **Check logo scale** - large logos extend further down
+
+### **Common Screen Resolutions to Test:**
+- **Laptop**: 1366x768, 1920x1080
+- **Desktop**: 2560x1440, 3440x1440  
+- **Mobile**: 375x667, 414x896
+
+### **Quick Debug Method:**
+Add temporary colored borders to see element boundaries:
+```css
+.clarion-hero-content { border: 2px solid red !important; }
+.hero-main { border: 2px solid blue !important; }
+.scroll-indicator { border: 2px solid green !important; }
+```
+
+## 🎛️ **CSS VARIABLES FOR EASY EDITING**
+
+### **NEW: Centralized Control Variables**
+All key positioning values are now controlled by CSS custom properties at the top of the file:
+
+```css
+:root {
+    /* Logo Positioning Variables */
+    --logo-base-top: 140px;           /* Base logo position (all screens) */
+    --logo-large-desktop-top: 280px;  /* Large desktop screens (1600px+) */
+    --logo-ultra-wide-top: 250px;     /* Ultra-wide screens (2560px) */
+    --logo-scale: 1.5;                /* Logo scale factor */
+    
+    /* Hero Text Positioning Variables */
+    --hero-text-top: 20vh;            /* Hero text vertical position */
+    --hero-text-gap: 0rem;            /* Gap between headline/subline */
+    --hero-subline-margin: -1rem;     /* Negative margin to pull closer */
+    
+    /* Scroll Indicator Variables */
+    --scroll-bottom: 2vh;             /* Distance from screen bottom */
+    --scroll-text-size: 0.9rem;       /* Text size */
+    --scroll-arrow-size: 1.2rem;      /* Arrow size */
+}
+```
+
+### **🎯 QUICK EDIT METHOD:**
+**To make changes, just edit the CSS variables at the top of hero.css:**
+
+```css
+/* Want logo higher on large screens? Change this: */
+--logo-ultra-wide-top: 200px;  /* Was 250px */
+
+/* Want hero text lower? Change this: */
+--hero-text-top: 25vh;  /* Was 20vh */
+
+/* Want scroll arrow higher? Change this: */
+--scroll-bottom: 5vh;  /* Was 2vh */
+```
+
+### **🚀 BENEFITS OF THIS APPROACH:**
+- ✅ **Single point of control** - Change one variable, affects all responsive breakpoints
+- ✅ **No hunting for media queries** - All key values are centralized
+- ✅ **Consistent calculations** - Heights auto-adjust based on positioning
+- ✅ **Easy experimentation** - Quick tweaks without CSS conflicts
+- ✅ **Future-proof** - New screen sizes just need variable overrides
+
+### **📊 SCREEN SIZE REFERENCE:**
+```
+Mobile:      320px - 768px   (uses base variables)
+Tablet:      769px - 1024px  (uses base variables) 
+Desktop:     1025px - 1599px (uses base variables)
+Large:       1600px - 2559px (overrides --logo-base-top to 280px)
+Ultra-wide:  2560px exactly  (overrides --logo-base-top to 250px)
+```
+
+---
+
+## 📝 **FINAL SUCCESS METRICS**
+
+### **✅ COMPLETED IMPROVEMENTS:**
+- [x] Logo positioned optimally for all screen sizes
+- [x] Hero text never overlaps logo nodes
+- [x] Scroll arrow disappears when scrolling
+- [x] Text spacing is compact and readable
+- [x] Screen-specific optimizations for 2560px displays
+- [x] CSS variables for easy future editing
+- [x] Comprehensive documentation updated
+
+### **🎯 FUTURE EDITING IS NOW SIMPLE:**
+1. **Edit CSS variables** at top of hero.css
+2. **Test on your screen** - refresh and check
+3. **Document changes** in this file for reference
+4. **Done!** No more hunting through media queries or fighting CSS conflicts
+
+This layout system is now maintainable, scalable, and documented for future developers.

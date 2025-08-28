@@ -27,7 +27,18 @@
     position: relative;
 }
 
-.contact-form iframe {
+.contact-form-fullwidth {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    position: relative;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.contact-form iframe,
+.contact-form-fullwidth iframe {
     width: 100%;
     height: 430px;
     min-height: 430px;
@@ -38,16 +49,19 @@
 
 /* Responsive styles for mobile */
 @media (max-width: 600px) {
-    .contact-form {
+    .contact-form,
+    .contact-form-fullwidth {
         max-width: 100%;
         margin: 0;
+        padding: 1.5rem;
     }
     .contact-header p {
         font-size: 1rem;
         max-width: 100vw;
         white-space: normal;
     }
-    .contact-form iframe {
+    .contact-form iframe,
+    .contact-form-fullwidth iframe {
         height: 600px;
         min-height: 600px;
         max-height: 600px;
